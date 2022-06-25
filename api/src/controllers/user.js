@@ -10,6 +10,14 @@ async function createUser(req, res){
     }catch(error){res.send(`Error: ${error}`)}
 }
 
+async function getUsers(req, res){
+    try{
+        const getUsers = await User.findAll()
+        res.send(getUsers)
+    }catch(error){res.send(`Error: ${error}`)}
+}
+
 module.exports= {
-    createUser
+    createUser,
+    getUsers
 }

@@ -15,6 +15,14 @@ async function createService(req, res){
     }catch(error){res.send(`Error: ${error}`)}
 }
 
+async function getServices(req, res){
+    try{
+        const getServices = await Service.findAll()
+        res.send(getServices)
+    }catch(error){res.send(`Error: ${error}`)}    
+}
+
 module.exports= {
-    createService
+    createService,
+    getServices
 }

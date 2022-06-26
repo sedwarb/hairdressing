@@ -2,7 +2,7 @@ const { User, Entry, Worker, Service } = require("../db.js");
 const { Op } = require("sequelize");
 
 async function getEntriesByDate(req, res){
-    const exclution = ["createdAt","updatedAt"]
+    const exclutionInInclude = {exclude: ["createdAt","updatedAt"]}
     const exclutionppal = [
         "createdAt",
         "updatedAt",
@@ -10,64 +10,23 @@ async function getEntriesByDate(req, res){
         "workerId",
         "serviceId"
     ]
-    if(req.query.workerId){
-        try{
+    let whereObj = {date:{[Op.between]:[req.query.dateIni,req.query.dateEnd]}}
+    if(req.query.workerId) whereObj.workerId=req.query.workerId
+    if(req.query.phoneNumber) whereObj.userPhoneNumber=req.query.phoneNumber
+    try{
         const entriesBydate = await Entry.findAll(
-            {//2021-03-01 year-month-day
-                where: { 
-                    date: { [Op.between]: [req.query.dateIni, req.query.dateEnd] },
-                    workerId: req.query.workerId 
-                },
+            {
+                where: whereObj,
                 attributes:{exclude: exclutionppal},
                 include: [
-                    {model: User, attributes: {exclude: exclution}},
-                    {model: Worker, attributes: {exclude: exclution}},
-                    {model: Service, attributes: {exclude: exclution}}
+                    {model: User, attributes: exclutionInInclude},
+                    {model: Worker, attributes: exclutionInInclude},
+                    {model: Service, attributes: exclutionInInclude}
                 ]
             }
         )
-        //entriesBydate[0].id
         res.send(entriesBydate)
-        }catch(error){res.send(`Error: ${error}`)}
-    }else{
-        if(req.query.phoneNumber){
-            try{
-                const entriesBydate = await Entry.findAll(
-                    {
-                        where: { 
-                            date: { [Op.between]: [req.query.dateIni, req.query.dateEnd] },
-                            userPhoneNumber:req.query.phoneNumber
-                        },
-                        attributes:{exclude: exclutionppal},
-                        include: [
-                            {model: User, attributes: {exclude: exclution}},
-                            {model: Worker, attributes: {exclude: exclution}},
-                            {model: Service, attributes: {exclude: exclution}}
-                        ]
-                    }
-                )
-            res.send(entriesBydate)
-            }catch(error){res.send(`Error: ${error}`)}
-        }else{
-            try{
-            const entriesBydate = await Entry.findAll(
-                {
-                    where: { 
-                        date: { [Op.between]: [req.query.dateIni, req.query.dateEnd] },
-                    },
-                    attributes:{exclude: exclutionppal},
-                    include: [
-                        {model: User, attributes: {exclude: exclution}},
-                        {model: Worker, attributes: {exclude: exclution}},
-                        {model: Service, attributes: {exclude: exclution}}
-                    ]
-                }
-            )
-            res.send(entriesBydate)
-            }catch(error){res.send(`Error: ${error}`)}
-        }
-        
-    }    
+    }catch(error){res.send(`Error: ${error}`)}
 }
 
 async function createEntry(req, res){

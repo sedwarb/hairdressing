@@ -56,3 +56,5 @@
   
   Este GET obtiene todas las Citas en un rango de fecha determinado pasado por query, donde
 dateIni es la fecha inicial y dateEnd la fecha final a consultar, y entry=meeting indica que es una cita
+
+ **Nota:** Las citas se agendan y luego se puede convertir en una **entrada** si se realiza se cambia el campo **entryType** a entry, si la cita es cancellada se debe cambiar el **entryType** a cancelled

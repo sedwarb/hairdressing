@@ -51,7 +51,16 @@ async function createEntry(req, res){
     }catch(error){res.send(`Error: ${error}`)}
 }
 
+async function updateEntryType(req,res){
+    const { date, userPhoneNumber,entryType } = req.body;
+    try{
+        await Entry.update({entryType},{where:{date,userPhoneNumber}})
+        res.send("Se ha actualizado entryType")
+    }catch(error){res.send(`Error: ${error}`)}    
+}
+
 module.exports= {
     getEntriesByDate,
-    createEntry
+    createEntry,
+    updateEntryType
 }

@@ -11,8 +11,13 @@ async function getEntriesByDate(req, res){
         "serviceId"
     ]
     let whereObj = {date:{[Op.between]:[req.query.dateIni,req.query.dateEnd]}}
-    if(req.query.workerId) whereObj.workerId=req.query.workerId
-    if(req.query.phoneNumber) whereObj.userPhoneNumber=req.query.phoneNumber
+    const size = [req.query.workerId,req.query.phoneNumber,req.query.entry].filter(p=>p!==undefined).length
+    if(size===1){
+        if(req.query.workerId) whereObj.workerId=req.query.workerId
+        if(req.query.phoneNumber) whereObj.userPhoneNumber=req.query.phoneNumber
+        if(req.query.entry) whereObj.entryType=req.query.entry
+    }else if(size>1)res.send("Solo debe filtrar por workerId o phoneNumber o entry")
+    
     try{
         const entriesBydate = await Entry.findAll(
             {
@@ -33,7 +38,7 @@ async function createEntry(req, res){
     try{
         await Entry.create(
             {
-                date:Date(),
+                date:req.body.date?req.body.date:Date(),
                 manualEntry:req.body.manualEntry,
                 amountEntry:req.body.amountEntry,
                 entryType:req.body.entryType,

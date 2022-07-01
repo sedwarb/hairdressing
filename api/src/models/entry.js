@@ -3,8 +3,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('entry', {
     date: {
-      type: DataTypes.DATEONLY,
-      defaultValue:Date()
+      type: DataTypes.DATE
     },
     manualEntry: {
         type: DataTypes.STRING
@@ -15,7 +14,7 @@ module.exports = (sequelize) => {
     },
     entryType: {
       type: DataTypes.STRING,
-      defaultValue:"entry" //los tipos son entry o meeting
+      defaultValue:"entry" //los tipos son entry, meeting, cancelled
   },
   });
 };

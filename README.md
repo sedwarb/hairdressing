@@ -46,7 +46,7 @@
   
   En este GET se agrega workerId que es el Id del trabajador
   
-  **Por fecha y Usuario:** http://localhost:3001/entries?dateIni=2022-06-02%2000:00:00.110%20-0500&&dateEnd=2022-07-01%2023:59:59.110%20-0500&&phoneNumber=4007008060
+  **Por fecha y Usuario:** http://localhost:3001/entries?dateIni=2022-06-02%2000:00:00.110%20-0500&&dateEnd=2022-07-01%2023:59:59.110%20-0500&&phoneNumber=3006007050
   
   En este GET se agrega phoneNumber que es el Id del usuario
   
@@ -54,7 +54,10 @@
   
   **Por fecha:** http://localhost:3001/entries?dateIni=2022-06-02%2000:00:00.110%20-0500&&dateEnd=2022-07-01%2023:59:59.110%20-0500&&entry=meeting
   
-  Este GET obtiene todas las Citas en un rango de fecha determinado pasado por query, donde
-dateIni es la fecha inicial y dateEnd la fecha final a consultar, y entry=meeting indica que es una cita
+  Este GET obtiene todas las Citas en un rango de fecha determinado pasado por query, donde dateIni es la fecha inicial y dateEnd la fecha final a consultar, y entry=meeting indica que es una cita
+
+  **Por fecha y trabajador:** http://localhost:3001/entries?dateIni=2022-06-02%2000:00:00.110%20-0500&&dateEnd=2022-07-01%2023:59:59.110%20-0500&&entry=meeting&&workerId=1143961948
+
+  Este GET obtiene todas las Citas en un rango de fecha determinado pasado por query, donde dateIni es la fecha inicial y dateEnd la fecha final a consultar, entry=meeting indica que es una cita y workerId para filtrar por trabajador
 
  **Nota:** Las citas se agendan y luego se puede convertir en una **entrada** si se realiza se cambia el campo **entryType** a entry, si la cita es cancellada se debe cambiar el **entryType** a cancelled

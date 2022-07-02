@@ -1,23 +1,31 @@
 const { User, Entry, Worker, Service } = require("../db.js");
 const { Op } = require("sequelize");
+const {exclutionInInclude,exclutionppal,createWhereObj} = require('./constAndFunctions')
 
 async function getEntriesByDate(req, res){
-    const exclutionInInclude = {exclude: ["createdAt","updatedAt"]}
-    const exclutionppal = [
-        "createdAt",
-        "updatedAt",
-        "userPhoneNumber",
-        "workerId",
-        "serviceId"
-    ]
-    let whereObj = {date:{[Op.between]:[req.query.dateIni,req.query.dateEnd]}}
-    const size = [req.query.workerId,req.query.phoneNumber,req.query.entry].filter(p=>p!==undefined).length
-    if(size===1){
-        if(req.query.workerId) whereObj.workerId=req.query.workerId
-        if(req.query.phoneNumber) whereObj.userPhoneNumber=req.query.phoneNumber
-        if(req.query.entry) whereObj.entryType=req.query.entry
-    }else if(size>1)res.send("Solo debe filtrar por workerId o phoneNumber o entry")
-    
+    const {workerId,phoneNumber,entry,dateIni,dateEnd}=req.query
+    const whereObj = {date:{[Op.between]:[dateIni,dateEnd]}}
+    try{
+        const entriesBydate = await Entry.findAll(
+            {
+                where: entry==="meeting" && workerId ? 
+                {date:whereObj.date,workerId,entryType:"meeting"} : 
+                createWhereObj(workerId,phoneNumber,entry,whereObj),
+                attributes:{exclude: exclutionppal},
+                include: [
+                    {model: User, attributes: exclutionInInclude},
+                    {model: Worker, attributes: exclutionInInclude},
+                    {model: Service, attributes: exclutionInInclude}
+                ]
+            }
+        )
+        res.send(entriesBydate)
+    }catch(error){res.send(`Error: ${error}`)}
+}
+
+async function getMeetingByDateAndWorker(req, res){
+    const {workerId,dateIni,dateEnd}=req.query
+    const whereObj = {date:{[Op.between]:[dateIni,dateEnd]},workerId,entryType:"meeting"}
     try{
         const entriesBydate = await Entry.findAll(
             {
@@ -62,5 +70,6 @@ async function updateEntryType(req,res){
 module.exports= {
     getEntriesByDate,
     createEntry,
-    updateEntryType
+    updateEntryType,
+    getMeetingByDateAndWorker
 }

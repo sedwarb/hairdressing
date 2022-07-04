@@ -23,25 +23,6 @@ async function getEntriesByDate(req, res){
     }catch(error){res.send(`Error: ${error}`)}
 }
 
-async function getMeetingByDateAndWorker(req, res){
-    const {workerId,dateIni,dateEnd}=req.query
-    const whereObj = {date:{[Op.between]:[dateIni,dateEnd]},workerId,entryType:"meeting"}
-    try{
-        const entriesBydate = await Entry.findAll(
-            {
-                where: whereObj,
-                attributes:{exclude: exclutionppal},
-                include: [
-                    {model: User, attributes: exclutionInInclude},
-                    {model: Worker, attributes: exclutionInInclude},
-                    {model: Service, attributes: exclutionInInclude}
-                ]
-            }
-        )
-        res.send(entriesBydate)
-    }catch(error){res.send(`Error: ${error}`)}
-}
-
 async function createEntry(req, res){
     try{
         await Entry.create(
@@ -70,6 +51,5 @@ async function updateEntryType(req,res){
 module.exports= {
     getEntriesByDate,
     createEntry,
-    updateEntryType,
-    getMeetingByDateAndWorker
+    updateEntryType
 }

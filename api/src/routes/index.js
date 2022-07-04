@@ -22,6 +22,8 @@ const router = Router();
 // http://localhost:3001/user
 // http://localhost:3001/service
 // http://localhost:3001/worker
+// Actualizar precio de servicio
+// http://localhost:3001/service
 router.use('/bulkLoad', bulkLoad);
 router.use('/entries', entries);
 router.use('/user', user);

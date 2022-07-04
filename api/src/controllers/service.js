@@ -15,6 +15,24 @@ async function createService(req, res){
     }catch(error){res.send(`Error: ${error}`)}
 }
 
+async function updateServicePrice(req,res){
+    const { id, amount } = req.body;
+    let serviceC
+    try{
+        serviceC = await Service.findOne({where:{id}})
+    }catch(error){console.log(`Error: ${error}`)}
+    try{
+        await Service.update(
+            {
+                amount,
+                info: serviceC.info ? `${serviceC.info}/${serviceC.amount}(${Date()})`:
+                `/${serviceC.amount}(${Date()})`
+            },
+            {where:{id}})
+        res.send("Se ha actualizado el precio")
+    }catch(error){res.send(`Error: ${error}`)}    
+}
+
 async function getServices(req, res){
     try{
         const getServices = await Service.findAll()
@@ -24,5 +42,6 @@ async function getServices(req, res){
 
 module.exports= {
     createService,
-    getServices
+    getServices,
+    updateServicePrice
 }

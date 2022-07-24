@@ -4,7 +4,8 @@ import Calendar from 'react-calendar'
 import {
     onSubmit,
     stateGenCont,
-    typeList} from "../constAndFunctions/constAndFunions"
+    typeList,
+    horaMinTurn} from "../constAndFunctions/constAndFunions"
 import 'react-calendar/dist/Calendar.css';
 
 export function Entries(){
@@ -29,7 +30,9 @@ export function Entries(){
                                 Se requiere un Numero de telefono Valido.
                             </div>
                         </div>
-                        <Lists typeList={typeList.service} listStP={stateGen.listSt}/>                        
+                        <Lists typeList={typeList.service} listStP={stateGen.listSt}/>
+                    </div> 
+                    <div className="row g-3">
                         <div className="col-sm-6 w-100 p-3" >
                             <label className="form-label">Fecha</label>
                             <label onClick={()=>stateGen.visible?setStateGen({...stateGen,visible:false}):setStateGen({...stateGen,visible:true})} className="form-label">{JSON.stringify(stateGen.value)}</label>
@@ -47,6 +50,8 @@ export function Entries(){
                                 <option value="meeting">Cita</option>
                             </select>
                         </div>
+                    </div>
+                    <div className="row g-3">
                         <Lists typeList={typeList.worker} listStP={stateGen.listSt}/>
                         <div className="col-sm-6 w-50 p-3">
                             <label htmlFor="precio" className="form-label">Precio</label>
@@ -55,6 +60,8 @@ export function Entries(){
                                 Se requiere un precio valido.
                             </div>
                         </div>
+                    </div>
+                    <div className="row g-3">
                         <div className="col-sm-6 w-50 p-3">
                             <label htmlFor="manual" className="form-label">Servicio Manual</label>
                             <input onChange={e=>handleChange(e)} id="manual" type="text" className="form-control" placeholder="" required/>
@@ -62,9 +69,25 @@ export function Entries(){
                                 Se requiere un Servicio valido.
                             </div>
                         </div>
-                        <div className="col-sm-6 w-100 p-3">-</div>
-                        <button type='submit' className="w-100 btn btn-primary btn-lg" >Crear</button>
-                    </div>                    
+                        <div className="col-sm-6 w-25 p-3">
+                            <label className="form-label" >Hora</label>
+                            <select className="form-label form-control" 
+                            onChange={(e)=>setStateGen({...stateGen,hora:e.currentTarget.value})}>
+                                {horaMinTurn.hora && horaMinTurn.hora.map(list=><option className="list-group-item" key={list} value={list}>{list}</option>)}
+                            </select>
+                            <select className="form-label form-control" 
+                            onChange={(e)=>setStateGen({...stateGen,minutos:e.currentTarget.value})}>
+                                {horaMinTurn.minutos && horaMinTurn.minutos.map(list=><option className="list-group-item" key={list} value={list}>{list}</option>)}
+                            </select>
+                            <select className="form-label form-control" 
+                            onChange={(e)=>setStateGen({...stateGen,turno:e.currentTarget.value})}>
+                                {horaMinTurn.turno && horaMinTurn.turno.map(list=><option className="list-group-item" key={list} value={list}>{list}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-sm-6 w-100 p-3">-</div>
+                    <button type='submit' className="w-100 btn btn-primary btn-lg" >Crear</button>
+                                 
                 </form>                
             </div>
         </>

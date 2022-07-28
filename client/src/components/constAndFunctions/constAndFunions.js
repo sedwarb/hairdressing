@@ -38,6 +38,18 @@ const typeList = {
     }
 }
 
+const typeTable = {
+    user:[{str:"Numero de Telefono",name:"phoneNumber"},
+    {str:"Nombre",name:"fullname"}],
+    service:[{str:"Id",name:"id"},
+    {str:"Servicio",name:"name"},
+    {str:"Precio",name:"amount"},
+    {str:"Informacion",name:"info"}],
+    worker:[{str:"Id",name:"id"},
+    {str:"Nombre",
+    name:"fullname"}]
+}
+
 const horaMinTurn = {
     hora:[1,2,3,4,5,6,7,8,9,10,11,12],
     minutos:[0,5,10,15,20,25,30,35,40,45,50,55],
@@ -48,5 +60,6 @@ module.exports= {
     onSubmit,
     stateGenCont,
     typeList,
-    horaMinTurn
+    horaMinTurn,
+    typeTable
 }

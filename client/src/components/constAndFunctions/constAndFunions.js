@@ -39,15 +39,20 @@ const typeList = {
 }
 
 const typeTable = {
-    user:[{str:"Numero de Telefono",name:"phoneNumber"},
-    {str:"Nombre",name:"fullname"}],
-    service:[{str:"Id",name:"id"},
-    {str:"Servicio",name:"name"},
-    {str:"Precio",name:"amount"},
-    {str:"Informacion",name:"info"}],
-    worker:[{str:"Id",name:"id"},
-    {str:"Nombre",
-    name:"fullname"}]
+    user:[{str:"Numero de Telefono",name:"phoneNumber",sname:null},
+    {str:"Nombre",name:"fullname",sname:null}],
+    service:[{str:"Id",name:"id",sname:null},
+    {str:"Servicio",name:"name",sname:null},
+    {str:"Precio",name:"amount",sname:null},
+    {str:"Informacion",name:"info",sname:null}],
+    worker:[{str:"Id",name:"id",sname:null},
+    {str:"Nombre",name:"fullname",sname:null}],
+    entries:[{str:"Fecha",name:"date",sname:null},
+    {str:"Manual",name:"manualEntry",sname:null},
+    {str:"Monto",name:"amountEntry",sname:null},
+    {str:"Usuario",name:"user",sname:"fullname"},
+    {str:"Trabajador",name:"worker",sname:"fullname"},
+    {str:"Servicio",name:"service",sname:"name"}]
 }
 
 const horaMinTurn = {

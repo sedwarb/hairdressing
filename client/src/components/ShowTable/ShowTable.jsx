@@ -1,13 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Table} from '../Table/Table'
 import {typeTable} from "../constAndFunctions/constAndFunions"
-//uso temporal "user","worker","service"
-const muestra = "service"
 
 export function ShowTable(){
+    const [table,setTable] = useState("")
     return(
         <>
-            <Table typeTable={typeTable[muestra]} search={muestra}/>
+            <div>
+                <ul className="nav">
+                    <li className="nav-item">
+                        <a className="nav-link active" href="#" onClick={()=>setTable("user")}>Usuario</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#" onClick={()=>setTable("worker")}>Trabajador</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#" onClick={()=>setTable("service")}>Servicios</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <Table typeTable={typeTable[table]} search={table}/>
+            </div>
         </>
     )
 }

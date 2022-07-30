@@ -16,7 +16,7 @@ export function Table({typeTable,search}){
             .then(resp => setDates(resp))
             .catch(error => console.log(`Error: ${error}`))
         }
-    },[search])    
+    },[search])
     return(
         <>
             <table className="table table-striped">

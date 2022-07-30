@@ -19,8 +19,14 @@ async function getEntriesByDate(req, res){
                 ]
             }
         )
+        for (let i = 0; i < entriesBydate.length; i++) {
+            if(entriesBydate[i].amountEntry===0){
+                entriesBydate[i].amountEntry=entriesBydate[i].service.amount
+                entriesBydate[i].manualEntry="No aplica"
+            }
+        }
         res.send(entriesBydate)
-    }catch(error){res.send(`Error: id trabajador: ${workerId}, ini: ${dateIni}, fin: ${dateEnd}`)}
+    }catch(error){res.send(`Error: ${error}`)}
 }
 
 async function createEntry(req, res){

@@ -61,10 +61,26 @@ const horaMinTurn = {
     turno:["am","pm"]
 }
 
+const stateTable = {
+    type:"",
+    dbeg:"",
+    dend:"",
+    cdbeg:"",
+    cdend:"",
+    typed:"",
+    send:false,
+    tdate:"",
+    firstTime:false,
+    user:false,
+    worker:false,
+    service:false
+}
+
 module.exports= {
     onSubmit,
     stateGenCont,
     typeList,
     horaMinTurn,
-    typeTable
+    typeTable,
+    stateTable
 }

@@ -26,7 +26,7 @@ export function Table({typeTable,search}){
                     </tr>
                 </thead>
                 <tbody>
-                    {dates && dates.map(date=><tr>{typeTable && typeTable.map(type=><td>{type.sname===null?date[type.name]:date[type.name][type.sname]}</td>)}</tr>)}
+                    {dates && dates.map((date,i)=><tr key={()=>date.phoneNumber?date.phoneNumber+(i*3):date.id+(i*2)}>{typeTable && typeTable.map(type=><td>{type.sname===null?date[type.name]:date[type.name][type.sname]}</td>)}</tr>)}
                 </tbody>
             </table>
         </>

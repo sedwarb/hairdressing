@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Table} from '../Table/Table'
-import {typeTable,stateTable,cleanTableF} from "../constAndFunctions/constAndFunions"
+import {typeTable,stateTable,cleanTableF,tableFilter} from "../constAndFunctions/constAndFunions"
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 
@@ -95,7 +95,10 @@ export function ShowTable(){
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text" id="basic-addon3">Tipo</span>
                                             </div>
-                                            <input onChange={(e) => setTable({ ...table, typed: e.target.value })} type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3" />
+                                            <select className="form-label form-control" onChange={(e) => setTable({ ...table, typed: e.currentTarget.value})}>
+                                                <option className="list-group-item">...Seleccione</option>
+                                                {tableFilter && tableFilter.map(date=><option className="list-group-item" key={date.str} value={date.str}>{date.name}</option>) }
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

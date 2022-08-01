@@ -76,6 +76,10 @@ const stateTable = {
     service:false
 }
 
+const tableFilter = [{str:"workerId",name:"Id Trabajador"},
+{str:"phoneNumber",name:"Id Usuario"},
+{str:"entry",name:"Citas"}]
+
 function cleanTableF(table){
     return {
             user:
@@ -136,5 +140,6 @@ module.exports= {
     horaMinTurn,
     typeTable,
     stateTable,
-    cleanTableF
+    cleanTableF,
+    tableFilter
 }

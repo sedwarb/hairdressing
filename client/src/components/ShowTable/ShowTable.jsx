@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Table} from '../Table/Table'
-import {typeTable,stateTable} from "../constAndFunctions/constAndFunions"
+import {typeTable,stateTable,cleanTableF} from "../constAndFunctions/constAndFunions"
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 
@@ -25,23 +25,10 @@ export function ShowTable(){
             setTable({...table,type:"",send:false})
         }
     }
-    function showTableNow(e){        
-        setTable(
-            {
-                ...table,
-                dbeg:"",
-                dend:"",
-                cdbeg:"",
-                cdend:"",
-                typed:"",
-                send:false,
-                tdate:"",
-                firstTime:false
-            }
-        )
-        if(e.target.id==="user")setTable({...table,type:"user",user:true,worker:false,service:false})
-        if(e.target.id==="worker")setTable({...table,type:"worker",worker:true,user:false,service:false})
-        if(e.target.id==="service")setTable({...table,type:"service",service:true,user:false,worker:false})
+    function showTableNow(e){
+        if(e.target.id==="user")setTable(cleanTableF(table).user)
+        if(e.target.id==="worker")setTable(cleanTableF(table).worker)
+        if(e.target.id==="service")setTable(cleanTableF(table).service)
     }
     return(
         <>

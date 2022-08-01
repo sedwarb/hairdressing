@@ -65,8 +65,8 @@ const stateTable = {
     type:"",
     dbeg:"",
     dend:"",
-    cdbeg:"",
-    cdend:"",
+    cdbeg:new Date(),
+    cdend:new Date(),
     typed:"",
     send:false,
     tdate:"",
@@ -76,11 +76,65 @@ const stateTable = {
     service:false
 }
 
+function cleanTableF(table){
+    return {
+            user:
+            {
+                ...table,
+                type:"user",
+                user:true,
+                worker:false,
+                service:false,
+                dbeg:"",
+                dend:"",
+                cdbeg:"",
+                cdend:"",
+                typed:"",
+                send:false,
+                tdate:"",
+                firstTime:false
+            },
+            worker:
+            {
+                ...table,
+                type:"worker",
+                worker:true,
+                user:false,
+                service:false,
+                dbeg:"",
+                dend:"",
+                cdbeg:"",
+                cdend:"",
+                typed:"",
+                send:false,
+                tdate:"",
+                firstTime:false
+            },
+            service:
+            {
+                ...table,
+                type:"service",
+                service:true,
+                user:false,
+                worker:false,
+                dbeg:"",
+                dend:"",
+                cdbeg:"",
+                cdend:"",
+                typed:"",
+                send:false,
+                tdate:"",
+                firstTime:false
+            }
+    }
+}
+
 module.exports= {
     onSubmit,
     stateGenCont,
     typeList,
     horaMinTurn,
     typeTable,
-    stateTable
+    stateTable,
+    cleanTableF
 }

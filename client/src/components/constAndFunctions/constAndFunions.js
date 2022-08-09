@@ -76,6 +76,23 @@ const stateTable = {
     service:false
 }
 
+function constrPosition(lista){
+    let filas = (lista.length / 3) % 2 === 1 ? lista.length + 1 : lista.length
+    let nlista = [], auxArray = [], posLista = 0, auxlista = 0
+
+    while (posLista<filas) {
+        while(auxlista<3){
+            if(lista[posLista]!==undefined)auxArray.push(lista[posLista])            
+            auxlista++
+            posLista++
+        }
+        auxlista = 0
+        nlista.push(auxArray)
+        auxArray = []
+    }
+    return nlista
+}
+
 const tableFilter = [{str:"workerId",name:"Id Trabajador"},
 {str:"phoneNumber",name:"Id Usuario"},
 {str:"entry",name:"Citas"}]
@@ -141,5 +158,6 @@ module.exports= {
     typeTable,
     stateTable,
     cleanTableF,
-    tableFilter
+    tableFilter,
+    constrPosition
 }

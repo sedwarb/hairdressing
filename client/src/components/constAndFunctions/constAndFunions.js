@@ -4,7 +4,7 @@ function onSubmit(e,stateGen) {
     body: JSON.stringify(
         {
             entryType:stateGen.entrada,
-            date:stateGen.value,
+            date:fechaAEnviar(stateGen),
             serviceId:stateGen.listSt.serviceId,
             workerId:stateGen.listSt.workerId,
             userPhoneNumber:stateGen.telephone?stateGen.telephone:"3006007050",
@@ -16,6 +16,25 @@ function onSubmit(e,stateGen) {
     fetch(`http://localhost:3001/entries`,options)
     .then(response => response.json())
     .catch(error =>console.log(`Este fue el Error: ${error}`))
+}
+
+function fechaAEnviar(fecha){
+    let hora="00",minuto="00"
+    if(fecha.hora){
+        if(fecha.hora.length<2){
+            hora = `0${fecha.hora}`
+        }else {
+            hora =`${fecha.hora}`
+        }
+    }
+    if(fecha.minutos){
+        if(fecha.minutos.length<2){
+            minuto = `0${fecha.minutos}`
+        }else {
+            minuto =`${fecha.minutos}`
+        }
+    }
+    return `${JSON.stringify(fecha.value).split("T")[0]} ${hora}:${minuto}`
 }
 
 const stateGenCont = {
@@ -141,5 +160,6 @@ module.exports= {
     typeTable,
     stateTable,
     cleanTableF,
-    tableFilter
+    tableFilter,
+    fechaAEnviar
 }

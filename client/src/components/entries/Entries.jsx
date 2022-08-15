@@ -5,7 +5,8 @@ import {
     onSubmit,
     stateGenCont,
     typeList,
-    horaMinTurn} from "../constAndFunctions/constAndFunions"
+    horaMinTurn,
+    fechaAEnviar} from "../constAndFunctions/constAndFunions"
 import 'react-calendar/dist/Calendar.css';
 
 export function Entries(){
@@ -34,8 +35,8 @@ export function Entries(){
                     </div> 
                     <div className="row g-3">
                         <div className="col-sm-6 w-100 p-3" >
-                            <label className="form-label">Fecha</label>
-                            <label onClick={()=>stateGen.visible?setStateGen({...stateGen,visible:false}):setStateGen({...stateGen,visible:true})} className="form-label">{JSON.stringify(stateGen.value)}</label>
+                            <label className="form-label">Fecha...</label>
+                            <label onClick={()=>stateGen.visible?setStateGen({...stateGen,visible:false}):setStateGen({...stateGen,visible:true})} className="form-label">{JSON.stringify(fechaAEnviar(stateGen))}</label>
                             <div className="invalid-feedback">
                                 Se requiere una fecha valida.
                             </div>

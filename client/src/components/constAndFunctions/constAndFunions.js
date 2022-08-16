@@ -22,18 +22,13 @@ function fechaAEnviar(fecha){
     let hora="00",minuto="00"
     if(fecha.hora){
         if(fecha.hora.length<2){
-            hora = `0${fecha.hora}`
+            fecha.turno==="pm"?hora = `${parseInt(fecha.hora)+12}`:hora = `0${fecha.hora}`
         }else {
-            hora =`${fecha.hora}`
+            fecha.turno==="pm"?hora = `${parseInt(fecha.hora)+12}`:hora =`${fecha.hora}`            
         }
     }
-    if(fecha.minutos){
-        if(fecha.minutos.length<2){
-            minuto = `0${fecha.minutos}`
-        }else {
-            minuto =`${fecha.minutos}`
-        }
-    }
+    if(fecha.minutos)fecha.minutos.length<2?minuto = `0${fecha.minutos}`:minuto =`${fecha.minutos}`
+    
     return `${JSON.stringify(fecha.value).split("T")[0]} ${hora}:${minuto}`
 }
 

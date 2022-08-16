@@ -5,8 +5,7 @@ import {
     onSubmit,
     stateGenCont,
     typeList,
-    horaMinTurn,
-    fechaAEnviar} from "../constAndFunctions/constAndFunions"
+    horaMinTurn} from "../constAndFunctions/constAndFunions"
 import 'react-calendar/dist/Calendar.css';
 
 export function Entries(){

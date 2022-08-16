@@ -36,7 +36,8 @@ const stateGenCont = {
     value:new Date(),
     listSt:{workerId:"",serviceId:""},
     visible:false,
-    entrada:"entry"
+    entrada:"entry",
+    visibleManual:false
 }
 
 const typeList = {

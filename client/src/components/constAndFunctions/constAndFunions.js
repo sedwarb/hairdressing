@@ -1,4 +1,6 @@
-function onSubmit(e,stateGen) {
+export const DB_HOST='192.168.20.20'
+
+export function onSubmit(e,stateGen) {
     e.preventDefault();
     const options = {method: "POST",headers:{"Content-Type": "application/json"},
     body: JSON.stringify(
@@ -13,12 +15,12 @@ function onSubmit(e,stateGen) {
         }
     
     )};
-    fetch(`http://localhost:3001/entries`,options)
+    fetch(`http://${DB_HOST}:3001/entries`,options)
     .then(response => response.json())
     .catch(error =>console.log(`Este fue el Error: ${error}`))
 }
 
-function fechaAEnviar(fecha){
+export function fechaAEnviar(fecha){
     let hora="00",minuto="00"
     if(fecha.hora){
         if(fecha.hora.length<2){
@@ -32,7 +34,7 @@ function fechaAEnviar(fecha){
     return `${JSON.stringify(fecha.value).split("T")[0]} ${hora}:${minuto}`
 }
 
-const stateGenCont = {
+export const stateGenCont = {
     value:new Date(),
     listSt:{workerId:"",serviceId:""},
     visible:false,
@@ -40,7 +42,7 @@ const stateGenCont = {
     visibleManual:false
 }
 
-const typeList = {
+export const typeList = {
     service:{
         typeL:"service",
         fieldL:"name",
@@ -53,7 +55,7 @@ const typeList = {
     }
 }
 
-const typeTable = {
+export const typeTable = {
     user:[{str:"Numero de Telefono",name:"phoneNumber",sname:null},
     {str:"Nombre",name:"fullname",sname:null}],
     service:[{str:"Id",name:"id",sname:null},
@@ -70,13 +72,13 @@ const typeTable = {
     {str:"Servicio",name:"service",sname:"name"}]
 }
 
-const horaMinTurn = {
+export const horaMinTurn = {
     hora:[1,2,3,4,5,6,7,8,9,10,11,12],
     minutos:[0,5,10,15,20,25,30,35,40,45,50,55],
     turno:["am","pm"]
 }
 
-const stateTable = {
+export const stateTable = {
     type:"",
     dbeg:"",
     dend:"",
@@ -91,11 +93,11 @@ const stateTable = {
     service:false
 }
 
-const tableFilter = [{str:"workerId",name:"Id Trabajador"},
+export const tableFilter = [{str:"workerId",name:"Id Trabajador"},
 {str:"phoneNumber",name:"Id Usuario"},
 {str:"entry",name:"Citas"}]
 
-function cleanTableF(table){
+export function cleanTableF(table){
     return {
             user:
             {
@@ -147,7 +149,7 @@ function cleanTableF(table){
             }
     }
 }
-
+/*
 module.exports= {
     onSubmit,
     stateGenCont,
@@ -157,5 +159,6 @@ module.exports= {
     stateTable,
     cleanTableF,
     tableFilter,
-    fechaAEnviar
-}
+    fechaAEnviar,
+    DB_HOST
+}*/

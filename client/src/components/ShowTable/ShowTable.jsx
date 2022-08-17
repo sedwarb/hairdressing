@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Table} from '../Table/Table'
-import {typeTable,stateTable,cleanTableF,tableFilter} from "../constAndFunctions/constAndFunions"
+import {typeTable,stateTable,cleanTableF,tableFilter} from "../constAndFunctions/constAndFunions.js"
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 

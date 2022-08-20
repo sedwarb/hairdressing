@@ -1,10 +1,10 @@
 import React, { useState,useEffect } from 'react'
-//typeList
-//typeL,fieldL,esp,listStP
+import {DB_HOST} from '../constAndFunctions/constAndFunions'
+
 export function Lists({typeList,listStP}){
     const [lists, setLists] = useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:3001/${typeList.typeL}`)
+        fetch(`http://${DB_HOST}:3001/${typeList.typeL}`)
         .then(r=>r.json())
         .then(resp=>setLists(resp))
         .catch(error=>console.log(`Error: ${error}`))

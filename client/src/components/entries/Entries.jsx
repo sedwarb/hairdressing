@@ -26,7 +26,7 @@ export function Entries(){
                         <div className="col-sm-6 w-50 p-3">
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon3">Numero/Telefono</span>
+                                    <span className="input-group-text" id="basic-addon3">Telefono</span>
                                 </div>
                                 <input onChange={e=>handleChange(e)} type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3"/>
                             </div>

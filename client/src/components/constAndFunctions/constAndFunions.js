@@ -27,7 +27,7 @@ export async function getDatos(search){
     }else if(search.send){
         datos = await fetch(`http://${DB_HOST}:3001/entries?dateIni=${search.dbeg}%2000:00:00.110%20-0500&&dateEnd=${search.dend}%2023:59:59.110%20-0500&&${search.typed}=${search.tdate}`)
     }
-    return datos.json()
+    return datos ? datos.json():[]
 }
 
 export function fechaAEnviar(fecha){

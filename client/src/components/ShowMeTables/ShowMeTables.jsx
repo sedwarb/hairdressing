@@ -9,7 +9,7 @@ export function ShowMeTables(){
     }
     return(
         <>
-            <h2 class="text-center font-weight-bold my-3">Reporte por Rango de Fecha</h2>
+            <h2 className="text-center font-weight-bold my-3">Reporte por Rango de Fecha</h2>
             <div className="row px-2 mt-2">
                 <div className="col">
                     <div className="input-group mb-3">

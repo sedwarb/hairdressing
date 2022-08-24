@@ -60,7 +60,7 @@ export function ShowTable(){
                                     </div>
                                     <div className="collapse" id="collapseCal1">
                                         <div className="card card-body">
-                                            <Calendar onChange={onChange} value={table.cdbeg} />                                            
+                                            <Calendar onChange={onChange} value={table.cdbeg} />
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@ export function ShowTable(){
                                     </div>
                                     <div className="collapse" id="collapseCal2">
                                         <div className="card card-body">
-                                            <Calendar onChange={onChangef} value={table.cdend} />                                            
+                                            <Calendar onChange={onChangef} value={table.cdend} />
                                         </div>
                                     </div>
                                 </div>

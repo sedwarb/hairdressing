@@ -20,6 +20,16 @@ export function onSubmit(e,stateGen) {
     .catch(error =>console.log(`Este fue el Error: ${error}`))
 }
 
+export async function getDatos(search){
+    let datos
+    if(search.type!==""){
+        datos = await fetch(`http://${DB_HOST}:3001/${search.type}`)
+    }else if(search.send){
+        datos = await fetch(`http://${DB_HOST}:3001/entries?dateIni=${search.dbeg}%2000:00:00.110%20-0500&&dateEnd=${search.dend}%2023:59:59.110%20-0500&&${search.typed}=${search.tdate}`)
+    }
+    return datos.json()
+}
+
 export function fechaAEnviar(fecha){
     let hora="00",minuto="00"
     if(fecha.hora){

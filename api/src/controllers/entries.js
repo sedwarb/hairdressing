@@ -5,6 +5,7 @@ const {exclutionInInclude,exclutionppal,createWhereObj} = require('./constAndFun
 async function getEntriesByDate(req, res){
     const {workerId,phoneNumber,entry,dateIni,dateEnd}=req.query
     const whereObj = {date:{[Op.between]:[new Date(dateIni),new Date(dateEnd)]}}
+    let sumaManual=0,sumaServicio=0
     try{
         const entriesBydate = await Entry.findAll(
             {
@@ -23,8 +24,12 @@ async function getEntriesByDate(req, res){
             if(entriesBydate[i].amountEntry===0){
                 entriesBydate[i].amountEntry=entriesBydate[i].service.amount
                 entriesBydate[i].manualEntry="No aplica"
+                sumaServicio+=entriesBydate[i].service.amount
+            }else{
+                sumaManual+=entriesBydate[i].amountEntry
             }
         }
+        entriesBydate.unshift({sumaManual,sumaServicio})
         res.send(entriesBydate)
     }catch(error){res.send(`Error: ${error}`)}
 }

@@ -30,6 +30,8 @@ export function ShowTable(){
         if(e.target.id==="worker")setTable(cleanTableF(table).worker)
         if(e.target.id==="service")setTable(cleanTableF(table).service)
     }
+    //NO USAR LA OPCION DE RANGO DE FECHAS AQUI, VA A DAR ERROR
+    //POR EL CAMBIO EN EL BACK EN LA POSICION 0 ENVIA EL TOTAL
     return(
         <>
             <div>

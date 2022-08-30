@@ -47,7 +47,7 @@ export function ShowTable(){
                     </li>
                     <li className="nav-item">
                         <p>
-                            <button onClick={boton} className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEntradas" aria-expanded="false" aria-controls="collapseExample">
+                            <button disabled={true} onClick={boton} className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEntradas" aria-expanded="false" aria-controls="collapseExample">
                                 Entradas
                             </button>
                         </p>

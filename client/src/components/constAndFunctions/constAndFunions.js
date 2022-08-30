@@ -1,4 +1,4 @@
-export const DB_HOST='192.168.20.20'
+export const DB_HOST='localhost'
 
 export function onSubmit(e,stateGen) {
     e.preventDefault();

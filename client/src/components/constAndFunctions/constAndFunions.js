@@ -22,10 +22,11 @@ export async function onSubmit(e,stateGen) {
     )};
     if(enviar_f===true){
         fetch(`http://${DB_HOST}:3001/entries`,options)
-        .then(response => console.log(response.ok))
+        .then(response => alert(`Se Guardo Exitosamente ${response.ok}`))
         .catch(error =>console.log(`Este fue el Error: ${error}`))
     }else{
         console.log("No se creo la entrada")
+        alert("No Se Guardo, Revisar")
     }
 }
 

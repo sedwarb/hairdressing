@@ -96,7 +96,7 @@ export function Entries(){
                         </div>
                     </div>                    
                     <div className="col-sm-6 w-100 p-3" >-</div>
-                    <button type='submit' className="w-100 btn btn-primary btn-lg" >Crear</button>
+                    <button type='submit' className="w-100 btn btn-primary btn-lg" >Guardar</button>
                 </form>
             </div>
         </>

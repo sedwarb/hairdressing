@@ -1,7 +1,12 @@
 export const DB_HOST='localhost'
 
-export function onSubmit(e,stateGen) {
+export async function onSubmit(e,stateGen) {    
     e.preventDefault();
+    let enviar_f=true
+    if(stateGen.listSt.serviceId==="inma" && (!stateGen.manual || !stateGen.precio)){
+       console.log("Un Campo Manual esta vacio")
+       enviar_f=false
+    }
     const options = {method: "POST",headers:{"Content-Type": "application/json"},
     body: JSON.stringify(
         {
@@ -15,9 +20,13 @@ export function onSubmit(e,stateGen) {
         }
     
     )};
-    fetch(`http://${DB_HOST}:3001/entries`,options)
-    .then(response => response.json())
-    .catch(error =>console.log(`Este fue el Error: ${error}`))
+    if(enviar_f===true){
+        fetch(`http://${DB_HOST}:3001/entries`,options)
+        .then(response => console.log(response.ok))
+        .catch(error =>console.log(`Este fue el Error: ${error}`))
+    }else{
+        console.log("No se creo la entrada")
+    }
 }
 
 export async function getDatos(search){

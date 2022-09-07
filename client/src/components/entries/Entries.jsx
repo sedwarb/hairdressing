@@ -23,15 +23,30 @@ export function Entries(){
                 <h4 className="mb-3">Datos de la Entrada</h4>
                 <form onSubmit={e=>onSubmit(e,stateGen)} className="needs-validation" noValidate>
                     <div className="row g-3">
+                        {/*Nuevo form para ingresar usuarios */}
                         <div className="col-sm-6 w-50 p-3">
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon3">Telefono</span>
+                                    <span className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-expanded="false" aria-controls="collapseExample">Telefono</span>
                                 </div>
-                                <input onChange={e=>handleChange(e)} type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3"/>
+                            </div>
+                            <div className="collapse row g-3" id="collapseUser">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon3">Telefono</span>
+                                    </div>
+                                    <input onChange={e => handleChange(e)} type="text" className="form-control" id="telephone" aria-describedby="basic-addon3" />
+                                </div>
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon3">Nombre</span>
+                                    </div>
+                                    <input onChange={e => handleChange(e)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
+                                </div>
                             </div>
                         </div>
-                        <Lists typeList={typeList.service} listStP={stateGen.listSt}/>
+                        {/*Nuevo form para ingresar usuarios */}
+                        <Lists typeList={typeList.service} listStP={stateGen.listSt} />
                     </div>
                     <div className="row g-3">
                         <div className="col-sm-6 w-50 p-3">

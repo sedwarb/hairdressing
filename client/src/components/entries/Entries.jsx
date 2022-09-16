@@ -1,12 +1,11 @@
 import React,{useState} from 'react'
 import {Lists} from '../Lists/Lists'
 import Calendar from 'react-calendar'
-import {
-    onSubmit,
-    stateGenCont,
-    typeList,
-    horaMinTurn} from "../constAndFunctions/constAndFunions"
 import 'react-calendar/dist/Calendar.css';
+import {onSubmit} from '../constAndFunctions/entries/onSubmit'
+import {stateGenCont} from '../constAndFunctions/entries/stateGenCont'
+import {typeList} from '../constAndFunctions/entries/typeList'
+import {horaMinTurn} from '../constAndFunctions/entries/horaMinuto'
 
 export function Entries(){
     const [stateGen,setStateGen] = useState(stateGenCont);

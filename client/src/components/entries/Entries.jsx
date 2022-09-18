@@ -2,10 +2,11 @@ import React,{useState} from 'react'
 import {Lists} from '../Lists/Lists'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
-import {onSubmit} from '../constAndFunctions/entries/onSubmit'
+import {onSubmit,verificarUsuario} from '../constAndFunctions/entries/onSubmit'
 import {stateGenCont} from '../constAndFunctions/entries/stateGenCont'
 import {typeList} from '../constAndFunctions/entries/typeList'
 import {horaMinTurn} from '../constAndFunctions/entries/horaMinuto'
+
 
 export function Entries(){
     const [stateGen,setStateGen] = useState(stateGenCont);
@@ -41,6 +42,9 @@ export function Entries(){
                                         <span className="input-group-text" id="basic-addon3">Nombre</span>
                                     </div>
                                     <input onChange={e => handleChange(e)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
+                                </div>
+                                <div>
+                                    <button type='button' onClick={()=>verificarUsuario(stateGen)} className="btn btn-primary">Buscar</button>
                                 </div>
                             </div>
                         </div>

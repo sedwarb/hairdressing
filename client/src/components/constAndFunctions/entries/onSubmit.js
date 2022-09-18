@@ -33,10 +33,29 @@ export async function onSubmit(e,stateGen) {
     }
 }
 
-async function verificarUsuario(telefono,nombre){
-    const usuarios = await fetch(`http://localhost:3001/user`)
-    const found = usuarios.find(element => element.phoneNumber === telefono)
+//ya verifica si el usuario existe, ahora faltaria que de no existir, 
+//pedir que lo ingrese
 
+export async function verificarUsuario(estado){
+    let foundWPhoneN,foundWName
+    fetch(`http://localhost:3001/user`)
+    .then(res=>res.json())
+    .then(usuarios=>{
+        foundWPhoneN = usuarios.find(element => element.phoneNumber === estado.telephone)
+        foundWName = usuarios.find(element => element.fullname === estado.userName)
+        if (estado.telephone && estado.userName) {
+            if (foundWPhoneN) {
+                if (foundWName) console.log("Usuario Encontrado")
+                else console.log("Nombre de usuario no coincide con el Numero de Telefono")
+            } else {
+                if (foundWName) console.log("Se encontro el Nombre Pero no Coincide el numero de telefono")
+                else console.log("No hay coincidencia")
+            }
+        }else if(estado.telephone){
+            if (foundWPhoneN)console.log("Usuario Encontrado")
+            else console.log("No hay coincidencia")
+        }
+    })
 }
 
 export function fechaAEnviar(fecha){

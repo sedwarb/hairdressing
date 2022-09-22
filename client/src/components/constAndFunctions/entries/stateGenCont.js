@@ -3,5 +3,6 @@ export const stateGenCont = {
     listSt:{workerId:"",serviceId:""},
     visible:false,
     entrada:"entry",
-    visibleManual:false
+    visibleManual:false,
+    findUser:false
 }

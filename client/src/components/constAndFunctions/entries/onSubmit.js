@@ -33,27 +33,55 @@ export async function onSubmit(e,stateGen) {
     }
 }
 
-//ya verifica si el usuario existe, ahora faltaria que de no existir, 
-//pedir que lo ingrese
+// FALTA AJUSTAR PARA FINALIZAR
 
 export async function verificarUsuario(estado){
     let foundWPhoneN,foundWName
-    fetch(`http://localhost:3001/user`)
+    fetch(`http://${DB_HOST}:3001/user`)
     .then(res=>res.json())
-    .then(usuarios=>{
+    .then(usuarios=>{        
         foundWPhoneN = usuarios.find(element => element.phoneNumber === estado.telephone)
         foundWName = usuarios.find(element => element.fullname === estado.userName)
         if (estado.telephone && estado.userName) {
             if (foundWPhoneN) {
-                if (foundWName) console.log("Usuario Encontrado")
-                else console.log("Nombre de usuario no coincide con el Numero de Telefono")
+                if (foundWName) {
+                    console.log("Usuario Encontrado")
+                    alert(`El usuarioesta registrado con ese ID`)
+                    //alert(`El usuario ${usuarios[usuarios.indexOf(estado.telephone)].fullname} esta registrado con ese ID`)
+                }
+                else console.log("Nombre de usuario no coincide con el Numero de Telefono")                
             } else {
                 if (foundWName) console.log("Se encontro el Nombre Pero no Coincide el numero de telefono")
-                else console.log("No hay coincidencia")
+                else {
+                    console.log("No hay coincidencia")
+                    const options = {
+                        method: "POST", headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(
+                            {
+                                phoneNumber:estado.telephone,
+                                fullname:estado.userName
+                            }
+                        )
+                    }
+                    fetch(`http://${DB_HOST}:3001/user`,options)
+                    .then(response => {
+                        estado.findUser=false
+                        alert(`Se Guardo Exitosamente ${response.ok}`)
+                    })
+                    .catch(error =>console.log(`Este fue el Error: ${error}`))
+                }
             }
         }else if(estado.telephone){
-            if (foundWPhoneN)console.log("Usuario Encontrado")
-            else console.log("No hay coincidencia")
+            if (foundWPhoneN){
+                console.log("Usuario Encontrado")
+                //alert(`El usuario ${usuarios[usuarios.indexOf(estado.telephone)].fullname} esta registrado con ese ID`)
+                alert(`El usuario esta registrado con ese ID`)
+            }
+            else {                
+                estado.findUser=true
+                console.log("No hay coincidencia, llene el campo nombre")
+                alert("No hay coincidencia, llene el campo nombre")
+            }
         }
     })
 }

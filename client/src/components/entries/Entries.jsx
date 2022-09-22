@@ -44,7 +44,7 @@ export function Entries(){
                                     <input onChange={e => handleChange(e)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
                                 </div>
                                 <div>
-                                    <button type='button' onClick={()=>verificarUsuario(stateGen)} className="btn btn-primary">Buscar</button>
+                                    <button type='button' onClick={()=>verificarUsuario(stateGen)} className="btn btn-primary">{stateGen.findUser?"Guardar":"Buscar"}</button>
                                 </div>
                             </div>
                         </div>

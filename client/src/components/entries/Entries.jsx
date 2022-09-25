@@ -27,13 +27,13 @@ export function Entries(){
                         <div className="col-sm-6 w-50 p-3">
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-expanded="false" aria-controls="collapseExample">Telefono</span>
+                                    <span className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-expanded="false" aria-controls="collapseExample">ID</span>
                                 </div>
                             </div>
                             <div className="collapse row g-3" id="collapseUser">
                                 <div className="input-group mb-3">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon3">Telefono</span>
+                                        <span className="input-group-text" id="basic-addon3">ID</span>
                                     </div>
                                     <input onChange={e => handleChange(e)} type="text" className="form-control" id="telephone" aria-describedby="basic-addon3" />
                                 </div>

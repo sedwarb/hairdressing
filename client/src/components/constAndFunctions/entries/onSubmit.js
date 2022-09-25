@@ -1,8 +1,7 @@
 import {DB_HOST} from '../constAndFunions'
 
 export async function onSubmit(e,stateGen) {    
-    e.preventDefault();
-    /* Verificar si un usuario existe, si no existe guarda el que se ingreso*/
+    e.preventDefault()
 
     let enviar_f=true
     if(stateGen.listSt.serviceId==="inma" && (!stateGen.manual || !stateGen.precio)){
@@ -19,21 +18,19 @@ export async function onSubmit(e,stateGen) {
             userPhoneNumber:stateGen.telephone?stateGen.telephone:"3006007050",
             manualEntry:stateGen.listSt.serviceId==="inma"?stateGen.manual:"",
             amountEntry:stateGen.listSt.serviceId==="inma"?parseFloat(stateGen.precio):0
-        }
-        //falta terminar la funcion verificarUsuario
-    
-    )};
+        }    
+    )}
     if(enviar_f===true){
         fetch(`http://${DB_HOST}:3001/entries`,options)
-        .then(response => alert(`Se Guardo Exitosamente ${response.ok}`))
+        .then(response => {
+            alert(`Se Guardo Exitosamente ${response.ok}`)
+        })
         .catch(error =>console.log(`Este fue el Error: ${error}`))
     }else{
         console.log("No se creo la entrada")
         alert("No Se Guardo, Revisar")
-    }
+    }    
 }
-
-// FALTA AJUSTAR PARA FINALIZAR
 
 export async function verificarUsuario(estado){
     let foundWPhoneN,foundWName
@@ -44,18 +41,14 @@ export async function verificarUsuario(estado){
         foundWName = usuarios.find(element => element.fullname === estado.userName)
         if (estado.telephone && estado.userName) {
             if (foundWPhoneN) {
-                if (foundWName) {
-                    console.log("Usuario Encontrado")
-                    alert(`El usuarioesta registrado con ese ID`)
-                    //alert(`El usuario ${usuarios[usuarios.indexOf(estado.telephone)].fullname} esta registrado con ese ID`)
-                }
-                else console.log("Nombre de usuario no coincide con el Numero de Telefono")                
+                foundWName?alert(`Hay un usuario registrado con ese ID y Nombre`):
+                alert("Hay un usuario con ese nombre")
             } else {
-                if (foundWName) console.log("Se encontro el Nombre Pero no Coincide el numero de telefono")
+                if (foundWName) alert("Se encontro el Nombre Pero no Coincide el ID")
                 else {
-                    console.log("No hay coincidencia")
                     const options = {
-                        method: "POST", headers: { "Content-Type": "application/json" },
+                        method: "POST", 
+                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(
                             {
                                 phoneNumber:estado.telephone,
@@ -65,24 +58,19 @@ export async function verificarUsuario(estado){
                     }
                     fetch(`http://${DB_HOST}:3001/user`,options)
                     .then(response => {
-                        estado.findUser=false
+                        estado.findUser=false                        
                         alert(`Se Guardo Exitosamente ${response.ok}`)
                     })
-                    .catch(error =>console.log(`Este fue el Error: ${error}`))
+                    .catch(error =>console.log(`Error en Fetch crear usuario: ${error}`))                    
                 }
             }
         }else if(estado.telephone){
-            if (foundWPhoneN){
-                console.log("Usuario Encontrado")
-                //alert(`El usuario ${usuarios[usuarios.indexOf(estado.telephone)].fullname} esta registrado con ese ID`)
-                alert(`El usuario esta registrado con ese ID`)
-            }
+            if (foundWPhoneN)alert(`Un usuario registrado con ese ID`)
             else {                
                 estado.findUser=true
-                console.log("No hay coincidencia, llene el campo nombre")
-                alert("No hay coincidencia, llene el campo nombre")
+                alert("Si desea Guardar el Usuario, llene el campo Nombre")
             }
-        }
+        }else alert("Debe llenar el campo ID")
     })
 }
 

@@ -20,6 +20,7 @@ export async function onSubmit(e,stateGen) {
             amountEntry:stateGen.listSt.serviceId==="inma"?parseFloat(stateGen.precio):0
         }    
     )}
+    console.log(fechaAEnviar(stateGen))
     if(enviar_f===true){
         fetch(`http://${DB_HOST}:3001/entries`,options)
         .then(response => {
@@ -84,6 +85,6 @@ export function fechaAEnviar(fecha){
         }
     }
     if(fecha.minutos)fecha.minutos.length<2?minuto = `0${fecha.minutos}`:minuto =`${fecha.minutos}`
-    
+        
     return `${JSON.stringify(fecha.value).split("T")[0]} ${hora}:${minuto}`
 }

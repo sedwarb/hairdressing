@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
 import {Lists} from '../Lists/Lists'
 import Calendar from 'react-calendar'
-import {
-    onSubmit,
-    stateGenCont,
-    typeList,
-    horaMinTurn} from "../constAndFunctions/constAndFunions"
 import 'react-calendar/dist/Calendar.css';
+import {onSubmit,verificarUsuario} from '../constAndFunctions/entries/onSubmit'
+import {stateGenCont} from '../constAndFunctions/entries/stateGenCont'
+import {typeList} from '../constAndFunctions/entries/typeList'
+import {horaMinTurn} from '../constAndFunctions/entries/horaMinuto'
+
 
 export function Entries(){
     const [stateGen,setStateGen] = useState(stateGenCont);
@@ -23,15 +23,33 @@ export function Entries(){
                 <h4 className="mb-3">Datos de la Entrada</h4>
                 <form onSubmit={e=>onSubmit(e,stateGen)} className="needs-validation" noValidate>
                     <div className="row g-3">
+                        {/*Nuevo form para ingresar usuarios */}
                         <div className="col-sm-6 w-50 p-3">
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon3">Telefono</span>
+                                    <span className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-expanded="false" aria-controls="collapseExample">ID</span>
                                 </div>
-                                <input onChange={e=>handleChange(e)} type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3"/>
+                            </div>
+                            <div className="collapse row g-3" id="collapseUser">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon3">ID</span>
+                                    </div>
+                                    <input onChange={e => handleChange(e)} type="text" className="form-control" id="telephone" aria-describedby="basic-addon3" />
+                                </div>
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon3">Nombre</span>
+                                    </div>
+                                    <input onChange={e => handleChange(e)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
+                                </div>
+                                <div>
+                                    <button type='button' onClick={()=>verificarUsuario(stateGen)} className="btn btn-primary">{stateGen.findUser?"Guardar":"Buscar"}</button>
+                                </div>
                             </div>
                         </div>
-                        <Lists typeList={typeList.service} listStP={stateGen.listSt}/>
+                        {/*Nuevo form para ingresar usuarios */}
+                        <Lists typeList={typeList.service} listStP={stateGen.listSt} />
                     </div>
                     <div className="row g-3">
                         <div className="col-sm-6 w-50 p-3">
@@ -96,7 +114,7 @@ export function Entries(){
                         </div>
                     </div>                    
                     <div className="col-sm-6 w-100 p-3" >-</div>
-                    <button type='submit' className="w-100 btn btn-primary btn-lg" >Crear</button>
+                    <button type='submit' className="w-100 btn btn-primary btn-lg" >Guardar</button>
                 </form>
             </div>
         </>

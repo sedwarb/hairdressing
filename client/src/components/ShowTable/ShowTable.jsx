@@ -45,9 +45,9 @@ export function ShowTable(){
                     <li className="nav-item">
                         <button disabled={table.service} id="service" className="btn btn-primary" onClick={e=>showTableNow(e)}>Servicios</button>
                     </li>
-                    <li className="nav-item" disabled={true}>
+                    <li className="nav-item">
                         <p>
-                            <button onClick={boton} className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEntradas" aria-expanded="false" aria-controls="collapseExample">
+                            <button disabled={true} onClick={boton} className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEntradas" aria-expanded="false" aria-controls="collapseExample">
                                 Entradas
                             </button>
                         </p>

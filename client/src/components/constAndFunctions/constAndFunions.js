@@ -1,25 +1,4 @@
 export const DB_HOST='localhost'
-
-export function onSubmit(e,stateGen) {
-    e.preventDefault();
-    const options = {method: "POST",headers:{"Content-Type": "application/json"},
-    body: JSON.stringify(
-        {
-            entryType:stateGen.entrada,
-            date:fechaAEnviar(stateGen),
-            serviceId:stateGen.listSt.serviceId,
-            workerId:stateGen.listSt.workerId,
-            userPhoneNumber:stateGen.telephone?stateGen.telephone:"3006007050",
-            manualEntry:stateGen.listSt.serviceId==="inma"?stateGen.manual:"",
-            amountEntry:stateGen.listSt.serviceId==="inma"?parseFloat(stateGen.precio):0
-        }
-    
-    )};
-    fetch(`http://${DB_HOST}:3001/entries`,options)
-    .then(response => response.json())
-    .catch(error =>console.log(`Este fue el Error: ${error}`))
-}
-
 export async function getDatos(search){
     let datos
     if(search.type!==""){
@@ -28,41 +7,6 @@ export async function getDatos(search){
         datos = await fetch(`http://${DB_HOST}:3001/entries?dateIni=${search.dbeg}%2000:00:00.110%20-0500&&dateEnd=${search.dend}%2023:59:59.110%20-0500&&${search.typed}=${search.tdate}`)
     }
     return datos ? datos.json():[]
-}
-
-export function fechaAEnviar(fecha){
-    let hora="00",minuto="00"
-    if(fecha.hora){
-        if(fecha.hora.length<2){
-            fecha.turno==="pm"?hora = `${parseInt(fecha.hora)+12}`:hora = `0${fecha.hora}`
-        }else {
-            fecha.turno==="pm"?hora = `${parseInt(fecha.hora)+12}`:hora =`${fecha.hora}`            
-        }
-    }
-    if(fecha.minutos)fecha.minutos.length<2?minuto = `0${fecha.minutos}`:minuto =`${fecha.minutos}`
-    
-    return `${JSON.stringify(fecha.value).split("T")[0]} ${hora}:${minuto}`
-}
-
-export const stateGenCont = {
-    value:new Date(),
-    listSt:{workerId:"",serviceId:""},
-    visible:false,
-    entrada:"entry",
-    visibleManual:false
-}
-
-export const typeList = {
-    service:{
-        typeL:"service",
-        fieldL:"name",
-        esp:"Servicios"
-    },
-    worker:{
-        typeL:"worker",
-        fieldL:"fullname",
-        esp:"Trabajadores"
-    }
 }
 
 export const typeTable = {
@@ -80,12 +24,6 @@ export const typeTable = {
     {str:"Usuario",name:"user",sname:"fullname"},
     {str:"Trabajador",name:"worker",sname:"fullname"},
     {str:"Servicio",name:"service",sname:"name"}]
-}
-
-export const horaMinTurn = {
-    hora:[1,2,3,4,5,6,7,8,9,10,11,12],
-    minutos:[0,5,10,15,20,25,30,35,40,45,50,55],
-    turno:["am","pm"]
 }
 
 export const stateTable = {
@@ -159,16 +97,3 @@ export function cleanTableF(table){
             }
     }
 }
-/*
-module.exports= {
-    onSubmit,
-    stateGenCont,
-    typeList,
-    horaMinTurn,
-    typeTable,
-    stateTable,
-    cleanTableF,
-    tableFilter,
-    fechaAEnviar,
-    DB_HOST
-}*/

@@ -16,7 +16,35 @@ export function Table({typeTable,search}){
                     </tr>
                 </thead>
                 <tbody>
-                    {dates && dates.map((date,i)=>i===0?<tr></tr>:<tr key={`${date.phoneNumber}${i}`}>{typeTable && typeTable.map((type,i)=><td key={`${type.sname===null?date[type.name]:date[type.name][type.sname]}${i}`}>{type.sname===null?date[type.name]:date[type.name][type.sname]}</td>)}</tr>)}
+                    {
+                        dates && dates.map(
+                            (date,i)=>{
+                                return (
+                                    i===0?
+                                        <tr></tr>:
+                                        <tr key={`${date.phoneNumber}${i}`}>
+                                            {
+                                                typeTable && typeTable.map(
+                                                    (type,i)=>{
+                                                        return (
+                                                            <td key={`${type.sname===null?date[type.name]:date[type.name][type.sname]}${i}`}>
+                                                                {
+                                                                    type.sname===null?
+                                                                        type.name==="date"?
+                                                                            date[type.name].split("T")[0]:
+                                                                        date[type.name]
+                                                                    :date[type.name][type.sname]
+                                                                }
+                                                            </td>
+                                                        )
+                                                    }
+                                                )
+                                            }
+                                        </tr>
+                                    )
+                            }
+                        )
+                    }
                 </tbody>
             </table>
         </>

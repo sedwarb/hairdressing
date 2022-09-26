@@ -31,7 +31,7 @@ export function Table({typeTable,search}){
                                                                 {
                                                                     type.sname===null?
                                                                         type.name==="date"?
-                                                                            date[type.name].split("T")[0]:
+                                                                            search.typed==="entry"?date[type.name]:date[type.name].split("T")[0]:
                                                                         date[type.name]
                                                                     :date[type.name][type.sname]
                                                                 }

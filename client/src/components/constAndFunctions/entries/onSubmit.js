@@ -14,7 +14,7 @@ export async function onSubmit(stateGen) {
             date:`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
             serviceId:stateGen.serviceId,
             workerId:stateGen.workerId,
-            userPhoneNumber:stateGen.phoneNumber?stateGen.phoneNumber:"3006007050",
+            userPhoneNumber:stateGen.telephone?stateGen.telephone:"3006007050",
             manualEntry:stateGen.serviceId==="inma"?stateGen.manualEntry:"",
             amountEntry:stateGen.serviceId==="inma"?parseFloat(stateGen.amountEntry):0
         }    
@@ -55,7 +55,7 @@ export async function verificarUsuario(estado){
                     }
                     fetch(`http://${DB_HOST}:3001/user`,options)
                     .then(response => {
-                        estado.findUser=false                        
+                        estado.findUser=false
                         alert(`Se Guardo Exitosamente ${response.ok}`)
                     })
                     .catch(error =>console.log(`Error en Fetch crear usuario: ${error}`))                    

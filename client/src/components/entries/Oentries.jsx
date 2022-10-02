@@ -38,7 +38,7 @@ export function Oentries(){
                 date: `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`,
                 manualEntry: entries.serviceId==="inma"?entries.manualEntry:"",
                 amountEntry: entries.serviceId==="inma"?entries.amountEntry:"",
-                user: entries.phoneNumber,
+                user: entries.telephone,
                 worker: entries.workerId,
                 service: entries.serviceId
             }
@@ -52,12 +52,41 @@ export function Oentries(){
                 <Lists typeList={typeList['service']} listStP={entries} />
                 <Lists typeList={typeList['worker']} listStP={entries} />
                 <div className="p-2">
-                    <div className="input-group mb-3">
+                    {/* Fragmento solo ingreso de ID */}
+                    {/* <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon3">ID</span>
                         </div>
                         <input onChange={e => handleChange(e)} type="text" className="form-control" id="phoneNumber" aria-describedby="basic-addon3" />
+                    </div> */}
+                    {/* Fragmento solo ingreso de ID */}
+                    {/*Nuevo form para ingresar usuarios */}
+                    
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-expanded="false" aria-controls="collapseExample">ID</span>
+                        </div>
+                        <input type="text" className="form-control" id="t2" aria-describedby="basic-addon3" disabled={true}/>
                     </div>
+                    <div className="collapse row g-3" id="collapseUser">
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon3">ID</span>
+                            </div>
+                            <input onChange={e => handleChange(e)} type="text" className="form-control" id="telephone" aria-describedby="basic-addon3" />
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon3">Nombre</span>
+                            </div>
+                            <input onChange={e => handleChange(e)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
+                        </div>
+                        <div>
+                            <button type='button' onClick={()=>verificarUsuario(entries)} className="btn btn-primary">{entries.findUser?"Guardar":"Buscar"}</button>
+                        </div>
+                    </div>
+                    
+                    {/*Nuevo form para ingresar usuarios */}
                 </div>
                 <div className="p-2"><button onClick={guardar} type='button' className="btn btn-primary">Guardar</button></div>
             </div>

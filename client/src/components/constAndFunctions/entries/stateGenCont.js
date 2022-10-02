@@ -4,5 +4,6 @@ export const stateGenCont = {
     visible:false,
     entrada:"entry",
     visibleManual:false,
-    findUser:false
+    findUser:false,
+    ingresoTemporal:[]
 }

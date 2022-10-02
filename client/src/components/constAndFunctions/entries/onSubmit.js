@@ -1,31 +1,27 @@
 import {DB_HOST} from '../constAndFunions'
 
-export async function onSubmit(e,stateGen) {    
-    e.preventDefault()
-
+export async function onSubmit(stateGen) {
+    let fecha = new Date()
     let enviar_f=true
-    if(stateGen.listSt.serviceId==="inma" && (!stateGen.manual || !stateGen.precio)){
+    if(stateGen.serviceId==="inma" && (!stateGen.manualEntry || !stateGen.amountEntry)){
        console.log("Un Campo Manual esta vacio")
        enviar_f=false
     }
     const options = {method: "POST",headers:{"Content-Type": "application/json"},
     body: JSON.stringify(
         {
-            entryType:stateGen.entrada,
-            date:fechaAEnviar(stateGen),
-            serviceId:stateGen.listSt.serviceId,
-            workerId:stateGen.listSt.workerId,
-            userPhoneNumber:stateGen.telephone?stateGen.telephone:"3006007050",
-            manualEntry:stateGen.listSt.serviceId==="inma"?stateGen.manual:"",
-            amountEntry:stateGen.listSt.serviceId==="inma"?parseFloat(stateGen.precio):0
+            entryType:"entry",
+            date:`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
+            serviceId:stateGen.serviceId,
+            workerId:stateGen.workerId,
+            userPhoneNumber:stateGen.phoneNumber?stateGen.phoneNumber:"3006007050",
+            manualEntry:stateGen.serviceId==="inma"?stateGen.manualEntry:"",
+            amountEntry:stateGen.serviceId==="inma"?parseFloat(stateGen.amountEntry):0
         }    
     )}
-    console.log(fechaAEnviar(stateGen))
-    if(enviar_f===true){
+    if(enviar_f===true){        
         fetch(`http://${DB_HOST}:3001/entries`,options)
-        .then(response => {
-            alert(`Se Guardo Exitosamente ${response.ok}`)
-        })
+        .then(response => alert(`Se Guardo Exitosamente ${response.ok}`))
         .catch(error =>console.log(`Este fue el Error: ${error}`))
     }else{
         console.log("No se creo la entrada")

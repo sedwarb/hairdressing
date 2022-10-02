@@ -8,7 +8,7 @@ export function Table({typeTable,search}){
     },[search])
     return(
         <>
-            <div>{`Total: ${dates.length>0?dates[0].sumaManual+dates[0].sumaServicio:0}`}</div>
+            {search.type===""?<div>{`Total: ${dates.length>0?dates[0].sumaManual+dates[0].sumaServicio:0}`}</div>:<div></div>}
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -20,7 +20,7 @@ export function Table({typeTable,search}){
                         dates && dates.map(
                             (date,i)=>{
                                 return (
-                                    i===0?
+                                    i===0 && search.type===""?
                                         <tr></tr>:
                                         <tr key={`${date.phoneNumber}${i}`}>
                                             {

@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Table} from '../Table/Table'
-import {typeTable,stateTable,cleanTableF,tableFilter} from "../constAndFunctions/constAndFunions.js"
+import {typeTable,stateTable,tableFilter} from "../constAndFunctions/constAndFunions.js"
 
 export function ShowMeTables(){
     const [table,setTable] = useState(stateTable)

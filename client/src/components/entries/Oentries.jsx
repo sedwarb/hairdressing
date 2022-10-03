@@ -40,9 +40,9 @@ export function Oentries(){
             setTabla([...tabla,
             {
                 date: `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`,
-                manualEntry: entries.serviceId==="inma"?entries.manualEntry:"",
-                amountEntry: entries.serviceId==="inma"?entries.amountEntry:"",
-                user: entries.telephone,
+                manualEntry: entries.serviceId==="inma"?entries.manualEntry:"No Aplica",
+                amountEntry: entries.serviceId==="inma"?entries.amountEntry:"No Aplica",
+                user: entries.telephone?entries.telephone:"Usuario Generico",
                 worker: entries.workerId,
                 service: entries.serviceId
             }
@@ -71,7 +71,7 @@ export function Oentries(){
                             <div className="input-group-prepend">
                                 <span className="input-group-text">ID</span>
                             </div>
-                            <input onClick={mostrar} type="text" className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-expanded="false" aria-controls="collapseExample" placeholder='Identificacion'/>
+                            <input onClick={mostrar} type="text" className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-controls="collapseExample" placeholder='Identificacion'/>
                         </div>
                         <div className="collapse" id="collapseUser">
                             <div className="input-group mb-3">

@@ -12,8 +12,8 @@ export async function onSubmit(stateGen) {
         {
             entryType:"entry",
             date:`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
-            serviceId:stateGen.serviceId,
-            workerId:stateGen.workerId,
+            serviceId:stateGen.serviceId.valor,
+            workerId:stateGen.workerId.valor,
             userPhoneNumber:stateGen.telephone?stateGen.telephone:"3006007050",
             manualEntry:stateGen.serviceId==="inma"?stateGen.manualEntry:"",
             amountEntry:stateGen.serviceId==="inma"?parseFloat(stateGen.amountEntry):0
@@ -62,7 +62,10 @@ export async function verificarUsuario(estado){
                 }
             }
         }else if(estado.telephone){
-            if (foundWPhoneN)alert(`Un usuario registrado con ese ID`)
+            if (foundWPhoneN){
+                estado.nomUsu=usuarios.filter(usu=>usu.phoneNumber===estado.telephone)[0].fullname
+                alert(`Un usuario registrado con ese ID`)                
+            }
             else {                
                 estado.findUser=true
                 alert("Si desea Guardar el Usuario, llene el campo Nombre")

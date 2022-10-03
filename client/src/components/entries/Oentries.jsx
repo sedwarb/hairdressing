@@ -42,7 +42,7 @@ export function Oentries(){
                 date: `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`,
                 manualEntry: entries.serviceId==="inma"?entries.manualEntry:"No Aplica",
                 amountEntry: entries.serviceId==="inma"?entries.amountEntry:"No Aplica",
-                user: entries.telephone?entries.telephone:"Usuario Generico",
+                user: entries.telephone?entries.nomUsu:"Usuario Generico",
                 worker: entries.workerId.nombre,
                 service: entries.serviceId.nombre
             }

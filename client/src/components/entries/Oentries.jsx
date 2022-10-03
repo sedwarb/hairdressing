@@ -43,8 +43,8 @@ export function Oentries(){
                 manualEntry: entries.serviceId==="inma"?entries.manualEntry:"No Aplica",
                 amountEntry: entries.serviceId==="inma"?entries.amountEntry:"No Aplica",
                 user: entries.telephone?entries.telephone:"Usuario Generico",
-                worker: entries.workerId,
-                service: entries.serviceId
+                worker: entries.workerId.nombre,
+                service: entries.serviceId.nombre
             }
             ])
             onSubmit(entries)

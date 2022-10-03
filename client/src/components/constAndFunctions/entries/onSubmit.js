@@ -12,8 +12,8 @@ export async function onSubmit(stateGen) {
         {
             entryType:"entry",
             date:`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
-            serviceId:stateGen.serviceId,
-            workerId:stateGen.workerId,
+            serviceId:stateGen.serviceId.valor,
+            workerId:stateGen.workerId.valor,
             userPhoneNumber:stateGen.telephone?stateGen.telephone:"3006007050",
             manualEntry:stateGen.serviceId==="inma"?stateGen.manualEntry:"",
             amountEntry:stateGen.serviceId==="inma"?parseFloat(stateGen.amountEntry):0

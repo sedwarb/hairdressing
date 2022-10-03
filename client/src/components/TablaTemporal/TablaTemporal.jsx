@@ -29,11 +29,21 @@ export function TablaTemporal({encabezado,dat,estilo}){
                                             encabezado && encabezado.map(
                                                 (t1,j)=>{
                                                     return (
-                                                        <td key={`${dat1[t1.name]}${j}`}>
+                                                        <>
                                                             {
-                                                                dat1[t1.name]
+                                                                encabezado.name === "worker" || encabezado.name === "service" ?                                                                    
+                                                                    <td key={`${dat1[t1.name]}${j}`}>
+                                                                        {
+                                                                            dat1[t1.name]["nombre"]
+                                                                        }
+                                                                    </td> :
+                                                                    <td key={`${dat1[t1.name]}${j}`}>
+                                                                        {
+                                                                            dat1[t1.name]
+                                                                        }
+                                                                    </td>
                                                             }
-                                                        </td>
+                                                        </>                                                        
                                                     )
                                                 }
                                             )

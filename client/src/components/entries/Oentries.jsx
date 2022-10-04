@@ -32,6 +32,10 @@ export function Oentries(){
         }else return true
     }
     function mostrar(){
+        if(css.mostrado){
+            document.querySelector('#telephone').value=""
+            document.querySelector('#userName').value=""
+        }
         css.mostrado?setCss({...css,mostrado:false}):setCss({...css,mostrado:true})
     }
     function guardar(){
@@ -40,13 +44,17 @@ export function Oentries(){
             setTabla([...tabla,
             {
                 date: `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`,
-                manualEntry: entries.serviceId==="inma"?entries.manualEntry:"No Aplica",
-                amountEntry: entries.serviceId==="inma"?entries.amountEntry:"No Aplica",
+                manualEntry: entries.serviceId.valor==="inma"?entries.manualEntry:"No Aplica",
+                amountEntry: entries.serviceId.valor==="inma"?entries.amountEntry:"No Aplica",
                 user: entries.telephone?entries.nomUsu:"Usuario Generico",
                 worker: entries.workerId.nombre,
                 service: entries.serviceId.nombre
             }
             ])
+            document.querySelector('#manualEntry').value=""
+            document.querySelector('#amountEntry').value=""
+            document.querySelector('#telephone').value=""
+            document.querySelector('#userName').value=""
             onSubmit(entries)
         }else alert("Debe llenar los campos manuales")
     }
@@ -87,7 +95,7 @@ export function Oentries(){
                                 <input onChange={e => handleChange(e)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
                             </div>
                             <div>
-                                <button type='button' onClick={() => verificarUsuario(entries)} className="btn btn-success w-100">{entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}</button>
+                                <button type='button' onClick={(e) => verificarUsuario(entries,e)} className="btn btn-success w-100">{entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}</button>
                             </div>
                         </div>
                     </div>

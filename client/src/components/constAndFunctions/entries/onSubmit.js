@@ -42,7 +42,7 @@ export async function verificarUsuario(estado){
                 alert("Hay un usuario con ese nombre")
             } else {
                 if (foundWName) alert("Se encontro el Nombre Pero no Coincide el ID")
-                else {
+                else {                    
                     const options = {
                         method: "POST", 
                         headers: { "Content-Type": "application/json" },
@@ -52,7 +52,7 @@ export async function verificarUsuario(estado){
                                 fullname:estado.userName
                             }
                         )
-                    }
+                    }                    
                     fetch(`http://${DB_HOST}:3001/user`,options)
                     .then(response => {
                         estado.findUser=false
@@ -68,7 +68,7 @@ export async function verificarUsuario(estado){
             }
             else {                
                 estado.findUser=true
-                alert("Si desea Guardar el Usuario, llene el campo Nombre")
+                alert("Usuario no encontrado, Ingrese el Nombre para crearlo")
             }
         }else alert("Debe llenar el campo ID")
     })

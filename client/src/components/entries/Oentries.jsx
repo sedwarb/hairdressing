@@ -53,6 +53,7 @@ export function Oentries(){
                 service: entries.serviceId.nombre
             }
             ])
+            setEntries({...entries,userName:""})
             document.querySelector('#manualEntry').value=""
             document.querySelector('#amountEntry').value=""
             document.querySelector('#telephone').value=""

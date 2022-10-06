@@ -19,6 +19,7 @@ export async function onSubmit(stateGen) {
             amountEntry:stateGen.serviceId==="inma"?parseFloat(stateGen.amountEntry):0
         }    
     )}
+    
     if(enviar_f===true){        
         fetch(`http://${DB_HOST}:3001/entries`,options)
         .then(response => alert(`Se Guardo Exitosamente ${response.ok}`))
@@ -26,7 +27,7 @@ export async function onSubmit(stateGen) {
     }else{
         console.log("No se creo la entrada")
         alert("No Se Guardo, Revisar")
-    }    
+    }
 }
 
 export async function verificarUsuario(estado){
@@ -56,6 +57,7 @@ export async function verificarUsuario(estado){
                     fetch(`http://${DB_HOST}:3001/user`,options)
                     .then(response => {
                         estado.findUser=false
+                        estado.nomUsu=estado.userName
                         alert(`Se Guardo Exitosamente ${response.ok}`)
                     })
                     .catch(error =>console.log(`Error en Fetch crear usuario: ${error}`))                    

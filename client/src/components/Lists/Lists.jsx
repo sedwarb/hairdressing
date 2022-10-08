@@ -21,7 +21,7 @@ export function Lists({typeList,listStP}){
                     </div>
                     <select id={typeList.typeL} className="form-label form-control" onChange={(e) => listStP[`${typeList['typeL']}Id`] = JSON.parse(e.currentTarget.value)}>
                         <option className="list-group-item">Seleccione...</option>
-                        {lists && lists.map(list => <option className="list-group-item" key={list['id']} value={JSON.stringify({valor:list['id'],nombre:list[typeList['fieldL']]})}>{list[typeList['fieldL']]}</option>)}
+                        {lists && lists.map(list => <option className="list-group-item" key={list['id']} value={JSON.stringify({valor:list['id'],nombre:list[typeList['fieldL']],monto:list['amount']})}>{list[typeList['fieldL']].replace(/^\w/, (c) => c.toUpperCase())}</option>)}
                     </select>
                 </div>
             </div>

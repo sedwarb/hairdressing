@@ -66,7 +66,7 @@ export async function verificarUsuario(estado){
         }else if(estado.telephone){
             if (foundWPhoneN){
                 estado.nomUsu=usuarios.filter(usu=>usu.phoneNumber===estado.telephone)[0].fullname
-                alert(`Un usuario registrado con ese ID`)                
+                alert(`El usuario ${estado.nomUsu} esta registrado con ese ID`)                
             }
             else {                
                 estado.findUser=true

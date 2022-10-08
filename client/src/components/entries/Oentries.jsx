@@ -51,7 +51,7 @@ export function Oentries(){
                     {
                         date: `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`,
                         manualEntry: entries.serviceId.valor === "inma" ? entries.manualEntry : "No Aplica",
-                        amountEntry: entries.serviceId.valor === "inma" ? entries.amountEntry : "No Aplica",
+                        amountEntry: entries.serviceId.valor === "inma" ? entries.amountEntry : entries.serviceId.monto,
                         user: entries.telephone ? entries.nomUsu : "Usuario Generico",
                         worker: entries.workerId.nombre,
                         service: entries.serviceId.nombre
@@ -66,7 +66,7 @@ export function Oentries(){
                     setEntries({ ...entries, telephone: null,nomUsu:null })
                 }else alert("Debe completar los datos Servicio y Trabajador")
             }else alert("Debe llenar los campos manuales")
-        }
+        }else setEntries({ ...entries, telephone: null,nomUsu:null })
     }
     return(
         <>

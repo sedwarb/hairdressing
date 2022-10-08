@@ -24,7 +24,7 @@ export function TablaTemporal({encabezado,dat,estilo}){
                         dat && dat.map(
                             (dat1,i)=>{
                                 return (
-                                    <tr key={`${dat1[encabezado[0].name]}${i}`}>
+                                    <tr>
                                         {
                                             encabezado && encabezado.map(
                                                 (t1,j)=>{
@@ -32,14 +32,14 @@ export function TablaTemporal({encabezado,dat,estilo}){
                                                         <>
                                                             {
                                                                 encabezado.name === "worker" || encabezado.name === "service" ?                                                                    
-                                                                    <td key={`${dat1[t1.name]}${j}`}>
+                                                                    <td key={Date.now().toString()+dat1[t1.name]["nombre"]}>
                                                                         {
-                                                                            dat1[t1.name]["nombre"]
+                                                                            dat1[t1.name]["nombre"].toString().replace(/^\w/, (c) => c.toUpperCase())
                                                                         }
                                                                     </td> :
-                                                                    <td key={`${dat1[t1.name]}${j}`}>
+                                                                    <td key={Date.now().toString()+dat1[t1.name]}>
                                                                         {
-                                                                            dat1[t1.name]
+                                                                            dat1[t1.name].toString().replace(/^\w/, (c) => c.toUpperCase())
                                                                         }
                                                                     </td>
                                                             }

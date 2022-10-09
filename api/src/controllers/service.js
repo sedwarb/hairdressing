@@ -25,8 +25,8 @@ async function updateServicePrice(req,res){
         await Service.update(
             {
                 amount,
-                info: serviceC.info ? `${serviceC.info}/${serviceC.amount}(${Date()})`:
-                `/${serviceC.amount}(${Date()})`
+                info: serviceC.info ? `${serviceC.info}/${serviceC.amount}(${Date.now()})`:
+                `/${serviceC.amount}(${Date.now()})`
             },
             {where:{id}})
         res.send("Se ha actualizado el precio")

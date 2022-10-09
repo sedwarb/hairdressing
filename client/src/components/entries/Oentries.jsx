@@ -29,7 +29,7 @@ export function Oentries(){
         setEntries({...entries,[e.target.id]:e.target.value})
     }
     function validar_inma(){
-        if(entries.serviceId==="inma" && (!entries.manualEntry || !entries.amountEntry)){
+        if(entries.serviceId.valor==="inma" && (!entries.manualEntry || !entries.amountEntry)){
             return false
         }else return true
     }
@@ -44,7 +44,7 @@ export function Oentries(){
     }
     function guardar(){
         if(entries.telephone!==null ? entries.nomUsu===null ? false : true : true){
-            if(entries.serviceId==="inma"?validar_inma():true){
+            if(entries.serviceId.valor==="inma"?validar_inma():true){
                 if(entries.workerId && entries.serviceId){                
                     let fecha = new Date()
                     setTabla([...tabla,
@@ -63,7 +63,7 @@ export function Oentries(){
                     document.querySelector('#telephone').value = ""
                     document.querySelector('#userName').value = ""
                     onSubmit(entries)
-                    setEntries({ ...entries, telephone: null,nomUsu:null })
+                    setEntries({ ...entries, telephone: null,nomUsu:null,manualEntry:null,amountEntry:null })
                 }else alert("Debe completar los datos Servicio y Trabajador")
             }else alert("Debe llenar los campos manuales")
         }else setEntries({ ...entries, telephone: null,nomUsu:null })
@@ -118,7 +118,7 @@ export function Oentries(){
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="basic-addon3">Precio. M.</span>
                             </div>
-                            <input onChange={e => handleChange(e)} type="text" className="form-control" id="amountEntry" aria-describedby="basic-addon3" />
+                            <input onChange={e => handleChange(e)} type="number" className="form-control" id="amountEntry" aria-describedby="basic-addon3" />
                         </div>
                     </div>
                 </div>

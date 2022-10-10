@@ -22,13 +22,11 @@ export function Navbar(){
                             <p className="nav-link"><NavLink exact to="/Table">Registros</NavLink></p>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Informacion
-                            </a>
+                            <p className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informacion</p>                            
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <p className="dropdown-item"><NavLink exact to="/info" >Usuarios</NavLink></p>
-                                <p className="dropdown-item"><NavLink exact to="/info" >Trabajadores</NavLink></p>
-                                <p className="dropdown-item"><NavLink exact to="/info" >Servicios</NavLink></p>
+                                <p className="dropdown-item"><NavLink exact to="/UserTable" >Usuarios</NavLink></p>
+                                <p className="dropdown-item"><NavLink exact to="/WorkerTable" >Trabajadores</NavLink></p>
+                                <p className="dropdown-item"><NavLink exact to="/ServiceTable" >Servicios</NavLink></p>
                             </div>
                         </li>
                     </ul>

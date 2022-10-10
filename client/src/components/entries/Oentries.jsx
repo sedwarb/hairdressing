@@ -5,15 +5,12 @@ import {TablaTemporal} from '../TablaTemporal/TablaTemporal'
 import {typeTable} from "../constAndFunctions/constAndFunions.js"
 import {onSubmit,verificarUsuario} from '../constAndFunctions/entries/onSubmit'
 
-const tabla_st = {    
-    //Totalmente Requerido    
+const tabla_st = {
     workerId:"",
     serviceId:"",
-    //Opcionales
     phoneNumber:null,    
     manualEntry:null,
-    amountEntry:null,    
-    //no necesarios    
+    amountEntry:null,
     date:"",    
     entryType:"",
     telephone:null,
@@ -70,8 +67,8 @@ export function Oentries(){
     }
     return(
         <>
-            <h2>Registro de Servicios</h2>
-            <div className="d-flex flex-row">
+            <div className="d-flex flex-row justify-content-center"><h2>Registro de Servicios</h2></div>
+            <div className="d-flex flex-row justify-content-center">
                 <div className="d-flex flex-column">
                     <Lists typeList={typeList['service']} listStP={entries} />
                     <div className="p-2">

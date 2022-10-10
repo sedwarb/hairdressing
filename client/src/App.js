@@ -14,11 +14,11 @@ function App() {
     <React.StrictMode>
       <Route path="/" component={Navbar}></Route>
       <Route exact path="/" component={Init}></Route>
-      <Route exact path="/Entries" component={Oentries}></Route>
-      <Route exact path="/Table" component={ShowMeTables}></Route>
-      <Route exact path="/UserTable" component={TablaUsuario}></Route>
-      <Route exact path="/ServiceTable" component={TablaServicios}></Route>
-      <Route exact path="/WorkerTable" component={TablaTrabaja}></Route>
+      <Route exact path="/69110116114105101115" component={Oentries}></Route>
+      <Route exact path="/849798108101" component={ShowMeTables}></Route>
+      <Route exact path="/85115101114849798108101" component={TablaUsuario}></Route>
+      <Route exact path="/8310111411810599101849798108101" component={TablaServicios}></Route>
+      <Route exact path="/87111114107101114849798108101" component={TablaTrabaja}></Route>
     </React.StrictMode>
   );
 }

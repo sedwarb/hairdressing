@@ -19,6 +19,9 @@ export function Navbar(){
                             <p className="nav-link"><NavLink exact to="/69110116114105101115">Entradas</NavLink></p>
                         </li>
                         <li className="nav-item">
+                            <p className="nav-link"><NavLink exact to="/109101101116105110103">Citas</NavLink></p>
+                        </li>
+                        <li className="nav-item">
                             <p className="nav-link"><NavLink exact to="/849798108101">Registros</NavLink></p>
                         </li>
                         <li className="nav-item dropdown">

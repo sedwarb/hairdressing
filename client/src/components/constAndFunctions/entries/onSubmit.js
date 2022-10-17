@@ -1,26 +1,26 @@
 import {DB_HOST} from '../constAndFunions'
 
-export async function onSubmit(stateGen) {
+export async function onSubmit(stateGen,tipo) {
     let fecha = new Date()
     let enviar_f=true
-    if(stateGen.serviceId==="inma" && (!stateGen.manualEntry || !stateGen.amountEntry)){
+    if(stateGen.serviceId.valor==="inma" && (!stateGen.manualEntry || !stateGen.amountEntry)){
        console.log("Un Campo Manual esta vacio")
        enviar_f=false
     }
     const options = {method: "POST",headers:{"Content-Type": "application/json"},
     body: JSON.stringify(
         {
-            entryType:"entry",
-            date:`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
+            entryType:tipo?"meeting":"entry",
+            date:tipo?`${stateGen.fecha} ${stateGen.hora}:00.110 -0500`:`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
             serviceId:stateGen.serviceId.valor,
             workerId:stateGen.workerId.valor,
-            userPhoneNumber:stateGen.telephone?stateGen.telephone:"3006007050",
-            manualEntry:stateGen.serviceId==="inma"?stateGen.manualEntry:"",
-            amountEntry:stateGen.serviceId==="inma"?parseFloat(stateGen.amountEntry):0
-        }    
+            userPhoneNumber:tipo?stateGen.telephone:stateGen.telephone?stateGen.telephone:"3006007050",
+            manualEntry:stateGen.serviceId.valor==="inma"?stateGen.manualEntry:"",
+            amountEntry:stateGen.serviceId.valor==="inma"?parseFloat(stateGen.amountEntry):0
+        }
     )}
     
-    if(enviar_f===true){        
+    if(enviar_f===true){
         fetch(`http://${DB_HOST}:3001/entries`,options)
         .then(response => alert(`Se Guardo Exitosamente ${response.ok}`))
         .catch(error =>console.log(`Este fue el Error: ${error}`))

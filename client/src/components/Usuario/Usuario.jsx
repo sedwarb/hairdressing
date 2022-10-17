@@ -30,7 +30,7 @@ export function Usuario({entries,setEntries,css,setCss}){
                         <input onChange={e => handleChange(e)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
                     </div>
                     <div>
-                        <button type='button' onClick={(e) => verificarUsuario(entries, e)} className="btn btn-success w-100">{entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}</button>
+                        <button type='button' onClick={() => verificarUsuario(entries)} className="btn btn-success w-100">{entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}</button>
                     </div>
                 </div>
             </div>

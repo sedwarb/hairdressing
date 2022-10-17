@@ -1,7 +1,3 @@
-'usuario'.charCodeAt(0)
-
-
-
 function cadena(caracter){
     let ncadena
     for (let i = 0; i < caracter.length; i++) {
@@ -9,3 +5,5 @@ function cadena(caracter){
     }
     return ncadena
 }
+
+cadena('meeting')

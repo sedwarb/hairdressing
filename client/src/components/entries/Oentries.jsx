@@ -5,29 +5,20 @@ import {TablaTemporal} from '../TablaTemporal/TablaTemporal'
 import {typeTable} from "../constAndFunctions/constAndFunions.js"
 import {guardar} from '../constAndFunctions/entries/guardar'
 import {tabla_st} from '../constAndFunctions/entries/usuario'
+import { InputVarios } from './inputsEntries/InputVarios'
 import {Usuario} from '../Usuario/Usuario'
 
 export function Oentries(){
     const [entries,setEntries]=useState(tabla_st)
     const [tabla,setTabla]=useState([])
     const [css,setCss] = useState({mostrado:false})
-    function handleChange(e){
-        setEntries({...entries,[e.target.id]:e.target.value})
-    }
     return(
         <>
             <div className="d-flex flex-row justify-content-center"><h2>Registro de Servicios</h2></div>
             <div className="d-flex flex-row justify-content-center">
                 <div className="d-flex flex-column">
                     <Lists typeList={typeList['service']} listStP={entries} />
-                    <div className="p-2">
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon3">Servi. M.</span>
-                            </div>
-                            <input onChange={e => handleChange(e)} type="text" className="form-control" id="manualEntry" aria-describedby="basic-addon3" />
-                        </div>
-                    </div>                    
+                    <InputVarios conf={setEntries} estado={entries} dato={1}/>
                 </div>
                 <div className="d-flex flex-column">
                     <Usuario entries={entries} setEntries={setEntries} css={css} setCss={setCss}/>
@@ -35,14 +26,7 @@ export function Oentries(){
                 </div>
                 <div className="d-flex flex-column">
                     <Lists typeList={typeList['worker']} listStP={entries} />
-                    <div className="p-2">
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon3">Precio. M.</span>
-                            </div>
-                            <input onChange={e => handleChange(e)} type="number" className="form-control" id="amountEntry" aria-describedby="basic-addon3" />
-                        </div>
-                    </div>
+                    <InputVarios conf={setEntries} estado={entries} dato={2}/>
                 </div>
             </div>            
             <div className='mt-3 px-2' >                

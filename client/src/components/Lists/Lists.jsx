@@ -9,12 +9,10 @@ export function Lists({typeList,listStP}){
         .then(resp=>setLists(resp))
         .catch(error=>console.log(`Error: ${error}`))
     },[typeList['typeL']])
-    //listStP[`${typeList['typeL']}Id`]
-    //console.log(`${listStP}[${typeList}['typeL']Id]`)
-    //<option value="b" selected="selected">b</option>
+    //<div className="d-inline p-2">
     return(
         <>            
-            <div className="col d-inline p-2">
+            <div className="d-inline p-2">
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
                         <span className="input-group-text" id="basic-addon3">{`${typeList['esp']}`}</span>                                    

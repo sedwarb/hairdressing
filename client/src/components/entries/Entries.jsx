@@ -1,126 +1,65 @@
 
-import React from 'react'
-//import {Lists} from '../Lists/Lists'
-//import Calendar from 'react-calendar'
-//import 'react-calendar/dist/Calendar.css';
-//import {onSubmit,verificarUsuario} from '../constAndFunctions/entries/onSubmit'
-//import {stateGenCont} from '../constAndFunctions/entries/stateGenCont'
-//import {typeList} from '../constAndFunctions/entries/typeList'
-//import {horaMinTurn} from '../constAndFunctions/entries/horaMinuto'
+import React,{useState} from 'react'
+import {Lists} from '../Lists/Lists'
+import {onSubmit} from '../constAndFunctions/entries/onSubmit'
+import {tabla_st} from '../constAndFunctions/entries/usuario'
+import {typeList} from '../constAndFunctions/entries/typeList'
+import {Usuario} from '../Usuario/Usuario'
 
-//export function Entries({stateGen,tablaTemporal}){
 export function Entries(){
-    //const [stateGen,setStateGen] = useState(stateGenCont)
-    /*
-    function onChange(nextValue) {
-        //setStateGen({...stateGen,value:nextValue})
-        stateGen["value"]=nextValue
-    }
-    
+    const [stateGen,setStateGen] = useState(tabla_st)
     function handleChange(e){
-        //setStateGen({...stateGen,[e.target.id]:e.target.value})
-        stateGen[e.target.id]=e.target.value
-    }*/
+        setStateGen({...stateGen,[e.target.id]:e.target.value})
+    }
     return(
         <>
-            {/*<div className="col-md-7 col-lg-8">
-                <h4 className="mb-3">Datos de la Entrada</h4>
-                <form onSubmit={e=>onSubmit(e,stateGen,tablaTemporal)} className="needs-validation" noValidate>
-                    <div className="row g-3">
-                        {//Nuevo form para ingresar usuarios}
-                        <div className="col-sm-6 w-50 p-3">
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-expanded="false" aria-controls="collapseExample">ID</span>
-                                </div>
+            <div className="d-flex flex-row justify-content-center"><h2>Registro de Citas</h2></div>
+            <div className="d-flex flex-row justify-content-center">                
+                <div className="d-flex flex-column">
+                    <Lists typeList={typeList['service']} listStP={stateGen}/>
+                    <div className="p-2">
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon3">Servi. M.</span>
                             </div>
-                            <div className="collapse row g-3" id="collapseUser">
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon3">ID</span>
-                                    </div>
-                                    <input onChange={e => handleChange(e)} type="text" className="form-control" id="telephone" aria-describedby="basic-addon3" />
-                                </div>
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon3">Nombre</span>
-                                    </div>
-                                    <input onChange={e => handleChange(e)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
-                                </div>
-                                <div>
-                                    <button type='button' onClick={()=>verificarUsuario(stateGen)} className="btn btn-primary">{stateGen.findUser?"Guardar":"Buscar"}</button>
-                                </div>
-                            </div>
+                            <input onChange={e => handleChange(e)} id="manualEntry" type="text" className="form-control" aria-describedby="basic-addon3" />
                         </div>
-                        {//Nuevo form para ingresar usuarios}
-                        <Lists typeList={typeList['service']} listStP={stateGen['listSt']} />
                     </div>
-                    <div className="row g-3">
-                        <div className="col-sm-6 w-50 p-3">
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon3">Entrada</span>
-                                </div>
-                                <select className="form-label form-control" 
-                                    onChange={(e)=>stateGen["entrada"]=e.currentTarget.value}>
-                                    <option value="entry" className="list-group-item">Entrada Simple</option>
-                                    <option className="list-group-item" value="meeting">Cita</option>
-                                </select>
+                </div>
+                <div className="d-flex flex-column">
+                    <Usuario entries={stateGen} setEntries={setStateGen}/>
+                    <div className="p-2">
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="fecha-inicio">Fecha</span>
                             </div>
+                            <input onChange={(e)=>handleChange(e)} id='fecha' type="date" className="form-control" aria-label="Username" aria-describedby="fecha" />
                         </div>
-                        <Lists typeList={typeList['worker']} listStP={stateGen['listSt']}/>
                     </div>
-                    {
-                        stateGen.entrada==="meeting"?
-                        <div className="row g-3">
-                            <div className="col-sm-6 w-50 p-3" >
-                                <input onChange={(e)=>handleChange(e)} id='value' type="date" className="form-control" aria-label="Username" aria-describedby="fecha-inicio" />
+                    <div className="p-2">
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon3">Hora</span>
                             </div>
-                            <div className="col-sm-6 w-50 p-3">
-                                <div className="row g-3 p-3">
-                                    <div className="input-group mb-3">
-                                        <div className="input-group-prepend">
-                                            <span className="input-group-text" id="basic-addon3">Hora</span>
-                                        </div>
-                                        <select
-                                            onChange={(e) =>stateGen["hora"]=e.currentTarget.value }>
-                                            {horaMinTurn.hora && horaMinTurn.hora.map(list => <option className="list-group-item" key={list} value={list}>{list}</option>)}
-                                        </select>
-                                        <select
-                                            onChange={(e) =>stateGen["minutos"]=e.currentTarget.value }>
-                                            {horaMinTurn.minutos && horaMinTurn.minutos.map(list => <option className="list-group-item" key={list} value={list}>{list}</option>)}
-                                        </select>
-                                        <select
-                                            onChange={(e) =>stateGen["turno"]=e.currentTarget.value }>
-                                            {horaMinTurn.turno && horaMinTurn.turno.map(list => <option className="list-group-item" key={list} value={list}>{list}</option>)}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>:<div></div>                        
-                    }                        
-                    <div className="row g-3">
-                        <div className="col-sm-6 w-50 p-3">
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon3">Servicio M.</span>
-                                </div>
-                                <input onChange={e => handleChange(e)} id="manual" type="text" className="form-control" aria-describedby="basic-addon3" />
-                            </div>
+                            <input id='hora' type="time" onChange={e => handleChange(e)} className="form-control" aria-describedby="basic-addon3"/>
                         </div>
-                        <div className="col-sm-6 w-50 p-3">
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon3">Precio M.</span>
-                                </div>
-                                <input onChange={e => handleChange(e)} id="precio" type="text" className="form-control" aria-describedby="basic-addon3" />
+                    </div>
+                    <div className="p-2">
+                        <button type='button' onClick={()=>onSubmit(stateGen,true)} className="btn btn-primary w-100" >Guardar</button>                        
+                    </div>
+                </div>
+                <div className="d-flex flex-column">
+                    <Lists typeList={typeList['worker']} listStP={stateGen}/>
+                    <div className="p-2">
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon3">Precio. M.</span>
                             </div>
+                            <input onChange={e => handleChange(e)} id="amountEntry" type="text" className="form-control" aria-describedby="basic-addon3" />
                         </div>
-                    </div>                    
-                    <div className="col-sm-6 w-100 p-3" >-</div>
-                    <button type='submit' className="w-100 btn btn-primary btn-lg" >Guardar</button>
-                </form>
-                </div>*/}
+                    </div>
+                </div>                
+            </div>
         </>
     )
 }

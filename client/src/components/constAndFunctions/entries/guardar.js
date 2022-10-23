@@ -4,7 +4,7 @@ import {onSubmit} from '../entries/onSubmit'
 export function guardar(entries,setTabla,setEntries,tabla){
     if(entries.telephone!==null ? entries.nomUsu===null ? false : true : true){
         if(entries.serviceId.valor==="inma"?validar_inma(entries):true){
-            if(entries.workerId && entries.serviceId){                
+            if(entries.workerId && entries.serviceId){
                 let fecha = new Date()
                 setTabla([...tabla,
                 {

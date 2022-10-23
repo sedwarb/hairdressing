@@ -58,6 +58,7 @@ export async function verificarUsuario(estado){
                     .then(response => {
                         estado.findUser=false
                         estado.nomUsu=estado.userName
+                        estado.userName=""
                         alert(`Se Guardo Exitosamente ${response.ok}`)
                     })
                     .catch(error =>console.log(`Error en Fetch crear usuario: ${error}`))                    

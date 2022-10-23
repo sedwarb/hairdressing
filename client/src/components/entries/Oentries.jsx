@@ -18,7 +18,7 @@ export function Oentries(){
             <div className="d-flex flex-row justify-content-center">
                 <div className="d-flex flex-column">
                     <Lists typeList={typeList['service']} listStP={entries} />
-                    <InputVarios conf={setEntries} estado={entries} dato={1}/>
+                    <InputVarios conf={setEntries} estado={entries} nombre={"Servi. M."} iden={"manualEntry"}/>
                 </div>
                 <div className="d-flex flex-column">
                     <Usuario entries={entries} setEntries={setEntries} css={css} setCss={setCss}/>
@@ -26,7 +26,7 @@ export function Oentries(){
                 </div>
                 <div className="d-flex flex-column">
                     <Lists typeList={typeList['worker']} listStP={entries} />
-                    <InputVarios conf={setEntries} estado={entries} dato={2}/>
+                    <InputVarios conf={setEntries} estado={entries} nombre={"Precio. M."} iden={"amountEntry"}/>
                 </div>
             </div>            
             <div className='mt-3 px-2' >                

@@ -1,7 +1,7 @@
 import React from 'react'
 import { handleChange } from '../../constAndFunctions/entries/handleChange'
 
-export function InputVarios({conf,estado,nombre,iden}){
+export function CitasInput({setStateGen,stateGen,nombre,iden,tipo}){
     return(
         <>            
             <div className="p-2">
@@ -9,7 +9,7 @@ export function InputVarios({conf,estado,nombre,iden}){
                     <div className="input-group-prepend">
                         <span className="input-group-text" id="basic-addon3">{nombre}</span>
                     </div>
-                    <input onChange={e => handleChange(e,conf,estado)} type="text" className="form-control" id={iden} aria-describedby="basic-addon3" />
+                    <input onChange={(e)=>handleChange(e,setStateGen,stateGen)} id={iden} type={tipo} className="form-control" aria-label="Username" aria-describedby="basic-addon3" />
                 </div>
             </div>
         </>

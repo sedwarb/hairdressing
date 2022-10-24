@@ -31,8 +31,9 @@ export function Table({typeTable,search}){
                                                             <td key={`${type.sname===null?date[type.name]:date[type.name][type.sname]}${i}`}>
                                                                 {
                                                                     type.sname===null?
-                                                                        type.name==="date"?
-                                                                            search.typed==="entry"?arreglaFecha(date[type.name]):date[type.name].split("T")[0]:
+                                                                        type.name==="date"?                                                                            
+                                                                            //search.typed==="entry"?arreglaFecha(date[type.name]):date[type.name].split("T")[0]:
+                                                                            search.typed==="entry"?date[type.name]:date[type.name]:
                                                                         date[type.name]
                                                                     :date[type.name][type.sname]
                                                                 }

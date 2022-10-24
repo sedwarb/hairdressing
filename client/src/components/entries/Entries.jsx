@@ -20,8 +20,8 @@ export function Entries(){
                 </div>
                 <div className="d-flex flex-column">
                     <Usuario entries={stateGen} setEntries={setStateGen}/>
-                    <CitasInput setStateGen stateGen nombre={"Fecha"} iden={"fecha"} tipo={"date"} />
-                    <CitasInput setStateGen stateGen nombre={"Hora"} iden={"hora"} tipo={"time"} />
+                    <CitasInput setStateGen={setStateGen} stateGen={stateGen} nombre={"Fecha"} iden={"fecha"} tipo={"date"} />
+                    <CitasInput setStateGen={setStateGen} stateGen={stateGen} nombre={"Hora"} iden={"hora"} tipo={"time"} />
                     <div className="p-2">
                         <button type='button' onClick={()=>onSubmit(stateGen,true)} className="btn btn-primary w-100" >Guardar</button>                        
                     </div>

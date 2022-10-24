@@ -2,6 +2,11 @@ import {DB_HOST} from '../constAndFunions'
 
 export async function onSubmit(stateGen,tipo) {
     let fecha = new Date()
+    //2008-12-31 13:00 asi llega
+    function arreglafyh(fecha,hora){
+        return `${fecha.split("-")[0]}/${fecha.split("-")[1]}/${fecha.split("-")[2]} ${hora}:00.59`
+    }
+    //let fcita = new Date(`${stateGen.fecha} ${stateGen.hora}`)
     let enviar_f=true
     if(stateGen.serviceId.valor==="inma" && (!stateGen.manualEntry || !stateGen.amountEntry)){
        console.log("Un Campo Manual esta vacio")
@@ -9,9 +14,9 @@ export async function onSubmit(stateGen,tipo) {
     }
     const options = {method: "POST",headers:{"Content-Type": "application/json"},
     body: JSON.stringify(
-        {
+        {//new Date('2008/12/31 13:00:00.59')
             entryType:tipo?"meeting":"entry",
-            date:tipo?`${stateGen.fecha} ${stateGen.hora}:00.110 -0500`:`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
+            date:tipo?arreglafyh(stateGen.fecha,stateGen.hora):`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
             serviceId:stateGen.serviceId.valor,
             workerId:stateGen.workerId.valor,
             userPhoneNumber:tipo?stateGen.telephone:stateGen.telephone?stateGen.telephone:"3006007050",

@@ -1,5 +1,5 @@
 const { User, Entry, Worker, Service } = require("../db.js");
-const { Op } = require("sequelize");
+const { Op, JSON, json } = require("sequelize");
 const {exclutionInInclude,exclutionppal,createWhereObj} = require('./constAndFunctions')
 
 async function getEntriesByDate(req, res){
@@ -21,6 +21,8 @@ async function getEntriesByDate(req, res){
                 ]
             }
         )
+        let narraobj=[],v,objfecha={}
+        
         for (let i = 0; i < entriesBydate.length; i++) {
             if(entriesBydate[i].amountEntry===0){
                 entriesBydate[i].amountEntry=entriesBydate[i].service.amount
@@ -29,15 +31,28 @@ async function getEntriesByDate(req, res){
             }else{
                 sumaManual+=entriesBydate[i].amountEntry
             }
+            v = new Date(entriesBydate[i].date)
+            objfecha.hora=v.getHours().toString().length>1?v.getHours().toString():`0${v.getHours().toString()}`
+            objfecha.minutos=v.getMinutes().toString().length>1?v.getMinutes().toString():`${v.getMinutes().toString()}0`
+            narraobj.push({
+                id:entriesBydate[i].id,
+                date:`${v.getDate()}/${v.getMonth()}/${v.getUTCFullYear()} ${objfecha.hora}:${objfecha.minutos}`,
+                manualEntry:entriesBydate[i].manualEntry,
+                amountEntry:entriesBydate[i].amountEntry,
+                entryType:entriesBydate[i].entryType,
+                user:entriesBydate[i].user,
+                worker:entriesBydate[i].worker,
+                service:entriesBydate[i].service
+            })            
         }
-        entriesBydate.unshift({sumaManual,sumaServicio})
-        res.send(entriesBydate)
+        narraobj.unshift({sumaManual,sumaServicio})
+        res.json(narraobj)
     }catch(error){res.send(`Error: ${error}`)}
 }
 
 async function createEntry(req, res){
     try{
-        await Entry.create(
+        creado = await Entry.create(
             {
                 date:req.body.date?req.body.date:Date(),
                 manualEntry:req.body.manualEntry,

@@ -9,10 +9,11 @@ export function Usuario({entries,setEntries,css,setCss}){
         <>
             <div className="p-2">
                 <div className="input-group mb-3">
-                    <div className="input-group-prepend">
+                    {/*<div className="input-group-prepend">
                         <span className="input-group-text">ID</span>
-                    </div>
-                    <input onClick={()=>mostrar(entries,setEntries,css,setCss)} type="text" className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-controls="collapseExample" placeholder='Identificacion' />
+    </div>*/}
+                    <button onClick={()=>mostrar(entries,setEntries,css,setCss)} type="button" className="btn btn-info w-100" id="btnUser" data-toggle="collapse" data-target="#collapseUser" aria-controls="collapseExample">{entries.telephone?entries.telephone:"ID"}</button>
+                    {/*<input onClick={()=>mostrar(entries,setEntries,css,setCss)} type="text" className="input-group-text" id="basic-addon3" data-toggle="collapse" data-target="#collapseUser" aria-controls="collapseExample" placeholder='Identificacion' />*/}
                 </div>
                 <div className="collapse" id="collapseUser">
                     <div className="input-group mb-3">

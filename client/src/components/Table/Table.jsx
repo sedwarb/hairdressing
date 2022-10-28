@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react'
 import {getDatos} from '../constAndFunctions/constAndFunions'
-import { arreglaFecha } from '../constAndFunctions/tablaRegistros/arreglaFechaRegis';
 
 export function Table({typeTable,search}){
     const [dates,setDates] = useState([]);
@@ -34,8 +33,8 @@ export function Table({typeTable,search}){
                                                                         type.name==="date"?                                                                            
                                                                             //search.typed==="entry"?arreglaFecha(date[type.name]):date[type.name].split("T")[0]:
                                                                             search.typed==="entry"?date[type.name]:date[type.name]:
-                                                                        date[type.name]
-                                                                    :date[type.name][type.sname]
+                                                                        date[type.name].toString().replace(/^\w/, (c) => c.toUpperCase())
+                                                                    :date[type.name][type.sname].toString().replace(/^\w/, (c) => c.toUpperCase())
                                                                 }
                                                             </td>
                                                         )

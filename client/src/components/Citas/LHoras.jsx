@@ -1,11 +1,8 @@
 import React from 'react'
 
 function hour(){
-    let horas=[],h
-    for (let i = 5; i < 23; i++) {
-        h = i.length===1?`0${i}:00`:`${i}:00`
-        horas.push(h)
-    }
+    let horas=[]
+    for (let i = 5; i < 23; i++) {horas.push(i<=9?`0${i}:00`:`${i}:00`)}
     return horas
 }
 
@@ -15,7 +12,7 @@ export function LHoras(){
         <>
             <ul className="list-group">
                 {
-                    hour().map(item=><li className="list-group-item">{item}</li>)
+                    hour().map(item=><li key={item} className="list-group-item">{item}</li>)
                 }
             </ul>            
         </>

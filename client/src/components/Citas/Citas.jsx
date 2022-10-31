@@ -6,18 +6,38 @@ import { CitasInput } from '../entries/inputsEntries/CitasInput'
 import { Usuario } from '../Usuario/Usuario'
 import { LHoras } from './LHoras'
 import { getDatos } from '../constAndFunctions/constAndFunions'
+import { onSubmit } from '../constAndFunctions/entries/onSubmit'
 
 
 export function Citas(){
     const [entries,setEntries]=useState(tabla_st)
     async function llenarCitas(){
-        //setEntries({...entries,dbeg:entries.fecha,dend:entries.fecha,typed:"entry",send:true})
         setEntries({...entries,citas:await getDatos({type:"",dbeg:entries.fecha,dend:entries.fecha,typed:"entry",send:true})})
     }
+    function guardar(){
+        let datos = {
+            serviceId:entries.serviceId,
+            fecha:entries.fecha,
+            hora:entries.hora,
+            workerId:entries.workerId,
+            telephone:entries.telephone
+        }
+        
+        let encontro = entries.citas.slice(1).find(item=>item.date.split(" ")[1].split(":")[0]===entries.hora.split(":")[0])
+        
+        if(entries.hora && entries.workerId && encontro===undefined){
+            entries.citas.length>=1?onSubmit(datos,true):alert("debe consultar la fecha y el trabajador")
+        }else {
+            encontro?alert("la hora ya esta ocupada"):
+            alert("Debe llenar los datos hora y servicio")
+        }
+        
+    }
+    
     useEffect(()=>"",[entries])
     return(
         <>
-            <div className="d-flex flex-row justify-content-around">                
+            <div className="d-flex flex-row justify-content-around">
                 <div className='d-flex flex-column'>
                     <Lists typeList={typeList['worker']} listStP={entries}/>
                     <CitasInput setStateGen={setEntries} stateGen={entries} nombre={"Fecha"} iden={"fecha"} tipo={"date"} />
@@ -29,7 +49,7 @@ export function Citas(){
                     <Lists typeList={typeList['service']} listStP={entries} />
                     <CitasInput setStateGen={setEntries} stateGen={entries} nombre={"Hora"} iden={"hora"} tipo={"time"} />
                     <div className="p-2">
-                        <button type='button' className="btn btn-primary w-100" >Guardar</button>   
+                        <button type='button' onClick={guardar} className="btn btn-primary w-100" >Guardar</button>   
                     </div>
                 </div>
                 <div className='d-flex flex-column'>

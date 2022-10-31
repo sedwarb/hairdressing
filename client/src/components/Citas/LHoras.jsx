@@ -6,15 +6,16 @@ function hour(){
     return horas
 }
 
-export function LHoras(){
+export function LHoras({datos}){
     
     return(
         <>
             <ul className="list-group">
                 {
+                    datos.citas?datos.citas.map((item,i)=>i>0?<li key={item} className="list-group-item">{`${new Date(item.date).getHours()}:${new Date(item.date).getMinutes()} - ${item.service.name} - ${item.user.fullname}`}</li>:<li></li>):
                     hour().map(item=><li key={item} className="list-group-item">{item}</li>)
                 }
-            </ul>            
+            </ul>
         </>
     )
 }

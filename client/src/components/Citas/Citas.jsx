@@ -25,11 +25,11 @@ export function Citas(){
         
         let encontro = entries.citas.slice(1).find(item=>item.date.split(" ")[1].split(":")[0]===entries.hora.split(":")[0])
         
-        if(entries.hora && entries.workerId && encontro===undefined){
+        if(entries.hora && entries.workerId && encontro===undefined && entries.telephone){
             entries.citas.length>=1?onSubmit(datos,true):alert("debe consultar la fecha y el trabajador")
         }else {
             encontro?alert("la hora ya esta ocupada"):
-            alert("Debe llenar los datos hora y servicio")
+            alert("Debe llenar los datos hora, servicio y usuario")
         }
         
     }

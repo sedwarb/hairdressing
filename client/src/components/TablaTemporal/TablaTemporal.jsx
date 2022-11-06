@@ -1,4 +1,5 @@
 import React from 'react'
+import { capitalizar } from './../constAndFunctions/varios_usos/capitalizar';
 
 export function TablaTemporal({encabezado,dat,estilo}){
     return(
@@ -34,12 +35,12 @@ export function TablaTemporal({encabezado,dat,estilo}){
                                                                 encabezado.name === "worker" || encabezado.name === "service" ?                                                                    
                                                                     <td key={Date.now().toString()+dat1[t1.name]["nombre"]}>
                                                                         {
-                                                                            dat1[t1.name]["nombre"].toString().replace(/^\w/, (c) => c.toUpperCase())
+                                                                            capitalizar(dat1[t1.name]["nombre"])
                                                                         }
                                                                     </td> :
                                                                     <td key={Date.now().toString()+dat1[t1.name]}>
                                                                         {
-                                                                            dat1[t1.name].toString().replace(/^\w/, (c) => c.toUpperCase())
+                                                                            capitalizar(dat1[t1.name])
                                                                         }
                                                                     </td>
                                                             }

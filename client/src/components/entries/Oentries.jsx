@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import {Lists} from '../Lists/Lists'
 import {typeList} from '../constAndFunctions/entries/typeList'
 import {TablaTemporal} from '../TablaTemporal/TablaTemporal'
@@ -12,17 +12,13 @@ export function Oentries(){
     const [entries,setEntries]=useState(tabla_st)
     const [tabla,setTabla]=useState([])
     const [css,setCss] = useState({mostrado:false,manual:false})
-    useEffect(()=>{
-        if(entries.serviceId.valor==="inma")setCss({...css,manual:true})
-        else setCss({...css,manual:false})
-    },[entries.serviceId.valor,css])
     return(
         <>
             <div className="d-flex flex-row justify-content-center"><h2>Registro de Servicios</h2></div>
             <div className="d-flex flex-row justify-content-center">
                 <div className="d-flex flex-column">
                     <Lists typeList={typeList['service']} listStP={entries} />
-                    {css.manual?<InputVarios conf={setEntries} estado={entries} nombre={"Servi. M."} iden={"manualEntry"}/>:<div></div>}
+                    <InputVarios conf={setEntries} estado={entries} nombre={"Servi. M."} iden={"manualEntry"}/>
                 </div>
                 <div className="d-flex flex-column">
                     <Usuario entries={entries} setEntries={setEntries} css={css} setCss={setCss}/>
@@ -30,7 +26,7 @@ export function Oentries(){
                 </div>
                 <div className="d-flex flex-column">
                     <Lists typeList={typeList['worker']} listStP={entries} />
-                    {css.manual?<InputVarios conf={setEntries} estado={entries} nombre={"Precio. M."} iden={"amountEntry"}/>:<div></div>}
+                    <InputVarios conf={setEntries} estado={entries} nombre={"Precio. M."} iden={"amountEntry"}/>
                 </div>
             </div>            
             <div className='mt-3 px-2' >                

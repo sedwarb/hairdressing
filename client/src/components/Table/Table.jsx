@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import {getDatos} from '../constAndFunctions/constAndFunions'
+import { capitalizar } from './../constAndFunctions/varios_usos/capitalizar';
 
 export function Table({typeTable,search}){
     const [dates,setDates] = useState([]);
@@ -30,11 +31,10 @@ export function Table({typeTable,search}){
                                                             <td key={`${type.sname===null?date[type.name]:date[type.name][type.sname]}${i}`}>
                                                                 {
                                                                     type.sname===null?
-                                                                        type.name==="date"?                                                                            
-                                                                            //search.typed==="entry"?arreglaFecha(date[type.name]):date[type.name].split("T")[0]:
+                                                                        type.name==="date"?
                                                                             search.typed==="entry"?date[type.name]:date[type.name]:
-                                                                        date[type.name].toString().replace(/^\w/, (c) => c.toUpperCase())
-                                                                    :date[type.name][type.sname].toString().replace(/^\w/, (c) => c.toUpperCase())
+                                                                        capitalizar(date[type.name])
+                                                                    :capitalizar(date[type.name][type.sname])
                                                                 }
                                                             </td>
                                                         )

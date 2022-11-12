@@ -11,7 +11,6 @@ export function Table({typeTable,search}){
     return(
         <>
             <BarraEstado estado={search} datos={dates} />
-            {/*search.type===""?<div>{`Total: ${dates.length>0?dates[0].sumaManual+dates[0].sumaServicio:0}`}</div>:<div></div>*/}
             <table className="table table-striped">
                 <thead>
                     <tr>

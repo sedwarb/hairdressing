@@ -1,7 +1,7 @@
 import {validar_inma} from '../entries/validar_inma'
 import {onSubmit} from '../entries/onSubmit'
 
-export function guardar(entries,setTabla,setEntries,tabla){
+export async function guardar(entries,setTabla,setEntries,tabla){
     if(entries.telephone!==null ? entries.nomUsu===null ? false : true : true){
         if(entries.serviceId.valor==="inma"?validar_inma(entries):true){
             if(entries.workerId && entries.serviceId){
@@ -21,9 +21,20 @@ export function guardar(entries,setTabla,setEntries,tabla){
                 document.querySelector('#amountEntry').value = ""
                 document.querySelector('#telephone').value = ""
                 document.querySelector('#userName').value = ""
-                onSubmit(entries)
-                setEntries({ ...entries, telephone: null,nomUsu:null,manualEntry:null,amountEntry:null })
-            }else alert("Debe completar los datos Servicio y Trabajador")
-        }else alert("Debe llenar los campos manuales")
+                let status = await onSubmit(entries)
+                if(status){
+                    setEntries({ ...entries, estado: "No se Guardo la informacion", telephone: null,nomUsu:null,manualEntry:null,amountEntry:null,estadoI:false})    
+                }else{
+                    setEntries({ ...entries, estado: "Registro Guardado Exitosamente", telephone: null,nomUsu:null,manualEntry:null,amountEntry:null,estadoI:true})
+                }
+                //setEntries({ ...entries, telephone: null,nomUsu:null,manualEntry:null,amountEntry:null })
+            }else{
+                setEntries({ ...entries, estado: "Debe completar los datos Servicio y Trabajador",estadoI:false})
+                //alert("Debe completar los datos Servicio y Trabajador")
+            }
+        }else{
+            setEntries({ ...entries, estado: "Debe llenar los campos manuales",estadoI:false})
+            //alert("Debe llenar los campos manuales")
+        }
     }else setEntries({ ...entries, telephone: null,nomUsu:null })
 }

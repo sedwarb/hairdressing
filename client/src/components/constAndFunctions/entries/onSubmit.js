@@ -2,19 +2,17 @@ import {DB_HOST} from '../constAndFunions'
 
 export async function onSubmit(stateGen,tipo) {
     let fecha = new Date()
-    //2008-12-31 13:00 asi llega
+    let devolucion = null
     function arreglafyh(fecha,hora){
         return `${fecha.split("-")[0]}/${fecha.split("-")[1]}/${fecha.split("-")[2]} ${hora}:00.59`
     }
-    //let fcita = new Date(`${stateGen.fecha} ${stateGen.hora}`)
     let enviar_f=true
     if(stateGen.serviceId.valor==="inma" && (!stateGen.manualEntry || !stateGen.amountEntry)){
-       console.log("Un Campo Manual esta vacio")
        enviar_f=false
     }
     const options = {method: "POST",headers:{"Content-Type": "application/json"},
     body: JSON.stringify(
-        {//new Date('2008/12/31 13:00:00.59')
+        {
             entryType:tipo?"meeting":"entry",
             date:tipo?arreglafyh(stateGen.fecha,stateGen.hora):`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
             serviceId:stateGen.serviceId.valor,
@@ -27,15 +25,15 @@ export async function onSubmit(stateGen,tipo) {
     
     if(enviar_f===true){
         fetch(`http://${DB_HOST}:3001/entries`,options)
-        .then(response => alert(`Se Guardo Exitosamente ${response.ok}`))
-        .catch(error =>console.log(`Este fue el Error: ${error}`))
+        .then(response => devolucion=true)
+        .catch(error =>devolucion=null)
     }else{
-        console.log("No se creo la entrada")
-        alert("No Se Guardo, Revisar")
+        devolucion=null
     }
+    return devolucion
 }
 
-export async function verificarUsuario(estado){
+export async function verificarUsuario(estado,setEntries){
     let foundWPhoneN,foundWName
     fetch(`http://${DB_HOST}:3001/user`)
     .then(res=>res.json())
@@ -44,10 +42,10 @@ export async function verificarUsuario(estado){
         foundWName = usuarios.find(element => element.fullname === estado.userName)
         if (estado.telephone && estado.userName) {
             if (foundWPhoneN) {
-                foundWName?alert(`Hay un usuario registrado con ese ID y Nombre`):
-                alert("Hay un usuario con ese nombre")
+                foundWName?setEntries({...estado, estado:"Hay un usuario registrado con ese ID y Nombre",estadoI:false}):
+                setEntries({...estado, estado:"Hay un usuario con ese nombre",estadoI:false})
             } else {
-                if (foundWName) alert("Se encontro el Nombre Pero no Coincide el ID")
+                if (foundWName) setEntries({...estado, estado:"Se encontro el Nombre Pero no Coincide el ID",estadoI:false})
                 else {                    
                     const options = {
                         method: "POST", 
@@ -64,21 +62,24 @@ export async function verificarUsuario(estado){
                         estado.findUser=false
                         estado.nomUsu=estado.userName
                         estado.userName=""
-                        alert(`Se Guardo Exitosamente ${response.ok}`)
+                        setEntries({...estado, estado:"Se guardo exitosamente el Cliente",estadoI:true})
                     })
-                    .catch(error =>console.log(`Error en Fetch crear usuario: ${error}`))                    
+                    .catch(error =>{
+                        console.log(`Error en Fetch crear usuario: ${error}`)
+                        setEntries({...estado, estado:"No se Guardo el Cliente",estadoI:false})
+                    })
                 }
             }
         }else if(estado.telephone){
             if (foundWPhoneN){
                 estado.nomUsu=usuarios.filter(usu=>usu.phoneNumber===estado.telephone)[0].fullname
-                alert(`El usuario ${estado.nomUsu} esta registrado con ese ID`)                
+                setEntries({...estado, estado:`El usuario ${estado.nomUsu} esta registrado con ese ID`,estadoI:true})
             }
             else {                
                 estado.findUser=true
-                alert("Usuario no encontrado, Ingrese el Nombre para crearlo")
+                setEntries({...estado, estado:"Usuario no encontrado, Ingrese el Nombre para crearlo",estadoI:true})
             }
-        }else alert("Debe llenar el campo ID")
+        }else setEntries({...estado, estado:"Debe llenar el campo ID",estadoI:false})
     })
 }
 

@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import {getDatos} from '../constAndFunctions/constAndFunions'
-import { capitalizar } from './../constAndFunctions/varios_usos/capitalizar';
+import { capitalizar } from './../constAndFunctions/varios_usos/capitalizar'
+import { BarraEstado } from '../BarraEstado/BarraEstado';
 
 export function Table({typeTable,search}){
     const [dates,setDates] = useState([]);
@@ -9,7 +10,7 @@ export function Table({typeTable,search}){
     },[search])
     return(
         <>
-            {search.type===""?<div>{`Total: ${dates.length>0?dates[0].sumaManual+dates[0].sumaServicio:0}`}</div>:<div></div>}
+            <BarraEstado estado={search} datos={dates} />
             <table className="table table-striped">
                 <thead>
                     <tr>

@@ -7,6 +7,7 @@ import { Usuario } from '../Usuario/Usuario'
 import { LHoras } from './LHoras'
 import { getDatos } from '../constAndFunctions/constAndFunions'
 import { onSubmit } from '../constAndFunctions/entries/onSubmit'
+import { BarraIngreso } from './../BarraEstado/BarraIngreso'
 
 
 export function Citas(){
@@ -26,10 +27,10 @@ export function Citas(){
         let encontro = entries.citas.slice(1).find(item=>item.date.split(" ")[1].split(":")[0]===entries.hora.split(":")[0])
         
         if(entries.hora && entries.workerId && encontro===undefined && entries.telephone){
-            entries.citas.length>=1?onSubmit(datos,true):alert("debe consultar la fecha y el trabajador")
+            entries.citas.length>=1?onSubmit(datos,true)?setEntries({ ...entries, estado: "Registro Guardado Exitosamente",estadoI:true}):setEntries({ ...entries, estado: "Error Al guardar el registro",estadoI:false}):setEntries({ ...entries, estado: "Debe consultar la fecha y el trabajador",estadoI:false})
         }else {
-            encontro?alert("la hora ya esta ocupada"):
-            alert("Debe llenar los datos hora, servicio y usuario")
+            encontro?setEntries({ ...entries, estado: "la hora ya esta ocupada",estadoI:false}):
+            setEntries({ ...entries, estado: "Debe llenar los datos hora, servicio y usuario",estadoI:false})
         }
         
     }
@@ -58,6 +59,7 @@ export function Citas(){
             </div>
             <div className="d-flex flex-row">
                 <div className='d-flex flex-column w-100 p-2'>
+                    <BarraIngreso estado={entries} />
                     <LHoras datos={entries} />
                 </div>                
             </div>

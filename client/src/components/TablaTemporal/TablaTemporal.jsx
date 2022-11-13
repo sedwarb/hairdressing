@@ -1,9 +1,11 @@
 import React from 'react'
-import { capitalizar } from './../constAndFunctions/varios_usos/capitalizar';
+import { capitalizar } from './../constAndFunctions/varios_usos/capitalizar'
+import { BarraIngreso } from '../BarraEstado/BarraIngreso'
 
-export function TablaTemporal({encabezado,dat,estilo}){
+export function TablaTemporal({encabezado,dat,estilo,state}){
     return(
         <>
+            <BarraIngreso estado={state} />
             <table className={estilo?estilo:""}>
                 <thead>
                     <tr>

@@ -30,7 +30,7 @@ export function Oentries(){
                 </div>
             </div>            
             <div className='mt-3 px-2' >                
-                <TablaTemporal encabezado={typeTable.entries} dat={tabla} estilo={"table table-striped"}/>
+                <TablaTemporal state={entries} encabezado={typeTable.entries} dat={tabla} estilo={"table table-striped"}/>
             </div>
         </>
     )

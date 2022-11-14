@@ -27,26 +27,18 @@ export function TablaTemporal({encabezado,dat,estilo,state}){
                         dat && dat.map(
                             (dat1,i)=>{
                                 return (
-                                    <tr>
+                                    <tr key={i}>
                                         {
                                             encabezado && encabezado.map(
                                                 (t1,j)=>{
                                                     return (
-                                                        <>
+                                                        <td key={j}>
                                                             {
-                                                                encabezado.name === "worker" || encabezado.name === "service" ?                                                                    
-                                                                    <td key={Date.now().toString()+dat1[t1.name]["nombre"]}>
-                                                                        {
-                                                                            capitalizar(dat1[t1.name]["nombre"])
-                                                                        }
-                                                                    </td> :
-                                                                    <td key={Date.now().toString()+dat1[t1.name]}>
-                                                                        {
-                                                                            capitalizar(dat1[t1.name])
-                                                                        }
-                                                                    </td>
+                                                                encabezado.name === "worker" || encabezado.name === "service" ?
+                                                                    capitalizar(dat1[t1.name]["nombre"]):
+                                                                    capitalizar(dat1[t1.name])
                                                             }
-                                                        </>                                                        
+                                                        </td>                                                        
                                                     )
                                                 }
                                             )

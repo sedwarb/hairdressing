@@ -23,13 +23,13 @@ export function Table({typeTable,search}){
                             (date,i)=>{
                                 return (
                                     i===0 && search.type===""?
-                                        <tr></tr>:
-                                        <tr key={`${date.phoneNumber}${i}`}>
+                                        <tr key={i}></tr>:
+                                        <tr key={i}>
                                             {
                                                 typeTable && typeTable.map(
-                                                    (type,i)=>{
+                                                    (type,j)=>{
                                                         return (
-                                                            <td key={`${type.sname===null?date[type.name]:date[type.name][type.sname]}${i}`}>
+                                                            <td key={j}>
                                                                 {
                                                                     type.sname===null?
                                                                         type.name==="date"?

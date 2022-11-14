@@ -2,8 +2,8 @@ export function mostrar(entries,setEntries,css,setCss){
     if(!css){
         document.querySelector('#telephone').value=""
         document.querySelector('#userName').value=""
+        if(!entries.userName)setEntries({...entries,telephone:null,findUser:null})
     }else if(css.mostrado){
-        //let id=entries.telephone
         document.querySelector('#telephone').value=""
         setEntries({...entries,telephone:entries.telephone})
         document.querySelector('#userName').value=""
@@ -17,5 +17,4 @@ export function mostrar(entries,setEntries,css,setCss){
     }else if(!entries.nomUsu){
         setEntries({...entries,telephone:null})
     }
-    //if(!entries.telephone && !entries.findUser)setEntries({...entries,telephone:null})
 }

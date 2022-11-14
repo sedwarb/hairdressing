@@ -9,7 +9,6 @@ export function Lists({typeList,listStP}){
         .then(resp=>setLists(resp))
         .catch(error=>console.log(`Error: ${error}`))
     },[typeList['typeL']])
-    //<div className="d-inline p-2">
     return(
         <>            
             <div className="d-inline p-2">
@@ -18,7 +17,7 @@ export function Lists({typeList,listStP}){
                         <span className="input-group-text" id="basic-addon3">{`${typeList['esp']}`}</span>                                    
                     </div>
                     <select id={typeList.typeL} className="form-label form-control" onChange={(e) => listStP[`${typeList['typeL']}Id`] = JSON.parse(e.currentTarget.value)}>
-                        <option className="list-group-item">Seleccione...</option>
+                        <option className="list-group-item">{""}</option>
                         {lists && lists.map(list => <option className="list-group-item" key={list['id']} value={JSON.stringify({valor:list['id'],nombre:list[typeList['fieldL']],monto:list['amount']})}>{list[typeList['fieldL']].replace(/^\w/, (c) => c.toUpperCase())}</option>)}
                     </select>
                 </div>

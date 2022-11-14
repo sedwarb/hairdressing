@@ -14,21 +14,20 @@ export function Oentries(){
     const [css,setCss] = useState({mostrado:false,manual:false})
     return(
         <>
-            <div className="d-flex flex-row justify-content-center"><h2>Registro de Servicios</h2></div>
             <div className="d-flex flex-row justify-content-center">
-                <div className="d-flex flex-column">
-                    <Lists typeList={typeList['service']} listStP={entries} />
-                    <InputVarios conf={setEntries} estado={entries} nombre={"Servi. M."} iden={"manualEntry"}/>
-                </div>
-                <div className="d-flex flex-column">
-                    <Usuario entries={entries} setEntries={setEntries} css={css} setCss={setCss}/>
-                    <div className="p-2"><button onClick={()=>guardar(entries,setTabla,setEntries,tabla)} type='button' className="btn btn-primary w-100" hidden={css.mostrado} >Guardar</button></div>
-                </div>
-                <div className="d-flex flex-column">
-                    <Lists typeList={typeList['worker']} listStP={entries} />
-                    <InputVarios conf={setEntries} estado={entries} nombre={"Precio. M."} iden={"amountEntry"}/>
-                </div>
-            </div>            
+                <Usuario entries={entries} setEntries={setEntries} css={css} setCss={setCss}/>
+            </div>
+            <div className="d-flex flex-row justify-content-center">                
+                <Lists typeList={typeList['service']} listStP={entries} />
+                <Lists typeList={typeList['worker']} listStP={entries} />
+            </div>
+            <div className="d-flex flex-row justify-content-center">
+                <InputVarios conf={setEntries} tipo={"text"} estado={entries} nombre={"Servicio"} iden={"manualEntry"}/>
+                <InputVarios conf={setEntries} tipo={"number"} estado={entries} nombre={"Precio"} iden={"amountEntry"}/>
+            </div>
+            <div className="d-flex flex-row justify-content-center">
+                <div className="p-2"><button onClick={()=>guardar(entries,setTabla,setEntries,tabla)} type='button' className="btn btn-outline-primary btn-lg" hidden={css.mostrado} >Guardar</button></div>
+            </div>
             <div className='mt-3 px-2' >                
                 <TablaTemporal state={entries} encabezado={typeTable.entries} dat={tabla} estilo={"table table-striped"}/>
             </div>

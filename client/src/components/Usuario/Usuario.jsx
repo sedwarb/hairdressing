@@ -9,7 +9,7 @@ export function Usuario({entries,setEntries,css,setCss}){
         <>
             <div className="p-2">
                 <div className="input-group mb-3">                    
-                    <button onClick={()=>mostrar(entries,setEntries,css,setCss)} type="button" className="btn btn-info w-100" id="btnUser" data-toggle="collapse" data-target="#collapseUser" aria-controls="collapseExample">{"ID Cliente"}</button>
+                    <button onClick={()=>mostrar(entries,setEntries,css,setCss)} type="button" className="btn btn-outline-info btn-sm" id="btnUser" data-toggle="collapse" data-target="#collapseUser" aria-controls="collapseExample">{"ID Cliente"}</button>
                 </div>
                 <div className="collapse" id="collapseUser">
                     <div className="input-group mb-3">
@@ -25,7 +25,7 @@ export function Usuario({entries,setEntries,css,setCss}){
                         <input onChange={e => handleChange(e,setEntries,entries)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
                     </div>
                     <div>
-                        <button type='button' onClick={() => verificarUsuario(entries,setEntries)} className="btn btn-success w-100">{entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}</button>
+                        <button type='button' onClick={() => verificarUsuario(entries,setEntries)} className="btn btn-outline-success btn-sm">{entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}</button>
                     </div>
                 </div>
             </div>

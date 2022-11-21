@@ -4,6 +4,7 @@ const entries = require('./entries')
 const user = require('./user')
 const service = require('./service')
 const worker = require('./worker')
+const product = require("./product")
 
 const router = Router();
 
@@ -29,5 +30,6 @@ router.use('/entries', entries);
 router.use('/user', user);
 router.use('/service', service);
 router.use('/worker', worker);
+router.use('/product', product);
 
 module.exports = router;

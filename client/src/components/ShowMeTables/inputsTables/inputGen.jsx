@@ -13,7 +13,7 @@ export function InputGen({conf,estado,nombre,iden,tipo}){
                             <span className="input-group-text" id="tipo">Tipo</span>
                         </div>
                         <select className="form-label form-control" onChange={(e) => conf({ ...estado, typed: e.currentTarget.value })}>
-                            <option className="list-group-item">...Seleccione</option>
+                            <option className="list-group-item">{""}</option>
                             {tableFilter && tableFilter.map(date => <option className="list-group-item" key={date.str} value={date.str}>{date.name}</option>)}
                         </select>
                     </div>

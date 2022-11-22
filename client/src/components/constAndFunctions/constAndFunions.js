@@ -24,7 +24,15 @@ export const typeTable = {
     {str:"Monto",name:"amountEntry",sname:null},
     {str:"Usuario",name:"user",sname:"fullname"},
     {str:"Trabajador",name:"worker",sname:"fullname"},
-    {str:"Servicio",name:"service",sname:"name"}]
+    {str:"Servicio",name:"service",sname:"name"}],
+    products:[{str:"Linea",name:"linea",sname:null},
+    {str:"Marca",name:"marca",sname:null},
+    {str:"Tipo",name:"tipo",sname:null},
+    {str:"Nombre",name:"nombre",sname:null},
+    {str:"Volumen",name:"volumen",sname:null},
+    {str:"Unidad",name:"unidad",sname:null},
+    {str:"Existencia",name:"existencia",sname:null},
+    {str:"Descripcion",name:"descripcion",sname:null}]
 }
 
 export const stateTable = {

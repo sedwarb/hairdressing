@@ -30,6 +30,7 @@ export function Navbar(){
                                 <p className="dropdown-item"><NavLink exact to="/85115101114849798108101" >Clientes</NavLink></p>
                                 <p className="dropdown-item"><NavLink exact to="/87111114107101114849798108101" >Trabajadores</NavLink></p>
                                 <p className="dropdown-item"><NavLink exact to="/8310111411810599101849798108101" >Servicios</NavLink></p>
+                                <p className="dropdown-item"><NavLink exact to="/11211411110011799116111115" >Productos</NavLink></p>
                             </div>
                         </li>
                     </ul>

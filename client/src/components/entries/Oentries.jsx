@@ -26,7 +26,7 @@ export function Oentries(){
                 <InputVarios conf={setEntries} tipo={"number"} estado={entries} nombre={"Precio"} iden={"amountEntry"}/>
             </div>
             <div className="d-flex flex-row justify-content-center">
-                <div className="p-2"><button onClick={()=>guardar(entries,setTabla,setEntries,tabla)} type='button' className="btn btn-outline-primary btn-lg" hidden={css.mostrado} >Guardar</button></div>
+                <div className="p-2"><button onClick={()=>guardar(entries,setTabla,setEntries,tabla)} type='button' className="btn btn-outline-primary btn-sm" hidden={css.mostrado} >Guardar</button></div>
             </div>
             <div className='mt-3 px-2' >                
                 <TablaTemporal state={entries} encabezado={typeTable.entries} dat={tabla} estilo={"table table-striped"}/>

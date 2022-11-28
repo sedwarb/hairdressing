@@ -33,9 +33,11 @@ export function Table({typeTable,search}){
                                                                 {
                                                                     type.sname===null?
                                                                         type.name==="date"?
-                                                                            search.typed==="entry"?date[type.name]:date[type.name]:
-                                                                        capitalizar(date[type.name])
-                                                                    :capitalizar(date[type.name][type.sname])
+                                                                            search.typed==="entry"?
+                                                                                date[type.name]:
+                                                                            date[type.name]:
+                                                                        capitalizar(date[type.name]):
+                                                                    capitalizar(date[type.name][type.sname])
                                                                 }
                                                             </td>
                                                         )

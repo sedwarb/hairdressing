@@ -34,7 +34,7 @@ export function UsuarioCitas({entries,setEntries}){
                         onClick={() => verificarUsuario(entries,setEntries)} 
                         type='button'  
                         className="btn btn-outline-success w-100">
-                            {entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}
+                            {entries.findUser ? "Guardar Cliente" : "Buscar Cliente"}
                     </button>
                 </div>
             </div>

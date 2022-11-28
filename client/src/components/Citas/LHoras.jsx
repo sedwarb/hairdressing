@@ -7,7 +7,8 @@ export function LHoras({datos}){
     return(        
         <ul className="list-group">
             {
-                datos.citas?datos.citas.sort((a,b)=>formato_tiempo("hora",a.date)-formato_tiempo("hora",b.date))
+                datos.citas?
+                    datos.citas.sort((a,b)=>formato_tiempo("hora",a.date)-formato_tiempo("hora",b.date))
                     .map(
                         (item,i)=>{
                             return i>0?

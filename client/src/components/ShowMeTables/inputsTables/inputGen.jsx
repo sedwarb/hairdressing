@@ -12,9 +12,25 @@ export function InputGen({conf,estado,nombre,iden,tipo}){
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="tipo">Tipo</span>
                         </div>
-                        <select className="form-label form-control" onChange={(e) => conf({ ...estado, typed: e.currentTarget.value })}>
+                        <select 
+                            className="form-label form-control" 
+                            onChange={(e) => conf({ ...estado, typed: e.currentTarget.value })}>
                             <option className="list-group-item">{""}</option>
-                            {tableFilter && tableFilter.map(date => <option className="list-group-item" key={date.str} value={date.str}>{date.name}</option>)}
+                            {
+                                tableFilter && tableFilter.map(
+                                    date =>
+                                    { 
+                                        return (
+                                            <option 
+                                                className="list-group-item" 
+                                                key={date.str} 
+                                                value={date.str}>
+                                                {date.name}
+                                            </option>
+                                        )
+                                    }
+                                )
+                            }
                         </select>
                     </div>
                 </div>:
@@ -23,7 +39,13 @@ export function InputGen({conf,estado,nombre,iden,tipo}){
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="fecha-inicio">{nombre}</span>
                         </div>
-                        <input onChange={(e)=>handleChange(e,conf,estado)} id={iden} type={tipo} className="form-control" aria-label="Username" aria-describedby="fecha-inicio" />
+                        <input 
+                            onChange={(e)=>handleChange(e,conf,estado)} 
+                            id={iden} 
+                            type={tipo} 
+                            className="form-control" 
+                            aria-label="Username" 
+                            aria-describedby="fecha-inicio"/>
                     </div>
                 </div>
             }

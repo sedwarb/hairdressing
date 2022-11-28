@@ -1,7 +1,10 @@
 import { onSubmit } from "../entries/onSubmit"
 
 export function guardar(entries,setEntries){
-    let encontro = entries.citas.slice(1).find(item=>item.date.split(" ")[1].split(":")[0]===entries.hora.split(":")[0])
+    let encontro = 
+        entries.citas.slice(1).find(
+            item=>item.date.split(" ")[1].split(":")[0]===entries.hora.split(":")[0]
+        )
         
     if(entries.hora && entries.workerId && encontro===undefined && entries.telephone){
         if(entries.citas.length>=1){

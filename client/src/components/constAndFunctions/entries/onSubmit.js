@@ -14,10 +14,15 @@ export async function onSubmit(stateGen,tipo) {
     body: JSON.stringify(
         {
             entryType:tipo?"meeting":"entry",
-            date:tipo?arreglafyh(stateGen.fecha,stateGen.hora):`${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
+            date:tipo?
+                arreglafyh(stateGen.fecha,stateGen.hora):
+                `${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
             serviceId:stateGen.serviceId.valor,
             workerId:stateGen.workerId.valor,
-            userPhoneNumber:tipo?stateGen.telephone:stateGen.telephone?stateGen.telephone:"3006007050",
+            userPhoneNumber:tipo?
+                stateGen.telephone:
+                stateGen.telephone?
+                    stateGen.telephone:"3006007050",
             manualEntry:stateGen.serviceId.valor==="inma"?stateGen.manualEntry:"",
             amountEntry:stateGen.serviceId.valor==="inma"?parseFloat(stateGen.amountEntry):0
         }
@@ -42,7 +47,13 @@ export async function verificarUsuario(estado,setEntries){
         foundWName = usuarios.find(element => element.fullname === estado.userName)
         if (estado.telephone && estado.userName) {
             if (foundWPhoneN) {
-                foundWName?setEntries({...estado, estado:"Hay un usuario registrado con ese ID y Nombre",estadoI:false}):
+                foundWName?setEntries(
+                    {
+                        ...estado, 
+                        estado:"Hay un usuario registrado con ese ID y Nombre",
+                        estadoI:false
+                    }
+                ):
                 setEntries({...estado, estado:"Hay un usuario con ese nombre",estadoI:false})
             } else {
                 if (foundWName) {

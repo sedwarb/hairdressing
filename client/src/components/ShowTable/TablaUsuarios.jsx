@@ -6,7 +6,9 @@ export function TablaUsuario(){
     return (
         <>
             <div className="d-flex flex-row justify-content-center"><h1>Clientes</h1></div>
-            <div className='mt-3 px-2'><Table typeTable={typeTable["user"]} search={{type:"user"}}/></div>
+            <div className='mt-3 px-2'>
+                <Table typeTable={typeTable["user"]} search={{type:"user"}}/>
+            </div>
         </>
     )
 }

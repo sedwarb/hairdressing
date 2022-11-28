@@ -29,20 +29,28 @@ export function Citas(){
                     </button>
                 </div>
                 <div className='d-flex flex-column' hidden={false}>
-                    {entries.oculto1===false?<div></div>:<UsuarioCitas entries={entries} setEntries={setEntries}/>}
+                    {
+                        entries.oculto1===false?
+                            <div></div>:
+                            <UsuarioCitas entries={entries} setEntries={setEntries}/>
+                    }
                 </div>
-                {entries.oculto2===false?<div></div>:<div className='d-flex flex-column p-2' hidden={false}>
-                    <Lists typeList={typeList['service']} listStP={entries} />
-                    <CitasInput
-                        datos={{set:setEntries,sta:entries,nombre:"Hora",tipo:"time"}}
-                    />
-                    <button 
-                        onClick={()=>guardar(entries,setEntries)}
-                        type='button'
-                        className="btn btn-primary w-100" >
-                            Guardar
-                    </button>
-                </div>}
+                {
+                    entries.oculto2===false?
+                        <div></div>:
+                        <div className='d-flex flex-column p-2' hidden={false}>
+                            <Lists typeList={typeList['service']} listStP={entries} />
+                            <CitasInput
+                                datos={{set:setEntries,sta:entries,nombre:"Hora",tipo:"time"}}
+                            />
+                            <button 
+                                onClick={()=>guardar(entries,setEntries)}
+                                type='button'
+                                className="btn btn-primary w-100" >
+                                    Guardar
+                            </button>
+                        </div>
+                }
             </div>
             <div className="d-flex flex-row">
                 <div className='d-flex flex-column w-100 p-2'>

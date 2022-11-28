@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import {DB_HOST} from '../constAndFunctions/constAndFunions'
+import { capitalizar } from '../constAndFunctions/varios_usos/capitalizar';
 
 export function Lists({typeList,listStP}){
     const [lists, setLists] = useState([]);
@@ -15,9 +16,36 @@ export function Lists({typeList,listStP}){
                 <div className="input-group-prepend">
                     <span className="input-group-text" id="basic-addon3">{`${typeList['esp']}`}</span>                                    
                 </div>
-                <select id={typeList.typeL} className="form-label form-control" onChange={(e) => listStP[`${typeList['typeL']}Id`] = JSON.parse(e.currentTarget.value)}>
+                <select 
+                    id={typeList.typeL} 
+                    className="form-label form-control" 
+                    onChange={
+                        (e) => listStP[`${typeList['typeL']}Id`] = JSON.parse(e.currentTarget.value)
+                    }>
                     <option className="list-group-item">{""}</option>
-                    {lists && lists.map(list => <option className="list-group-item" key={list['id']} value={JSON.stringify({valor:list['id'],nombre:list[typeList['fieldL']],monto:list['amount']})}>{list[typeList['fieldL']].replace(/^\w/, (c) => c.toUpperCase())}</option>)}
+                    {
+                        lists && lists.map(
+                            list => 
+                                <option 
+                                    className="list-group-item" 
+                                    key={list['id']} 
+                                    value=
+                                        {
+                                            JSON.stringify(
+                                                {
+                                                    valor:list['id'],
+                                                    nombre:list[typeList['fieldL']],
+                                                    monto:list['amount']
+                                                }
+                                            )
+                                        }
+                                >
+                                    {
+                                        capitalizar(list[typeList['fieldL']])
+                                    }
+                                </option>
+                        )
+                    }
                 </select>
             </div>
         </>

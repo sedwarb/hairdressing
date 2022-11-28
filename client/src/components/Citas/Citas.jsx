@@ -18,12 +18,8 @@ export function Citas(){
             <div className="d-flex flex-row justify-content-around">
                 <div className='d-flex flex-column p-2'>
                     <Lists typeList={typeList['worker']} listStP={entries}/>
-                    <CitasInput 
-                        setStateGen={setEntries} 
-                        stateGen={entries} 
-                        nombre={"Fecha"} 
-                        iden={"fecha"} 
-                        tipo={"date"} 
+                    <CitasInput
+                        datos={{set:setEntries,sta:entries,nombre:"Fecha",tipo:"date"}}
                     />
                     <button 
                         onClick={()=>llenarCitas(entries,setEntries)} 
@@ -32,17 +28,13 @@ export function Citas(){
                             Consultar
                     </button>
                 </div>
-                <div className='d-flex flex-column'>
-                    <UsuarioCitas entries={entries} setEntries={setEntries}/>
+                <div className='d-flex flex-column' hidden={false}>
+                    {entries.oculto1===false?<div></div>:<UsuarioCitas entries={entries} setEntries={setEntries}/>}
                 </div>
-                <div className='d-flex flex-column p-2'>
+                {entries.oculto2===false?<div></div>:<div className='d-flex flex-column p-2' hidden={false}>
                     <Lists typeList={typeList['service']} listStP={entries} />
-                    <CitasInput 
-                        setStateGen={setEntries} 
-                        stateGen={entries} 
-                        nombre={"Hora"} 
-                        iden={"hora"} 
-                        tipo={"time"} 
+                    <CitasInput
+                        datos={{set:setEntries,sta:entries,nombre:"Hora",tipo:"time"}}
                     />
                     <button 
                         onClick={()=>guardar(entries,setEntries)}
@@ -50,7 +42,7 @@ export function Citas(){
                         className="btn btn-primary w-100" >
                             Guardar
                     </button>
-                </div>
+                </div>}
             </div>
             <div className="d-flex flex-row">
                 <div className='d-flex flex-column w-100 p-2'>

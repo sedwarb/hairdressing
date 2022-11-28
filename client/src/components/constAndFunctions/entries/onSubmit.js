@@ -45,7 +45,15 @@ export async function verificarUsuario(estado,setEntries){
                 foundWName?setEntries({...estado, estado:"Hay un usuario registrado con ese ID y Nombre",estadoI:false}):
                 setEntries({...estado, estado:"Hay un usuario con ese nombre",estadoI:false})
             } else {
-                if (foundWName) setEntries({...estado, estado:"Se encontro el Nombre Pero no Coincide el ID",estadoI:false})
+                if (foundWName) {
+                    setEntries(
+                        {
+                            ...estado, 
+                            estado:"Se encontro el Nombre Pero no Coincide el ID",
+                            estadoI:false
+                        }
+                    )
+                }
                 else {                    
                     const options = {
                         method: "POST", 
@@ -59,27 +67,66 @@ export async function verificarUsuario(estado,setEntries){
                     }                    
                     fetch(`http://${DB_HOST}:3001/user`,options)
                     .then(response => {
-                        estado.findUser=false
-                        estado.nomUsu=estado.userName
-                        estado.userName=""
-                        setEntries({...estado, estado:"Se guardo exitosamente el Cliente",estadoI:true})
+                        setEntries(
+                            {
+                                ...estado, 
+                                estado:"Se guardo exitosamente el Cliente",
+                                estadoI:true,
+                                oculto2:true,
+                                findUser:false,
+                                nomUsu:estado.userName,
+                                userName:""
+                            }
+                        )
                     })
                     .catch(error =>{
                         console.log(`Error en Fetch crear usuario: ${error}`)
-                        setEntries({...estado, estado:"No se Guardo el Cliente",estadoI:false})
+                        setEntries(
+                            {
+                                ...estado, 
+                                estado:"No se Guardo el Cliente",
+                                estadoI:false,
+                                oculto2:false,
+                                findUser:false
+                            }
+                        )
                     })
                 }
             }
         }else if(estado.telephone){
             if (foundWPhoneN){
-                estado.nomUsu=usuarios.filter(usu=>usu.phoneNumber===estado.telephone)[0].fullname
-                setEntries({...estado, estado:`El usuario ${estado.nomUsu} esta registrado con ese ID`,estadoI:true})
+                const nomUsu=usuarios.filter(usu=>usu.phoneNumber===estado.telephone)[0].fullname
+                setEntries(
+                    {
+                        ...estado, 
+                        estado:`El Cliente ${nomUsu} esta registrado con ese ID`,
+                        estadoI:true,
+                        oculto2:true,
+                        nomUsu:nomUsu,
+                        findUser:false
+                    }
+                )
             }
-            else {                
-                estado.findUser=true
-                setEntries({...estado, estado:"Usuario no encontrado, Ingrese el Nombre para crearlo",estadoI:true})
+            else {
+                setEntries(
+                    {
+                        ...estado,
+                        estado:"Usuario no encontrado, Ingrese el Nombre para crearlo",
+                        estadoI:true,
+                        oculto2:false,
+                        findUser:true
+                    }
+                )
             }
-        }else setEntries({...estado, estado:"Debe llenar el campo ID",estadoI:false})
+        }else setEntries(
+            {
+                ...estado, 
+                estado:"Debe llenar el campo ID",
+                estadoI:false,
+                oculto2:true,
+                findUser:false
+            }
+        )
     })
 }
 

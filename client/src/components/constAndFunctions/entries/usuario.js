@@ -7,5 +7,7 @@ export const tabla_st = {
     date:"",    
     entryType:"",
     telephone:null,
-    nomUsu:null
+    nomUsu:null,
+    oculto1:false,
+    oculto2:false
 }

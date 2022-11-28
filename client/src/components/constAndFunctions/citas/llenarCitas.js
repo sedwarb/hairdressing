@@ -12,7 +12,8 @@ export async function llenarCitas(entries,setEntries){
                     typed:"entry",
                     send:true
                 }
-            )
+            ),
+            oculto1:true
         }
     )
 }

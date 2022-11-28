@@ -6,9 +6,23 @@ export function guardar(entries,setEntries){
     if(entries.hora && entries.workerId && encontro===undefined && entries.telephone){
         if(entries.citas.length>=1){
             if(onSubmit(datos(entries),true)){
-                setEntries({ ...entries, estado: casos().uno,estadoI:true})
+                setEntries(
+                    { 
+                        ...entries, 
+                        estado: casos().uno,
+                        estadoI:true,
+                        oculto1:false,
+                        oculto2:false
+                    }
+                )
             }else{
-                setEntries({ ...entries, estado: casos().dos,estadoI:false})
+                setEntries(
+                    { 
+                        ...entries, 
+                        estado: casos().dos,
+                        estadoI:false
+                    }
+                )
             }
         }else{
             setEntries({ ...entries, estado: casos().tres,estadoI:false})

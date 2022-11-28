@@ -18,7 +18,7 @@ export function UsuarioCitas({entries,setEntries}){
                         id="telephone" 
                     />
                 </div>
-                <div className="input-group mb-3">
+                {entries.findUser ?<div className="input-group mb-3">
                     <div className="input-group-prepend">
                         <span className="input-group-text">Nombre</span>
                     </div>
@@ -28,12 +28,12 @@ export function UsuarioCitas({entries,setEntries}){
                         className="form-control" 
                         id="userName" 
                     />
-                </div>
+                </div>:<div></div>}
                 <div>
                     <button 
                         onClick={() => verificarUsuario(entries,setEntries)} 
                         type='button'  
-                        className="btn btn-outline-success btn-sm">
+                        className="btn btn-outline-success w-100">
                             {entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}
                     </button>
                 </div>

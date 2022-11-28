@@ -18,12 +18,12 @@ export function Usuario({entries,setEntries,css,setCss}){
                         </div>
                         <input onChange={e => handleChange(e,setEntries,entries)} type="text" className="form-control" id="telephone" aria-describedby="basic-addon3" />
                     </div>
-                    <div className="input-group mb-3">
+                    {entries.findUser ?<div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon3">Nombre</span>
                         </div>
                         <input onChange={e => handleChange(e,setEntries,entries)} type="text" className="form-control" id="userName" aria-describedby="basic-addon3" />
-                    </div>
+                    </div>:<div></div>}
                     <div>
                         <button type='button' onClick={() => verificarUsuario(entries,setEntries)} className="btn btn-outline-success btn-sm">{entries.findUser ? "Guardar Usuario" : "Buscar Usuario"}</button>
                     </div>

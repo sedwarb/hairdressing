@@ -17,9 +17,9 @@ export function Oentries(){
             <div className="d-flex flex-row justify-content-center">
                 <Usuario entries={entries} setEntries={setEntries} css={css} setCss={setCss}/>
             </div>
-            <div className="d-flex flex-row justify-content-center">                
-                <Lists typeList={typeList['service']} listStP={entries} />
-                <Lists typeList={typeList['worker']} listStP={entries} />
+            <div className="d-flex flex-row justify-content-center">
+                <div className="p-2"><Lists typeList={typeList['service']} listStP={entries} /></div>
+                <div className="p-2"><Lists typeList={typeList['worker']} listStP={entries} /></div>                
             </div>
             <div className="d-flex flex-row justify-content-center">
                 <InputVarios conf={setEntries} tipo={"text"} estado={entries} nombre={"Servicio"} iden={"manualEntry"}/>

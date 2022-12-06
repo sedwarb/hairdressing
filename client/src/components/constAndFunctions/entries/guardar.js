@@ -1,18 +1,20 @@
-import {validar_inma} from '../entries/validar_inma'
 import {onSubmit} from '../entries/onSubmit'
+import fechaFormato from './guardar/fechaFormato'
+import ingresoManual from './guardar/ingresoManual'
+import serviceId from './guardar/serviceId';
+import seteo from './guardar/seteo';
+import seteo2 from './guardar/seteo2';
+import telephone from './guardar/telephone';
 
 export async function guardar(entries,setTabla,setEntries,tabla){
-    if(entries.telephone!==null ? entries.nomUsu===null ? false : true : true){
-        if(entries.serviceId.valor==="inma"?validar_inma(entries):true){
+    if(telephone(entries)){
+        if(serviceId(entries)){
             if(entries.workerId && entries.serviceId){
-                let fecha = new Date()
                 setTabla([...tabla,
                 {
-                    date: `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`,
-                    manualEntry: entries.serviceId.valor === "inma"?
-                        entries.manualEntry : "No Aplica",
-                    amountEntry: entries.serviceId.valor === "inma"?
-                        entries.amountEntry : entries.serviceId.monto,
+                    date: fechaFormato(),
+                    manualEntry: ingresoManual(entries, true),
+                    amountEntry: ingresoManual(entries, false),
                     user: entries.telephone ? entries.nomUsu : "Usuario Generico",
                     worker: entries.workerId.nombre,
                     service: entries.serviceId.nombre
@@ -22,50 +24,17 @@ export async function guardar(entries,setTabla,setEntries,tabla){
                 document.querySelector('#manualEntry').value = ""
                 document.querySelector('#amountEntry').value = ""
                 document.querySelector('#telephone').value = ""
-                document.querySelector('#userName').value = ""
                 let status = await onSubmit(entries)
                 if(status){
-                    setEntries(
-                        { 
-                            ...entries, 
-                            estado: "No se Guardo la informacion", 
-                            telephone: null,
-                            nomUsu:null,
-                            manualEntry:null,
-                            amountEntry:null,
-                            estadoI:false
-                        }
-                    )    
+                    seteo(setEntries,entries,true)
                 }else{
-                    setEntries(
-                        { 
-                            ...entries, 
-                            estado: "Registro Guardado Exitosamente", 
-                            telephone: null,
-                            nomUsu:null,
-                            manualEntry:null,
-                            amountEntry:null,
-                            estadoI:true
-                        }
-                    )
+                    seteo(setEntries,entries,false)
                 }
             }else{
-                setEntries(
-                    { 
-                        ...entries, 
-                        estado: "Debe completar los datos Servicio y Trabajador",
-                        estadoI:false
-                    }
-                )
+                seteo2(setEntries,entries,true)
             }
         }else{
-            setEntries(
-                { 
-                    ...entries, 
-                    estado: "Debe llenar los campos manuales",
-                    estadoI:false
-                }
-            )
+            seteo2(setEntries,entries,false)
         }
     }else setEntries({ ...entries, telephone: null,nomUsu:null })
 }

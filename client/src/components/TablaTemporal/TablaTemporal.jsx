@@ -36,7 +36,7 @@ export function TablaTemporal({encabezado,dat,estilo,state}){
                                                             {
                                                                 encabezado.name === "worker" || encabezado.name === "service" ?
                                                                     capitalizar(dat1[t1.name]["nombre"]):
-                                                                    capitalizar(dat1[t1.name])
+                                                                    capitalizar(dat1[t1.name])                                                                    
                                                             }
                                                         </td>                                                        
                                                     )

@@ -4,12 +4,7 @@ export async function getDatos(search){
     if(search.type!==""){
         datos = await fetch(`http://${DB_HOST}:3001/${search.type}`)
     }else if(search.send){
-        datos = await fetch(
-            `http://${DB_HOST}:3001/
-            entries?dateIni=${search.dbeg}
-            &&dateEnd=${search.dend}${search.typed==="entry"?" 23:59:59":""}&&
-            ${search.typed}=${search.typed==="entry"?"meeting":search.tdate}`
-        )
+        datos = await fetch(`http://${DB_HOST}:3001/entries?dateIni=${search.dbeg}&&dateEnd=${search.dend}${search.typed==="entry"?" 23:59:59":""}&&${search.typed}=${search.typed==="entry"?"meeting":search.tdate}`)
         search.send=false
     }
     return datos ? datos.json():[]
@@ -40,6 +35,7 @@ export const typeTable = {
     {str:"Descripcion",name:"descripcion",sname:null}]
 }
 
+
 export const stateTable = {
     type:"",
     dbeg:"",
@@ -55,10 +51,12 @@ export const stateTable = {
     service:false
 }
 
+
 export const tableFilter = [{str:"workerId",name:"Id Trabajador"},
 {str:"phoneNumber",name:"Id Usuario"},
 {str:"entry",name:"Citas"}]
 
+/*
 export function cleanTableF(table){
     return {
             user:
@@ -111,3 +109,4 @@ export function cleanTableF(table){
             }
     }
 }
+*/

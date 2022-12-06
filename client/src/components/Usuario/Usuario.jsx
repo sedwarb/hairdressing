@@ -1,16 +1,13 @@
 import React from 'react'
-import { mostrar } from '../constAndFunctions/entries/mostrar'
 import {verificarUsuario} from '../constAndFunctions/entries/onSubmit'
 import { handleChange } from '../constAndFunctions/entries/handleChange'
 
-
-export function Usuario({entries,setEntries,css,setCss}){
+export function Usuario({entries,setEntries}){
     return(
         <>
             <div className="p-2">
                 <div className="input-group mb-3">                    
-                    <button 
-                        onClick={()=>mostrar(entries,setEntries,css,setCss)} 
+                    <button
                         type="button" 
                         className="btn btn-outline-info btn-sm" 
                         id="btnUser" 

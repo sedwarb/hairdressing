@@ -11,15 +11,12 @@ import {Usuario} from '../Usuario/Usuario'
 export function Oentries(){
     const [entries,setEntries]=useState(tabla_st)
     const [tabla,setTabla]=useState([])
-    const [css,setCss] = useState({mostrado:false,manual:false})
     return(
         <>
             <div className="d-flex flex-row justify-content-center">
                 <Usuario 
                     entries={entries} 
-                    setEntries={setEntries} 
-                    css={css} 
-                    setCss={setCss}
+                    setEntries={setEntries}
                 />
             </div>
             <div className="d-flex flex-row justify-content-center">

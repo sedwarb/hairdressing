@@ -1,11 +1,12 @@
 import {DB_HOST} from '../constAndFunions'
+import fechaGuardar from './onSubmit/fechaGuardar'
+import arreglafyh from './onSubmit/arreglafyh'
+import telephoneOnsub from './onSubmit/telephoneOnsub'
+import setOnsub from './onSubmit/setOnsub'
+
 
 export async function onSubmit(stateGen,tipo) {
-    let fecha = new Date()
-    let devolucion = null
-    function arreglafyh(fecha,hora){
-        return `${fecha.split("-")[0]}/${fecha.split("-")[1]}/${fecha.split("-")[2]} ${hora}:00.59`
-    }
+    let devolucion = null    
     let enviar_f=true
     if(stateGen.serviceId.valor==="inma" && (!stateGen.manualEntry || !stateGen.amountEntry)){
        enviar_f=false
@@ -14,15 +15,10 @@ export async function onSubmit(stateGen,tipo) {
     body: JSON.stringify(
         {
             entryType:tipo?"meeting":"entry",
-            date:tipo?
-                arreglafyh(stateGen.fecha,stateGen.hora):
-                `${fecha.getFullYear()}/${fecha.getMonth()+1}/${fecha.getDate()}`,
+            date:tipo?arreglafyh(stateGen.fecha,stateGen.hora):fechaGuardar(),
             serviceId:stateGen.serviceId.valor,
             workerId:stateGen.workerId.valor,
-            userPhoneNumber:tipo?
-                stateGen.telephone:
-                stateGen.telephone?
-                    stateGen.telephone:"3006007050",
+            userPhoneNumber:telephoneOnsub(stateGen,tipo),
             manualEntry:stateGen.serviceId.valor==="inma"?stateGen.manualEntry:"",
             amountEntry:stateGen.serviceId.valor==="inma"?parseFloat(stateGen.amountEntry):0
         }
@@ -47,23 +43,10 @@ export async function verificarUsuario(estado,setEntries){
         foundWName = usuarios.find(element => element.fullname === estado.userName)
         if (estado.telephone && estado.userName) {
             if (foundWPhoneN) {
-                foundWName?setEntries(
-                    {
-                        ...estado, 
-                        estado:"Hay un usuario registrado con ese ID y Nombre",
-                        estadoI:false
-                    }
-                ):
-                setEntries({...estado, estado:"Hay un usuario con ese nombre",estadoI:false})
+                //Sin Uso
             } else {
                 if (foundWName) {
-                    setEntries(
-                        {
-                            ...estado, 
-                            estado:"Se encontro el Nombre Pero no Coincide el ID",
-                            estadoI:false
-                        }
-                    )
+                    //Sin Uso
                 }
                 else {                    
                     const options = {
@@ -77,67 +60,19 @@ export async function verificarUsuario(estado,setEntries){
                         )
                     }                    
                     fetch(`http://${DB_HOST}:3001/user`,options)
-                    .then(response => {
-                        setEntries(
-                            {
-                                ...estado, 
-                                estado:"Se guardo exitosamente el Cliente",
-                                estadoI:true,
-                                oculto2:true,
-                                findUser:false,
-                                nomUsu:estado.userName,
-                                userName:""
-                            }
-                        )
-                    })
-                    .catch(error =>{
-                        console.log(`Error en Fetch crear usuario: ${error}`)
-                        setEntries(
-                            {
-                                ...estado, 
-                                estado:"No se Guardo el Cliente",
-                                estadoI:false,
-                                oculto2:false,
-                                findUser:false
-                            }
-                        )
-                    })
+                    .then(() => setOnsub(estado,setEntries,"guardado"))
+                    .catch(()=>setOnsub(estado,setEntries,"NO guardado"))
                 }
             }
         }else if(estado.telephone){
             if (foundWPhoneN){
                 const nomUsu=usuarios.filter(usu=>usu.phoneNumber===estado.telephone)[0].fullname
-                setEntries(
-                    {
-                        ...estado, 
-                        estado:`El Cliente ${nomUsu} esta registrado con ese ID`,
-                        estadoI:true,
-                        oculto2:true,
-                        nomUsu:nomUsu,
-                        findUser:false
-                    }
-                )
+                setOnsub(estado,setEntries,"registrado",nomUsu)
             }
-            else {
-                setEntries(
-                    {
-                        ...estado,
-                        estado:"Usuario no encontrado, Ingrese el Nombre para crearlo",
-                        estadoI:true,
-                        oculto2:false,
-                        findUser:true
-                    }
-                )
+            else {                
+                setOnsub(estado,setEntries,"No registrado")
             }
-        }else setEntries(
-            {
-                ...estado, 
-                estado:"Debe llenar el campo ID",
-                estadoI:false,
-                oculto2:true,
-                findUser:false
-            }
-        )
+        }else setOnsub(estado,setEntries,"llenar")
     })
 }
 

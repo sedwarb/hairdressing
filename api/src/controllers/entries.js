@@ -1,10 +1,10 @@
 const { User, Entry, Worker, Service } = require("../db.js");
 const { Op, JSON, json } = require("sequelize");
 const {exclutionInInclude,exclutionppal,createWhereObj} = require('./constAndFunctions')
+const {fechaCompleta} = require('./entries/fecha_completa')
 
 async function getEntriesByDate(req, res){
     const {workerId,phoneNumber,entry,dateIni,dateEnd}=req.query
-    //const whereObj = {date:{[Op.between]:[new Date(dateIni),new Date(dateEnd)]}}
     const whereObj = {date:{[Op.between]:[dateIni,dateEnd]}}
     let sumaManual=0,sumaServicio=0
     try{
@@ -21,7 +21,7 @@ async function getEntriesByDate(req, res){
                 ]
             }
         )
-        let narraobj=[],objfecha={},mes
+        let narraobj=[]
         
         for (let i = 0; i < entriesBydate.length; i++) {
             if(entriesBydate[i].amountEntry===0){
@@ -32,12 +32,9 @@ async function getEntriesByDate(req, res){
                 sumaManual+=entriesBydate[i].amountEntry
             }
 
-            objfecha.hora=entriesBydate[i].date.getHours().toString().length>1?entriesBydate[i].date.getHours().toString():`0${entriesBydate[i].date.getHours().toString()}`
-            objfecha.minutos=entriesBydate[i].date.getMinutes().toString().length>1?entriesBydate[i].date.getMinutes().toString():`${entriesBydate[i].date.getMinutes().toString()}0`
-
             narraobj.push({
                 id:entriesBydate[i].id,
-                date:`${entriesBydate[i].date.getDate()}/${entriesBydate[i].date.getMonth() + 1}/${entriesBydate[i].date.getUTCFullYear()} ${objfecha.hora}:${objfecha.minutos}`,
+                date:fechaCompleta(entriesBydate[i].date),
                 manualEntry:entriesBydate[i].manualEntry,
                 amountEntry:entriesBydate[i].amountEntry,
                 entryType:entriesBydate[i].entryType,

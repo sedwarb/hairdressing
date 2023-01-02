@@ -20,24 +20,30 @@ export function Oentries(){
                 />
             </div>
             <div className="d-flex flex-row justify-content-center">
-                <div className="p-2"><Lists typeList={typeList['service']} listStP={entries} /></div>
-                <div className="p-2"><Lists typeList={typeList['worker']} listStP={entries} /></div>                
-            </div>
-            <div className="d-flex flex-row justify-content-center">
-                <InputVarios 
-                    conf={setEntries} 
-                    tipo={"text"} 
-                    estado={entries} 
-                    nombre={"Servicio"} 
-                    iden={"manualEntry"}
-                />
-                <InputVarios 
-                    conf={setEntries} 
-                    tipo={"number"} 
-                    estado={entries} 
-                    nombre={"Precio"} 
-                    iden={"amountEntry"}
-                />
+                <div className="d-flex flex-column">
+                    <div className="p-2"><Lists typeList={typeList['service']} listStP={entries} /></div>
+                    <div className="p-2">
+                        <InputVarios 
+                            conf={setEntries} 
+                            tipo={"text"} 
+                            estado={entries} 
+                            nombre={"Servicio"} 
+                            iden={"manualEntry"}
+                        />
+                    </div>
+                </div>            
+                <div className="d-flex flex-column">
+                    <div className="p-2"><Lists typeList={typeList['worker']} listStP={entries} /></div>
+                    <div className="p-2">
+                        <InputVarios 
+                            conf={setEntries} 
+                            tipo={"number"} 
+                            estado={entries} 
+                            nombre={"Precio"} 
+                            iden={"amountEntry"}
+                        />
+                    </div>
+                </div>
             </div>
             <div className="d-flex flex-row justify-content-center">
                 <div className="p-2">

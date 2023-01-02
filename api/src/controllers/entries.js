@@ -21,7 +21,7 @@ async function getEntriesByDate(req, res){
                 ]
             }
         )
-        let narraobj=[],v,objfecha={}
+        let narraobj=[],objfecha={},mes
         
         for (let i = 0; i < entriesBydate.length; i++) {
             if(entriesBydate[i].amountEntry===0){
@@ -31,12 +31,13 @@ async function getEntriesByDate(req, res){
             }else{
                 sumaManual+=entriesBydate[i].amountEntry
             }
-            v = new Date(entriesBydate[i].date)
-            objfecha.hora=v.getHours().toString().length>1?v.getHours().toString():`0${v.getHours().toString()}`
-            objfecha.minutos=v.getMinutes().toString().length>1?v.getMinutes().toString():`${v.getMinutes().toString()}0`
+
+            objfecha.hora=entriesBydate[i].date.getHours().toString().length>1?entriesBydate[i].date.getHours().toString():`0${entriesBydate[i].date.getHours().toString()}`
+            objfecha.minutos=entriesBydate[i].date.getMinutes().toString().length>1?entriesBydate[i].date.getMinutes().toString():`${entriesBydate[i].date.getMinutes().toString()}0`
+
             narraobj.push({
                 id:entriesBydate[i].id,
-                date:`${v.getDate()}/${v.getMonth()}/${v.getUTCFullYear()} ${objfecha.hora}:${objfecha.minutos}`,
+                date:`${entriesBydate[i].date.getDate()}/${entriesBydate[i].date.getMonth() + 1}/${entriesBydate[i].date.getUTCFullYear()} ${objfecha.hora}:${objfecha.minutos}`,
                 manualEntry:entriesBydate[i].manualEntry,
                 amountEntry:entriesBydate[i].amountEntry,
                 entryType:entriesBydate[i].entryType,

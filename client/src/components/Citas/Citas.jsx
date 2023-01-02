@@ -12,7 +12,7 @@ import { llenarCitas } from '../constAndFunctions/citas/llenarCitas'
 
 export function Citas(){
     const [entries,setEntries]=useState(tabla_st)
-    useEffect(()=>"",[entries])
+    //useEffect(()=>"",[entries]) lo comento, creo que es inesesario
     return(
         <>
             <div className="d-flex flex-row justify-content-around">

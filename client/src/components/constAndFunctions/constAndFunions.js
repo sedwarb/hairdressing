@@ -1,10 +1,12 @@
 export const DB_HOST='localhost'
 export async function getDatos(search){
     let datos
+
     if(search.type!==""){
         datos = await fetch(`http://${DB_HOST}:3001/${search.type}`)
     }else if(search.send){
-        datos = await fetch(`http://${DB_HOST}:3001/entries?dateIni=${search.dbeg}&&dateEnd=${search.dend}${search.typed==="entry"?" 23:59:59":""}&&${search.typed}=${search.typed==="entry"?"meeting":search.tdate}`)
+        const valor_fin = search.dend.length===0?search.dbeg:search.dend
+        datos = await fetch(`http://${DB_HOST}:3001/entries?dateIni=${search.dbeg}&&dateEnd=${valor_fin}${search.typed==="entry"?" 23:59:59":""}&&${search.typed}=${search.typed==="entry"?"meeting":search.tdate}`)
         search.send=false
     }
     return datos ? datos.json():[]
@@ -22,7 +24,7 @@ export const typeTable = {
     entries:[{str:"Fecha",name:"date",sname:null},
     {str:"Manual",name:"manualEntry",sname:null},
     {str:"Monto",name:"amountEntry",sname:null},
-    {str:"Usuario",name:"user",sname:"fullname"},
+    {str:"Cliente",name:"user",sname:"fullname"},
     {str:"Trabajador",name:"worker",sname:"fullname"},
     {str:"Servicio",name:"service",sname:"name"}],
     products:[{str:"Linea",name:"linea",sname:null},

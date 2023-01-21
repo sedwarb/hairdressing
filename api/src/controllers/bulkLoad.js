@@ -2,10 +2,10 @@ const { User, Entry, Worker, Service, Product } = require("../db.js");
 
 async function loadAll(req, res){
     try{
-        //User.bulkCreate(users)
-        //Worker.bulkCreate(workers)
-        //Service.bulkCreate(services)
-        //Entry.bulkCreate(entries)
+        User.bulkCreate(users)
+        Worker.bulkCreate(workers)
+        Service.bulkCreate(services)
+        Entry.bulkCreate(entries)
         Product.bulkCreate(product)
         res.send("Se Agrego Toda la Informacion")
     }catch(error){res.send(`Error: ${error}`)}

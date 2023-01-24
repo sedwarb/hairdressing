@@ -38,7 +38,10 @@ export function Autenticar(){
                         type='button' 
                         className="btn btn-outline-primary btn-sm">
                             {
-                                entries.find?<NavLink exact to="/971171161011101161059997114">Ingresar</NavLink>:
+                                entries.find?
+                                entries.nivel==="admin"?
+                                    <NavLink exact to="/971171161011101161059997114">Ingresar</NavLink>:
+                                    <NavLink exact to="/11711511797114105111">Ingresar</NavLink>:
                                 <NavLink exact to="/">Verificar</NavLink>
                             }
                             
@@ -55,8 +58,9 @@ function auth(entries,setEntries){
         {usuario:"edwar",clave:"edwar",nivel:"trabajador"}
     ]
     //console.log(usuarios.find(b=>b.usuario===entries.usuario && b.clave===entries.key))
-    if(usuarios.find(b=>b.usuario===entries.usuario && b.clave===entries.key)){
-        setEntries({...entries,find:true})
+    let resul = usuarios.find(b=>b.usuario===entries.usuario && b.clave===entries.key)
+    if(resul){
+        setEntries({...entries,find:true,nivel:resul.nivel})
     }else{
         setEntries({...entries,find:false})
     }

@@ -34,7 +34,14 @@ export function Autenticar(){
             <div className="d-flex flex-row justify-content-center">
                 <div className="p-2">
                     <button
-                        onClick={()=>auth(entries,setEntries)}
+                        onClick={async ()=>{
+                            const res = await authFetch(entries)
+                            if(res[0].level){
+                                setEntries({...entries,find:true,nivel:res[0].level})
+                            }else{
+                                setEntries({...entries,find:false,nivel:""})
+                            }
+                        }}
                         type='button' 
                         className="btn btn-outline-primary btn-sm">
                             {
@@ -52,6 +59,12 @@ export function Autenticar(){
     )
 }
 
+async function authFetch(entries){
+    const resp = await fetch(`http://localhost:3001/auth?id=${entries.usuario}&&key=${entries.key}`)
+    return resp?resp.json():{}
+}
+
+/*
 function auth(entries,setEntries){
     let usuarios = [
         {usuario:"paola",clave:"paola",nivel:"admin"},
@@ -65,3 +78,4 @@ function auth(entries,setEntries){
         setEntries({...entries,find:false})
     }
 }
+*/

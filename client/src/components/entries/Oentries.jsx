@@ -31,7 +31,7 @@ export function Oentries(){
                             iden={"manualEntry"}
                         />
                     </div>
-                </div>            
+                </div>
                 <div className="d-flex flex-column">
                     <div className="p-2"><Lists typeList={typeList['worker']} listStP={entries} /></div>
                     <div className="p-2">

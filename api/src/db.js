@@ -32,7 +32,7 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { User, Entry, Worker, Service } = sequelize.models;
+const { User, Entry, Worker, Service, Autenticar } = sequelize.models;
 
 User.hasMany(Entry,{foreignKey:'userPhoneNumber'});
 Entry.belongsTo(User);
@@ -42,6 +42,9 @@ Entry.belongsTo(Worker);
 
 Service.hasMany(Entry,{foreignKey:'serviceId'});
 Entry.belongsTo(Service);
+
+Worker.hasOne(Autenticar,{foreignKey:'workerId'});
+Autenticar.belongsTo(Worker);
 
 module.exports = {
   ...sequelize.models,

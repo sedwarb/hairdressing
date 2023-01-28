@@ -5,6 +5,7 @@ const user = require('./user')
 const service = require('./service')
 const worker = require('./worker')
 const product = require("./product")
+const autenticar = require('./autenticar')
 
 const router = Router();
 
@@ -25,11 +26,13 @@ const router = Router();
 // http://localhost:3001/worker
 // Actualizar precio de servicio
 // http://localhost:3001/service
+// http://localhost:3001/auth?id=userId&&key=userKey
 router.use('/bulkLoad', bulkLoad);
 router.use('/entries', entries);
 router.use('/user', user);
 router.use('/service', service);
 router.use('/worker', worker);
 router.use('/product', product);
+router.use('/auth', autenticar);
 
 module.exports = router;

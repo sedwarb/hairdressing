@@ -12,6 +12,19 @@ export async function getDatos(search){
     return datos ? datos.json():[]
 }
 
+export const pathU = {
+    user:"11711511797114105111",
+    admin:"971171161011101161059997114",
+    entradas:"69110116114105101115",
+    citas:"109101101116105110103",
+    reportes:"849798108101",
+    facturar:"102979911611711497114",
+    usuarios:"85115101114849798108101",
+    servicios:"8310111411810599101849798108101",
+    trabajador:"87111114107101114849798108101",
+    productos:"11211411110011799116111115"
+  }
+
 export const typeTable = {
     user:[{str:"Numero de Telefono",name:"phoneNumber",sname:null},
     {str:"Nombre",name:"fullname",sname:null}],
@@ -34,7 +47,11 @@ export const typeTable = {
     {str:"Volumen",name:"volumen",sname:null},
     {str:"Unidad",name:"unidad",sname:null},
     {str:"Existencia",name:"existencia",sname:null},
-    {str:"Descripcion",name:"descripcion",sname:null}]
+    {str:"Descripcion",name:"descripcion",sname:null}],
+    facturar:[{str:"Manual",name:"manualEntry",sname:null},
+    {str:"Monto",name:"amountEntry",sname:null},
+    {str:"Trabajador",name:"worker",sname:"fullname"},
+    {str:"Servicio",name:"service",sname:"name"}]
 }
 
 

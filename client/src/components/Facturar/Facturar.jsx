@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import {Table} from '../Table/Table'
 import {typeTable,stateTable} from "../constAndFunctions/constAndFunions.js"
 import { InputGen } from '../ShowMeTables/inputsTables/inputGen'
+import { TableF } from './TableF/TableF'
 
 export function Facturar(){
     const [table,setTable] = useState(stateTable)
@@ -32,7 +32,7 @@ export function Facturar(){
                 </button>
             </div>
             <div className='mt-3 px-2' >                
-                <Table typeTable={typeTable.entries} search={table}/>
+                <TableF typeTable={typeTable.facturar} search={table}/>
             </div>
         </>
     )

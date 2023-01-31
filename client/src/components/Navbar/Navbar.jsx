@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { pathU } from '../constAndFunctions/constAndFunions'
 
 export function Navbar(){
     return(
@@ -13,22 +14,28 @@ export function Navbar(){
                         </li>
                         <li className="nav-item">
                             <p className="nav-link">
-                                <NavLink exact to="/971171161011101161059997114/69110116114105101115">Entradas</NavLink>
+                                <NavLink exact to={`/${pathU.admin}/${pathU.entradas}`}>
+                                    Entradas
+                                </NavLink>
                             </p>
                         </li>
                         <li className="nav-item">
                             <p className="nav-link">
-                                <NavLink exact to="/971171161011101161059997114/109101101116105110103">Citas</NavLink>
+                                <NavLink exact to={`/${pathU.admin}/${pathU.citas}`}>
+                                    Citas
+                                </NavLink>
                             </p>
                         </li>
                         <li className="nav-item">
                             <p className="nav-link">
-                                <NavLink exact to="/971171161011101161059997114/849798108101">Registros</NavLink>
+                                <NavLink exact to={`/${pathU.admin}/${pathU.reportes}`}>
+                                    Registros
+                                </NavLink>
                             </p>
                         </li>
                         <li className="nav-item">
                             <p className="nav-link">
-                                <NavLink exact to="/971171161011101161059997114/102979911611711497114">
+                                <NavLink exact to={`/${pathU.admin}/${pathU.facturar}`}>
                                     Facturar
                                 </NavLink>
                             </p>
@@ -45,22 +52,22 @@ export function Navbar(){
                             </p>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">                                
                                 <p className="dropdown-item">
-                                    <NavLink exact to="/971171161011101161059997114/85115101114849798108101">
+                                    <NavLink exact to={`/${pathU.admin}/${pathU.usuarios}`}>
                                         Clientes
                                     </NavLink>
                                 </p>
                                 <p className="dropdown-item">
-                                    <NavLink exact to="/971171161011101161059997114/87111114107101114849798108101">
+                                    <NavLink exact to={`/${pathU.admin}/${pathU.trabajador}`}>
                                         Trabajadores
                                     </NavLink>
                                 </p>
                                 <p className="dropdown-item">
-                                    <NavLink exact to="/971171161011101161059997114/8310111411810599101849798108101">
+                                    <NavLink exact to={`/${pathU.admin}/${pathU.servicios}`}>
                                         Servicios
                                     </NavLink>
                                 </p>
                                 <p className="dropdown-item">
-                                    <NavLink exact to="/971171161011101161059997114/11211411110011799116111115">
+                                    <NavLink exact to={`/${pathU.admin}/${pathU.productos}`}>
                                         Productos
                                     </NavLink>
                                 </p>

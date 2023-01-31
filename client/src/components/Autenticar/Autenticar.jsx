@@ -63,19 +63,3 @@ async function authFetch(entries){
     const resp = await fetch(`http://localhost:3001/auth?id=${entries.usuario}&&key=${entries.key}`)
     return resp?resp.json():{}
 }
-
-/*
-function auth(entries,setEntries){
-    let usuarios = [
-        {usuario:"paola",clave:"paola",nivel:"admin"},
-        {usuario:"edwar",clave:"edwar",nivel:"trabajador"}
-    ]
-    //console.log(usuarios.find(b=>b.usuario===entries.usuario && b.clave===entries.key))
-    let resul = usuarios.find(b=>b.usuario===entries.usuario && b.clave===entries.key)
-    if(resul){
-        setEntries({...entries,find:true,nivel:resul.nivel})
-    }else{
-        setEntries({...entries,find:false})
-    }
-}
-*/

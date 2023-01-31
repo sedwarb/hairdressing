@@ -26,6 +26,13 @@ export function Navbar(){
                                 <NavLink exact to="/971171161011101161059997114/849798108101">Registros</NavLink>
                             </p>
                         </li>
+                        <li className="nav-item">
+                            <p className="nav-link">
+                                <NavLink exact to="/971171161011101161059997114/102979911611711497114">
+                                    Facturar
+                                </NavLink>
+                            </p>
+                        </li>
                         <li className="nav-item dropdown">
                             <p 
                                 className="nav-link dropdown-toggle" 
@@ -36,17 +43,19 @@ export function Navbar(){
                                 aria-expanded="false">
                                     Informacion
                             </p>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">                                
                                 <p className="dropdown-item">
-                                    <NavLink exact to="/971171161011101161059997114/85115101114849798108101" >Clientes</NavLink>
+                                    <NavLink exact to="/971171161011101161059997114/85115101114849798108101">
+                                        Clientes
+                                    </NavLink>
                                 </p>
                                 <p className="dropdown-item">
-                                    <NavLink exact to="/971171161011101161059997114/87111114107101114849798108101" >
+                                    <NavLink exact to="/971171161011101161059997114/87111114107101114849798108101">
                                         Trabajadores
                                     </NavLink>
                                 </p>
                                 <p className="dropdown-item">
-                                    <NavLink exact to="/971171161011101161059997114/8310111411810599101849798108101" >
+                                    <NavLink exact to="/971171161011101161059997114/8310111411810599101849798108101">
                                         Servicios
                                     </NavLink>
                                 </p>

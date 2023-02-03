@@ -1,4 +1,4 @@
-const { User, Entry, Worker, Service, Product } = require("../db.js");
+const { Entry,Product } = require("../db.js");
 const { Op } = require("sequelize");
 
 async function createProduct(req, res){
@@ -12,7 +12,8 @@ async function createProduct(req, res){
                 volumen:req.body.volumen,
                 existencia:req.body.existencia,
                 descripcion:req.body.descripcion,
-                unidad:req.body.unidad
+                unidad:req.body.unidad,
+                precio:req.body.precio
             }
         )
         res.send(`Producto Creado Exitosamente`)

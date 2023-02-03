@@ -1,4 +1,4 @@
-const { User, Entry, Worker, Service, Product } = require("../db.js");
+const { User, Entry, Worker, Service, Product, Autenticar } = require("../db.js");
 
 async function loadAll(req, res){
     try{
@@ -7,11 +7,19 @@ async function loadAll(req, res){
         Service.bulkCreate(services)
         Entry.bulkCreate(entries)
         Product.bulkCreate(product)
+        Autenticar.bulkCreate(autenticar)
         res.send("Se Agrego Toda la Informacion")
     }catch(error){res.send(`Error: ${error}`)}
 }
+
+const autenticar = [
+    {key:"paola",level:"admin",workerId:"1143961948"},
+    {key:"naomy",level:"user",workerId:"1144060519"},
+    {key:"mailory",level:"user",workerId:"38684947"}
+]
+
 const product = [
-    {linea:"fantasia", marca:"kuul",tipo:"tintes",nombre:"funny colors",volumen:900,existencia:0,unidad:"ml",descripcion:"sistrema de coloracion"}
+    {linea:"fantasia", marca:"kuul",tipo:"tintes",nombre:"funny colors",volumen:900,existencia:0,unidad:"ml",descripcion:"sistrema de coloracion",precio:100000}
 ]
 
 const users = [
@@ -57,45 +65,45 @@ const services = [
 {id:"medpier",name:"Depilacion 1/2 pierna",amount:20000,info:""}]
 
 const entries = [
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"mapi",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"mapi",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"mapi",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"pies",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"mapi",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"pies",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"pies",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"manos",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"inma",manualEntry:"corte de caballero",amountEntry:12000},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"inma",manualEntry:"hidratacion",amountEntry:25000},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"inma",manualEntry:"cepillado mas maquillaje",amountEntry:48000},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"manos",manualEntry:"",amountEntry:0},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"pies",manualEntry:"",amountEntry:0},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"inma",manualEntry:"maquillaje de unas",amountEntry:7000},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"pies",manualEntry:"",amountEntry:0},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"pies",manualEntry:"",amountEntry:0},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"inma",manualEntry:"dos cortes",amountEntry:25000},
-{date:"2022-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
-{date:"2022-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"manos",manualEntry:"",amountEntry:0},
-{date:"2022-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
-{date:"2022-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
-{date:"2022-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cepiex",manualEntry:"",amountEntry:0},
-{date:"2022-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"inma",manualEntry:"retiro semi y manos",amountEntry:16000},
-{date:"2022-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"pies",manualEntry:"",amountEntry:0},
-{date:"2022-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"manos",manualEntry:"",amountEntry:0},
-{date:"2022-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
-{date:"2022-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
-{date:"2022-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
-{date:"2022-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"pies",manualEntry:"",amountEntry:0},
-{date:"2022-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"manos",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"mapi",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"mapi",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"mapi",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"pies",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"mapi",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"pies",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"pies",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"manos",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"inma",manualEntry:"corte de caballero",amountEntry:12000},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"inma",manualEntry:"hidratacion",amountEntry:25000},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"inma",manualEntry:"cepillado mas maquillaje",amountEntry:48000},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-02 21:09:07.110 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"manos",manualEntry:"",amountEntry:0},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"pies",manualEntry:"",amountEntry:0},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"inma",manualEntry:"maquillaje de unas",amountEntry:7000},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"pies",manualEntry:"",amountEntry:0},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"pies",manualEntry:"",amountEntry:0},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"inma",manualEntry:"dos cortes",amountEntry:25000},
+{date:"2023-06-03 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
+{date:"2023-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"manos",manualEntry:"",amountEntry:0},
+{date:"2023-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
+{date:"2023-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
+{date:"2023-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-04 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cepiex",manualEntry:"",amountEntry:0},
+{date:"2023-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"inma",manualEntry:"retiro semi y manos",amountEntry:16000},
+{date:"2023-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"pies",manualEntry:"",amountEntry:0},
+{date:"2023-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"manos",manualEntry:"",amountEntry:0},
+{date:"2023-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"cortec",manualEntry:"",amountEntry:0},
+{date:"2023-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
+{date:"2023-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1143961948",serviceId:"corted",manualEntry:"",amountEntry:0},
+{date:"2023-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"1144060519",serviceId:"pies",manualEntry:"",amountEntry:0},
+{date:"2023-06-05 10:00:00.000 -0500",entryType:"entry",userPhoneNumber:"3006007050",workerId:"38684947",serviceId:"manos",manualEntry:"",amountEntry:0},
 //faltan registros...
 //{date:"04/03/2021",entryType:"entry",userPhoneNumber:"3006007050",workerId:"",serviceId:"",manualEntry:"",amountEntry:0},
 ]

@@ -27,6 +27,10 @@ module.exports = (sequelize) => {
     },
     unidad:{
         type: DataTypes.STRING
+    },
+    precio:{
+        type: DataTypes.FLOAT,
+        defaultValue:0.0
     }
   });
 };

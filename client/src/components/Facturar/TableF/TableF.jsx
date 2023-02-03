@@ -5,9 +5,9 @@ import {BarraEstado} from '../../BarraEstado/BarraEstado'
 import { handleChange } from '../../constAndFunctions/entries/handleChange'
 import { ModalProd } from './ModalProd'
 
-export function TableF({typeTable,search}){
+export function TableF({typeTable,search,conf}){
     const [dates,setDates] = useState([])
-    const [estado,setEstado] = useState({})
+    //const [estado,setEstado] = useState({})
     useEffect(async ()=>{
         setDates(await getDatos(search))
     },[search])
@@ -52,7 +52,7 @@ export function TableF({typeTable,search}){
                                                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                                                     Cargar Productos
                                                 </button>
-                                                <ModalProd/>
+                                                <ModalProd entries={search} setEntries={conf}/>
                                             </td>
                                         </tr>
                                     )

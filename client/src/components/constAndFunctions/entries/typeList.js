@@ -8,5 +8,10 @@ export const typeList = {
         typeL:"worker",
         fieldL:"fullname",
         esp:"Trabajadores"
+    },
+    product:{
+        typeL:"product",
+        fieldL:"nombre",
+        esp:"Prod"
     }
 }

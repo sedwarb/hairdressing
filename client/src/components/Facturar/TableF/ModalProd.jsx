@@ -1,9 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
+import { Lists } from '../../Lists/Lists'
+import { typeList } from '../../constAndFunctions/entries/typeList'
+import { InputGen } from '../../ShowMeTables/inputsTables/inputGen'
 
 export function ModalProd(){
+    const [entries,setEntries]=useState({})
     return(
         <>
-            <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
@@ -14,6 +18,20 @@ export function ModalProd(){
                     </div>
                     <div className="modal-body">
                         Productos...
+                        <div className="d-flex flex-row">
+                            <div className="p-2">
+                                <Lists typeList={typeList['product']} listStP={entries} /> 
+                            </div>                               
+                            <div className="p-2">
+                                <InputGen 
+                                    conf={setEntries} 
+                                    estado={entries} 
+                                    nombre={"cant"} 
+                                    iden={"cantidad"} 
+                                    tipo={"number"}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>

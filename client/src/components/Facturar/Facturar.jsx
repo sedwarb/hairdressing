@@ -32,7 +32,7 @@ export function Facturar(){
                 </button>
             </div>
             <div className='mt-3 px-2' >                
-                <TableF typeTable={typeTable.facturar} search={table}/>
+                <TableF typeTable={typeTable.facturar} search={table} conf={setTable}/>
             </div>
         </>
     )

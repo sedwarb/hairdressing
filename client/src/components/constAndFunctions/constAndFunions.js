@@ -48,10 +48,14 @@ export const typeTable = {
     {str:"Unidad",name:"unidad",sname:null},
     {str:"Existencia",name:"existencia",sname:null},
     {str:"Descripcion",name:"descripcion",sname:null}],
-    facturar:[{str:"Manual",name:"manualEntry",sname:null},
+    facturar:[{str:"ID",name:"id",sname:null},
+    {str:"Manual",name:"manualEntry",sname:null},
     {str:"Monto",name:"amountEntry",sname:null},
     {str:"Trabajador",name:"worker",sname:"fullname"},
-    {str:"Servicio",name:"service",sname:"name"}]
+    {str:"Servicio",name:"service",sname:"name"}],
+    producEntries:[{str:"nombre",name:"nombre",sname:null},
+    {str:"cantidad",name:"cantidad",sname:null},
+    {str:"IdEntrada",name:"entryId",sname:null}]
 }
 
 

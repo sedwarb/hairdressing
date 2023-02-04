@@ -5,40 +5,32 @@ import { pathU } from '../constAndFunctions/constAndFunions'
 export function Navbar(){
     return(
         <>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">                
                 <p className="navbar-brand">Dwfer</p>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <p className="nav-link"><NavLink exact to="/">Inicio</NavLink></p>
+                            <NavLink className="nav-link" exact to="/">Inicio</NavLink>
                         </li>
                         <li className="nav-item">
-                            <p className="nav-link">
-                                <NavLink exact to={`/${pathU.admin}/${pathU.entradas}`}>
-                                    Entradas
-                                </NavLink>
-                            </p>
+                            <NavLink className="nav-link" exact to={`/${pathU.admin}/${pathU.entradas}`}>
+                                Entradas
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <p className="nav-link">
-                                <NavLink exact to={`/${pathU.admin}/${pathU.citas}`}>
-                                    Citas
-                                </NavLink>
-                            </p>
+                            <NavLink className="nav-link" exact to={`/${pathU.admin}/${pathU.citas}`}>
+                                Citas
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <p className="nav-link">
-                                <NavLink exact to={`/${pathU.admin}/${pathU.reportes}`}>
-                                    Registros
-                                </NavLink>
-                            </p>
+                            <NavLink className="nav-link" exact to={`/${pathU.admin}/${pathU.reportes}`}>
+                                Registros
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <p className="nav-link">
-                                <NavLink exact to={`/${pathU.admin}/${pathU.facturar}`}>
-                                    Facturar
-                                </NavLink>
-                            </p>
+                            <NavLink className="nav-link" exact to={`/${pathU.admin}/${pathU.facturar}`}>
+                                Facturar
+                            </NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <p 

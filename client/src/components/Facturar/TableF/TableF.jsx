@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react'
 import { getDatos } from '../../constAndFunctions/constAndFunions'
 import {capitalizar} from '../../constAndFunctions/varios_usos/capitalizar'
 import {BarraEstado} from '../../BarraEstado/BarraEstado'
-import { handleChange } from '../../constAndFunctions/entries/handleChange'
+//import { handleChange } from '../../constAndFunctions/entries/handleChange'
 import { ModalProd } from './ModalProd'
 
 export function TableF({typeTable,search,conf}){

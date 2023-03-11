@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { Lists } from '../Lists/Lists'
 import { typeList } from '../constAndFunctions/entries/typeList'
 import { tabla_st } from '../constAndFunctions/entries/usuario'
@@ -12,7 +12,6 @@ import { llenarCitas } from '../constAndFunctions/citas/llenarCitas'
 
 export function Citas(){
     const [entries,setEntries]=useState(tabla_st)
-    //useEffect(()=>"",[entries]) lo comento, creo que es inesesario
     return(
         <>
             <div className="d-flex flex-row justify-content-around">

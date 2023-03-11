@@ -37,7 +37,6 @@ export const typeTable = {
     {str:"Descripcion",name:"descripcion",sname:null}]
 }
 
-
 export const stateTable = {
     type:"",
     dbeg:"",
@@ -53,62 +52,6 @@ export const stateTable = {
     service:false
 }
 
-
 export const tableFilter = [{str:"workerId",name:"Id Trabajador"},
 {str:"phoneNumber",name:"Id Usuario"},
 {str:"entry",name:"Citas"}]
-
-/*
-export function cleanTableF(table){
-    return {
-            user:
-            {
-                ...table,
-                type:"user",
-                user:true,
-                worker:false,
-                service:false,
-                dbeg:"",
-                dend:"",
-                cdbeg:"",
-                cdend:"",
-                typed:"",
-                send:false,
-                tdate:"",
-                firstTime:false
-            },
-            worker:
-            {
-                ...table,
-                type:"worker",
-                worker:true,
-                user:false,
-                service:false,
-                dbeg:"",
-                dend:"",
-                cdbeg:"",
-                cdend:"",
-                typed:"",
-                send:false,
-                tdate:"",
-                firstTime:false
-            },
-            service:
-            {
-                ...table,
-                type:"service",
-                service:true,
-                user:false,
-                worker:false,
-                dbeg:"",
-                dend:"",
-                cdbeg:"",
-                cdend:"",
-                typed:"",
-                send:false,
-                tdate:"",
-                firstTime:false
-            }
-    }
-}
-*/

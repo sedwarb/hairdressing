@@ -1,16 +1,12 @@
 export const tabla_st = {
     workerId:"",
     serviceId:"",
-    //phoneNumber:null,    
     manualEntry:null,
     amountEntry:null,
-    date:"",    
-    //entryType:"",
+    date:"",
     telephone:null,
     nomUsu:null,
     oculto1:false,
     oculto2:false,
     findUser:false
 }
-
-//REVISAR LOS ESTADOS QUE NO SE NECEITEN

@@ -1,7 +1,6 @@
 const { Worker, Autenticar } = require("../db.js");
 
 async function getAutenticacion(req, res){
-    //{id:"paola",key:"paola",level:"admin"}
     const {id,key}=req.query
     try{
         res.json(

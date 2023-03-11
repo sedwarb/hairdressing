@@ -1,5 +1,4 @@
-const { User, Entry, Worker, Service } = require("../db.js");
-const { Op } = require("sequelize");
+const { Service } = require("../db.js")
 
 async function createService(req, res){
     try{

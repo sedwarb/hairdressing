@@ -1,5 +1,5 @@
 const { User, Entry, Worker, Service } = require("../db.js");
-const { Op, JSON, json } = require("sequelize");
+const { Op } = require("sequelize");
 const {exclutionInInclude,exclutionppal,createWhereObj} = require('./constAndFunctions')
 const {fechaCompleta} = require('./entries/fecha_completa')
 
